@@ -1,0 +1,1 @@
+<template>빙프라임</template>
