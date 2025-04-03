@@ -11,6 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faUserSecret);
 
 const app = createApp(App);
+app.directive("title", {
+  mounted(el, binding) {
+    document.title = binding.value;
+  },
+});
 
 // 위에 createApp을 통해 생성한 Vue Application 인스턴스의 component API 활용
 app.component("font-awesome-icon", FontAwesomeIcon);

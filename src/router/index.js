@@ -3,7 +3,7 @@ import BingFree from "@/views/BingFree.vue";
 import BingPrime from "@/views/BingPrime.vue";
 import FreeMall from "@/views/FreeMall.vue";
 import IntroBing from "@/views/IntroBing.vue";
-import Price from "@/views/Price.vue";
+import Check from "@/views/Check.vue";
 import Review from "@/views/Review.vue";
 import Reservation from "@/views/Reservation.vue";
 
@@ -25,8 +25,8 @@ const routes = [
     component: IntroBing,
   },
   {
-    path: "/Price",
-    component: Price,
+    path: "/Check",
+    component: Check,
   },
   {
     path: "/Review",
