@@ -1,174 +1,239 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+// 스크롤 탑 기능
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const inMove = ref(false);
+const inMoveDelay = 400;
+const activeSection = ref(0);
+const offsets = ref([]);
+let touchStartY = 0;
+
+/**
+ * 섹션 위치 계산
+ */
+const calculateSectionOffsets = () => {
+  offsets.value = [];
+  const sections = document.getElementsByTagName("section");
+  for (let section of sections) {
+    offsets.value.push(section.offsetTop);
+  }
+};
+
+/**
+ * 마우스 휠 이벤트 처리
+ */
+const handleMouseWheel = (e) => {
+  if (inMove.value) return;
+
+  if (e.wheelDelta < 30) {
+    moveUp();
+  } else if (e.wheelDelta > 30) {
+    moveDown();
+  }
+  e.preventDefault();
+};
+
+/**
+ * 파이어폭스 전용 휠 이벤트
+ */
+const handleMouseWheelDOM = (e) => {
+  if (inMove.value) return;
+
+  if (e.detail > 0) {
+    moveUp();
+  } else {
+    moveDown();
+  }
+};
+
+// 이전 섹션 이동
+const moveDown = () => {
+  if (activeSection.value === 0) {
+    window.scrollBy({ top: -120, behavior: "smooth" }); // 추가 이동
+    return; // 종료
+  }
+  inMove.value = true;
+  activeSection.value--;
+  scrollToSection(activeSection.value);
+};
+
+/**
+ * 다음 섹션으로 이동
+ */
+const moveUp = () => {
+  if (activeSection.value === offsets.value.length - 1) return; // 마지막 섹션이면 종료
+  inMove.value = true;
+  activeSection.value++;
+  scrollToSection(activeSection.value);
+};
+
+/**
+ * 특정 섹션으로 이동
+ */
+const scrollToSection = (id) => {
+  activeSection.value = id;
+  inMove.value = true;
+
+  const section = document.getElementsByTagName("section")[id];
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+
+  setTimeout(() => {
+    inMove.value = false;
+  }, inMoveDelay);
+};
+
+/**
+ * 모바일 터치 이벤트 처리
+ */
+const touchStart = (e) => {
+  touchStartY = e.touches[0].clientY;
+};
+
+const touchMove = (e) => {
+  if (inMove.value) return;
+
+  e.preventDefault();
+  const currentY = e.touches[0].clientY;
+
+  if (touchStartY < currentY) {
+    moveDown();
+  } else {
+    moveUp();
+  }
+
+  touchStartY = 0;
+};
+
+// 이벤트 리스너 등록 & 해제
+onMounted(() => {
+  calculateSectionOffsets();
+  window.addEventListener("DOMMouseScroll", handleMouseWheelDOM);
+  window.addEventListener("mousewheel", handleMouseWheel, { passive: false });
+  window.addEventListener("touchstart", touchStart, { passive: false });
+  window.addEventListener("touchmove", touchMove, { passive: false });
+});
+
+onUnmounted(() => {
+  window.removeEventListener("DOMMouseScroll", handleMouseWheelDOM);
+  window.removeEventListener("mousewheel", handleMouseWheel);
+  window.removeEventListener("touchstart", touchStart);
+  window.removeEventListener("touchmove", touchMove);
+});
 </script>
 
 <template>
-  <section class="visual">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
-      <SwiperSlide>
-        <div class="slide">
-          <img src="/images/web_visual01.png" alt="비주얼1" />
-          <div class="txtbox inner">
-            <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
-            <p class="main-h1" style="color: #fff">
-              눈에 보이지 않아도, <br />
-              우리는 알고 있어야 하니까
-            </p>
+  <div id="app">
+    <div class="visual">
+      <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
+        <SwiperSlide>
+          <div class="slide">
+            <img src="/images/web_visual01.png" alt="비주얼1" />
+            <div class="txtbox inner">
+              <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
+              <p class="main-h1" style="color: #fff">
+                눈에 보이지 않아도, <br />
+                우리는 알고 있어야 하니까
+              </p>
+            </div>
           </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div class="slide">
-          <img
-            style="filter: brightness(1.2)"
-            src="/images/web_visual02.png"
-            alt="비주얼2"
-          />
-          <div class="txtbox inner">
-            <router-link to="/BingPrime" class="main-h3" style="color: #e9ff54"
-              >빙프라임 가입하기 →</router-link
-            >
-            <p class="main-h1" style="color: #fff">
-              인증 라벨 하나로 <br />
-              더 강해지는 믿음
-            </p>
-            <p class="main-h4" style="color: #d9d9d9">
-              깨끗한 얼음으로 더 많은 믿음을 얻으세요
-            </p>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div class="slide">
+            <img
+              style="filter: brightness(1.2)"
+              src="/images/web_visual02.png"
+              alt="비주얼2"
+            />
+            <div class="txtbox inner">
+              <router-link
+                to="/BingPrime"
+                class="main-h3"
+                style="color: #e9ff54"
+                >빙프라임 가입하기 →</router-link
+              >
+              <p class="main-h1" style="color: #fff">
+                인증 라벨 하나로 <br />
+                더 강해지는 믿음
+              </p>
+              <p class="main-h4" style="color: #d9d9d9">
+                깨끗한 얼음으로 더 많은 믿음을 얻으세요
+              </p>
+            </div>
           </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div class="slide">
-          <img src="/images/web_visual03.png" alt="비주얼3" />
-          <div class="txtbox inner">
-            <p class="main-h1">
-              제빙기를 호텔처럼, <br />
-              마음을 담아 관리해드립니다
-            </p>
-            <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">
-              #빙프리 꿀팁 #보다 쉽게
-            </p>
-            <router-link
-              to="/BingPrime"
-              class="main-h2 app"
-              style="color: #1465fd"
-              >App 다운로드 →
-            </router-link>
-            <router-link
-              to="/BingPrime"
-              class="main-h4 phone"
-              style="color: #e9ff54"
-              >App 다운로드</router-link
-            >
+        </SwiperSlide>
+        <SwiperSlide>
+          <div class="slide">
+            <img src="/images/web_visual03.png" alt="비주얼3" />
+            <div class="txtbox inner">
+              <p class="main-h1">
+                제빙기를 호텔처럼, <br />
+                마음을 담아 관리해드립니다
+              </p>
+              <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">
+                #빙프리 꿀팁 #보다 쉽게
+              </p>
+              <router-link
+                to="/BingPrime"
+                class="main-h2 app"
+                style="color: #1465fd"
+                >App 다운로드 →
+              </router-link>
+              <router-link
+                to="/BingPrime"
+                class="main-h4 phone"
+                style="color: #e9ff54"
+                >App 다운로드</router-link
+              >
+            </div>
           </div>
-        </div>
-      </SwiperSlide>
-    </Swiper>
-  </section>
-  <main>
-    <div class="side">
-      <div>
-        <router-link to="/reservation" class="sideBtn reservBtn">
-          <img src="/images/calendar_blue.png" alt="캘린더" />
-          예약하기
-        </router-link>
-      </div>
-      <div class="sideBtn">
-        <img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp
-      </div>
-      <div class="goTop">↑</div>
+        </SwiperSlide>
+      </Swiper>
     </div>
-    
-  </main>
+    <main>
+      <div class="side">
+        <div>
+          <router-link to="/reservation" class="sideBtn reservBtn">
+            <img src="/images/calendar_blue.png" alt="캘린더" />
+            예약하기
+          </router-link>
+        </div>
+        <div class="sideBtn">
+          <img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp
+        </div>
+        <div class="goTop" @click="scrollToTop">↑</div>
+      </div>
+      <div class="sections-menu">
+        <span
+          class="menu-point"
+          v-bind:class="{ active: activeSection == index }"
+          v-on:click="scrollToSection(index)"
+          v-for="(offset, index) in offsets"
+          v-bind:key="index"
+          v-title="'Go to section ' + (index + 1)"
+        >
+        </span>
+      </div>
+      <!-- 메인 섹션 빙프리란(수현) -->
+      <section class="fullpage introBing"></section>
+      <!-- 메인 섹션 요금안내(채연) -->
+      <section class="fullpage check"></section>
+      <!-- 메인 섹션 고객리뷰(지수) -->
+      <section class="fullpage review"></section>
+      <!-- 메인 섹션 예약하기(효빈) -->
+      <section class="fullpage reservation"></section>
+      <!-- 메인 섹션 하단입니다 -->
+      <section class="fullpage footer"></section>
+    </main>
+  </div>
 </template>
 
-<style scoped>
-.visual {
-  width: 100%;
-  position: absolute;
-  top: 40px;
-}
-.slide {
-  width: 100%;
-  height: 1000px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.txtbox {
-  position: absolute;
-  top: 30%;
-  left: 17.5%;
-  z-index: 99;
-}
-.txtbox p {
-  margin: 10px 0;
-}
-.app {
-  position: relative;
-}
-.app::after {
-  content: "";
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: block;
-  background-color: #e9ff54;
-  position: absolute;
-  top: -70%;
-  right: 0;
-  z-index: -1;
-}
-.phone {
-  position: absolute;
-  top: 195px;
-  left: 705px;
-}
-main {
-  position: relative;
-}
-.side {
-  position: fixed;
-  bottom: 80px;
-  right: 130px;
-  z-index: 99999;
-}
-.side div {
-  margin-bottom: 30px;
-}
-.side div img,
-.sideBtn img {
-  width: 30px;
-  height: 30px;
-}
-.sideBtn {
-  width: 180px;
-  height: 80px;
-  border: 2px solid #1465fd;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 22px;
-  color: #1465fd;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.sideBtn a {
-  color: #1465fd;
-}
-
-.goTop {
-  width: 80px;
-  line-height: 80px;
-  background-color: #1465fd;
-  color: #fff;
-  text-align: center;
-  border-radius: 50%;
-  float: right;
-  font-size: 30px;
-}
-</style>
+<style scss scoped></style>

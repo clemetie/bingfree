@@ -7,7 +7,6 @@ import Header from "./components/Header.vue";
   <div>
     <Topbar />
     <Header />
-
     <router-view></router-view>
   </div>
 </template>
