@@ -8,7 +8,7 @@
 </template>
 <style scoped>
 .topbar {
-  position: relative; /* 또는 absolute / fixed */
+  position: fixed; /* 또는 absolute / fixed */
   z-index: 100;
   width: 100%;
   height: 40px;
