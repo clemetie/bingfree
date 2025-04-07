@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <div class="banner1">
+  <!-- <div class="banner1">
     <ul>
       <img src="/public/images/IntroBing/2.jpg" alt="배너1" />
       <div class="banner1-txt">
@@ -8,7 +8,7 @@
         <li class="banner-txt2">Trust Bingfree, which prioritizes cleanliness</li>
       </div>
     </ul>
-  </div>
+  </div> -->
 </template>
 
 <style scoped></style>

@@ -22,21 +22,19 @@ a {
 a:hover {
   color: #1465fd;
 }
-main {
-  position: relative;
-}
+
 .inner {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
 }
 
-
 // 메인 비주얼 슬라이드
 .visual {
   width: 100%;
-  position: absolute;
-  top: 40px;
+  height: calc(100vh - 80px);
+  position: relative; // absolute → relative 변경
+  top: -80px;
 }
 .slide {
   width: 100%;
@@ -123,6 +121,9 @@ main {
 }
 
 // 메인 스크롤 이벤트
+main {
+  position: relative;
+}
 .fullpage {
   height: 100vh;
   width: 100%;
@@ -130,6 +131,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   a,
   span {
     text-decoration: none;

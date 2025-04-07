@@ -148,25 +148,14 @@ onUnmounted(() => {
         </SwiperSlide>
         <SwiperSlide>
           <div class="slide">
-            <img
-              style="filter: brightness(1.2)"
-              src="/images/web_visual02.png"
-              alt="비주얼2"
-            />
+            <img style="filter: brightness(1.2)" src="/images/web_visual02.png" alt="비주얼2" />
             <div class="txtbox inner">
-              <router-link
-                to="/BingPrime"
-                class="main-h3"
-                style="color: #e9ff54"
-                >빙프라임 가입하기 →</router-link
-              >
+              <router-link to="/BingPrime" class="main-h3" style="color: #e9ff54">빙프라임 가입하기 →</router-link>
               <p class="main-h1" style="color: #fff">
                 인증 라벨 하나로 <br />
                 더 강해지는 믿음
               </p>
-              <p class="main-h4" style="color: #d9d9d9">
-                깨끗한 얼음으로 더 많은 믿음을 얻으세요
-              </p>
+              <p class="main-h4" style="color: #d9d9d9">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
             </div>
           </div>
         </SwiperSlide>
@@ -178,21 +167,9 @@ onUnmounted(() => {
                 제빙기를 호텔처럼, <br />
                 마음을 담아 관리해드립니다
               </p>
-              <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">
-                #빙프리 꿀팁 #보다 쉽게
-              </p>
-              <router-link
-                to="/BingPrime"
-                class="main-h2 app"
-                style="color: #1465fd"
-                >App 다운로드 →
-              </router-link>
-              <router-link
-                to="/BingPrime"
-                class="main-h4 phone"
-                style="color: #e9ff54"
-                >App 다운로드</router-link
-              >
+              <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">#빙프리 꿀팁 #보다 쉽게</p>
+              <router-link to="/BingPrime" class="main-h2 app" style="color: #1465fd">App 다운로드 → </router-link>
+              <router-link to="/BingPrime" class="main-h4 phone" style="color: #e9ff54">App 다운로드</router-link>
             </div>
           </div>
         </SwiperSlide>
@@ -206,9 +183,7 @@ onUnmounted(() => {
             예약하기
           </router-link>
         </div>
-        <div class="sideBtn">
-          <img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp
-        </div>
+        <div class="sideBtn"><img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp</div>
         <div class="goTop" @click="scrollToTop">↑</div>
       </div>
       <div class="sections-menu">
@@ -218,20 +193,31 @@ onUnmounted(() => {
           v-on:click="scrollToSection(index)"
           v-for="(offset, index) in offsets"
           v-bind:key="index"
-          v-title="'Go to section ' + (index + 1)"
-        >
+          v-title="'Go to section ' + (index + 1)">
         </span>
       </div>
       <!-- 메인 섹션 빙프리란(수현) -->
-      <section class="fullpage introBing"></section>
+      <section class="fullpage introBing" style="background-color: #1465fd"></section>
       <!-- 메인 섹션 요금안내(채연) -->
-      <section class="fullpage check"></section>
+      <section class="fullpage check" style="background-color: #e9ff54">
+        
+      </section>
       <!-- 메인 섹션 고객리뷰(지수) -->
-      <section class="fullpage review"></section>
+      <section class="fullpage review" style="background-color: #5c5c5c">
+        <div class="review-container inner">
+          <div class="review-title-box">
+            <p class="review-title">깨끗한 얼음, 신뢰받는 선택</p>
+            <p class="review-des">
+              고객이 안심하고 찾는 매장, 가맹점이 믿고 맡기는 위생 관리! <br />
+              직접 경험한 고객님들의 리얼 후기를 확인하세요.
+            </p>
+          </div>
+        </div>
+      </section>
       <!-- 메인 섹션 예약하기(효빈) -->
-      <section class="fullpage reservation"></section>
+      <section class="fullpage reservation" style="background-color: #d9d9d9"></section>
       <!-- 메인 섹션 하단입니다 -->
-      <section class="fullpage footer"></section>
+      <section class="fullpage footer" style="background-color: #1465fd"></section>
     </main>
   </div>
 </template>
