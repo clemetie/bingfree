@@ -9,70 +9,25 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  color: #fff;
+body,
+html {
+  height: auto;
   font-family: "Pretendard", sans-serif;
-  overflow: hidden;
 }
+
 // a태그
 a {
   text-decoration: none;
+  &:hover {
+    color: $bingfree-main;
+  }
 }
-a:hover {
-  color: #1465fd;
-}
-main {
-  position: relative;
-}
+
+
 .inner {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-}
-
-
-// 메인 비주얼 슬라이드
-.visual {
-  width: 100%;
-  position: absolute;
-  top: 40px;
-}
-.slide {
-  width: 100%;
-  height: 1000px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.txtbox {
-  position: absolute;
-  top: 30%;
-  left: 17.5%;
-  z-index: 99;
-  p {
-    margin: 10px 0;
-  }
-}
-.app {
-  position: relative;
-  &:after {
-    content: "";
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    display: block;
-    background-color: #e9ff54;
-    position: absolute;
-    top: -70%;
-    right: 0;
-    z-index: -1;
-  }
-}
-.phone {
-  position: absolute;
-  top: 195px;
-  left: 705px;
 }
 
 .side {
@@ -87,82 +42,106 @@ main {
       height: 30px;
     }
   }
-}
 
-.sideBtn {
-  width: 180px;
-  height: 80px;
-  border: 2px solid #1456fd;
-  background-color: #fff;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 22px;
-  color: #1456fd;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  a {
-    color: #1456fd;
-    img {
-      width: 30px;
-      height: 30px;
-    }
-  }
-}
-
-.goTop {
-  cursor: pointer;
-  width: 80px;
-  line-height: 80px;
-  background-color: #1456fd;
-  color: #fff;
-  text-align: center;
-  border-radius: 50%;
-  float: right;
-  font-size: 30px;
-}
-
-// 메인 스크롤 이벤트
-.fullpage {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  a,
-  span {
-    text-decoration: none;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 5px 10px;
     color: #fff;
-    margin-left: 5px;
+    text-align: center;
+    border-radius: 50%;
+    float: right;
+    font-size: 30px;
   }
 }
-
-.sections-menu {
+// 왼쪽 사이드 (섹션이동, 더보기)
+.sidesection {
   position: fixed;
-  right: 1rem;
   top: 50%;
+  left: 10%;
   transform: translateY(-50%);
-  .menu-point {
-    // 이게 우리 네브에 들어갈 애들인 거 같음 페이지네이션 ..?
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    display: block;
-    margin: 1rem 0;
-    opacity: 0.6;
-    transition: 0.4s ease-in-out all;
+  li {
     cursor: pointer;
-    &.active {
-      opacity: 1;
-      transform: scale(1.5);
+    list-style: none;
+    color: $bingfree-main;
+    margin: 5px 0;
+    font-weight: 500;
+  }
+  .viewmore {
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #e9ff54;
+    font-size: 20px;
+    border: none;
+    &:after {
+      content: "";
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: block;
+      background-color: $bingfree-main;
+      position: absolute;
+      top: 0%;
+      right: 8px;
+      z-index: -1;
     }
     &:hover {
-      opacity: 1;
-      transform: scale(1.2);
+      filter: brightness(2);
     }
   }
+}
+// 메인 비주얼 슬라이드
+.visual {
+  width: 100%;
+  position: relative; // absolute → relative 변경
+  .slide {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .txtbox {
+    position: absolute;
+    top: 30%;
+    left: 17.5%;
+    z-index: 99;
+    p {
+      margin: 10px 0;
+    }
+  }
+
+  .app {
+    position: relative;
+    &:after {
+      content: "";
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: block;
+      background-color: $bingfree-point;
+      position: absolute;
+      top: -70%;
+      right: 0;
+      z-index: -1;
+    }
+  }
+  .phone {
+    position: absolute;
+    top: 177.5px;
+    left: 695px;
+  }
+}
+
+
+
+section {
+  width: 100%;
+  height: 100vh;
 }
