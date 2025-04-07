@@ -1,1 +1,17 @@
 @use "./variables" as *;
+.review-title-box {
+  background-color: antiquewhite;
+  text-align: center;
+  background-color: $bingfree-main;
+}
+.review-box1 {
+  width: 288px;
+  height: 188px;
+  padding: 25px;
+  background-color: bisque;
+  .review-box-txt {
+    font-size: 13px;
+    font-weight: 500;
+    color: #424242;
+  }
+}
