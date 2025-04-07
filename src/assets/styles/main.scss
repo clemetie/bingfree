@@ -23,12 +23,13 @@ a {
   }
 }
 
+
 .inner {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
 }
-// 오른쪽 사이드
+
 .side {
   position: fixed;
   bottom: 80px;
@@ -61,11 +62,7 @@ a {
       }
     }
   }
-  .goTop {
-    cursor: pointer;
-    width: 80px;
-    line-height: 80px;
-    background-color: $bingfree-main;
+
     color: #fff;
     text-align: center;
     border-radius: 50%;
