@@ -16,6 +16,8 @@
 </template>
 <style lang="scss" scoped>
 header {
+  margin-top: 40px;
+  margin-bottom: -80px;
   width: 100%;
   height: 80px;
   position: relative;
