@@ -148,25 +148,14 @@ onUnmounted(() => {
         </SwiperSlide>
         <SwiperSlide>
           <div class="slide">
-            <img
-              style="filter: brightness(1.2)"
-              src="/images/web_visual02.png"
-              alt="비주얼2"
-            />
+            <img style="filter: brightness(1.2)" src="/images/web_visual02.png" alt="비주얼2" />
             <div class="txtbox inner">
-              <router-link
-                to="/BingPrime"
-                class="main-h3"
-                style="color: #e9ff54"
-                >빙프라임 가입하기 →</router-link
-              >
+              <router-link to="/BingPrime" class="main-h3" style="color: #e9ff54">빙프라임 가입하기 →</router-link>
               <p class="main-h1" style="color: #fff">
                 인증 라벨 하나로 <br />
                 더 강해지는 믿음
               </p>
-              <p class="main-h4" style="color: #d9d9d9">
-                깨끗한 얼음으로 더 많은 믿음을 얻으세요
-              </p>
+              <p class="main-h4" style="color: #d9d9d9">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
             </div>
           </div>
         </SwiperSlide>
@@ -178,21 +167,9 @@ onUnmounted(() => {
                 제빙기를 호텔처럼, <br />
                 마음을 담아 관리해드립니다
               </p>
-              <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">
-                #빙프리 꿀팁 #보다 쉽게
-              </p>
-              <router-link
-                to="/BingPrime"
-                class="main-h2 app"
-                style="color: #1465fd"
-                >App 다운로드 →
-              </router-link>
-              <router-link
-                to="/BingPrime"
-                class="main-h4 phone"
-                style="color: #e9ff54"
-                >App 다운로드</router-link
-              >
+              <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">#빙프리 꿀팁 #보다 쉽게</p>
+              <router-link to="/BingPrime" class="main-h2 app" style="color: #1465fd">App 다운로드 → </router-link>
+              <router-link to="/BingPrime" class="main-h4 phone" style="color: #e9ff54">App 다운로드</router-link>
             </div>
           </div>
         </SwiperSlide>
@@ -206,9 +183,7 @@ onUnmounted(() => {
             예약하기
           </router-link>
         </div>
-        <div class="sideBtn">
-          <img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp
-        </div>
+        <div class="sideBtn"><img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp</div>
         <div class="goTop" @click="scrollToTop">↑</div>
       </div>
       <div class="sections-menu">
@@ -218,12 +193,23 @@ onUnmounted(() => {
           v-on:click="scrollToSection(index)"
           v-for="(offset, index) in offsets"
           v-bind:key="index"
-          v-title="'Go to section ' + (index + 1)"
-        >
+          v-title="'Go to section ' + (index + 1)">
         </span>
       </div>
       <!-- 메인 섹션 빙프리란(수현) -->
-      <section class="fullpage introBing"></section>
+      <section class="fullpage introBing">
+        <div class="introBing-wrap">
+          <div class="introBing-txt1">
+            <h2>제빙기 청소,왜 전문가가 필요할까요 ?</h2>
+          </div>
+          <div class="introBing-txt2">
+            <p>제빙기의 내부는 항상 습한 환경에 있기 때문에 최소 일주일에 한번, 정기적인 관리가 필요합니다.</p>
+            <p>냉각기 성분인 니켈은 관리를 하지않으면 발암 물질로 변질 될 수 있습니다.</p>
+            <p>보이는게 다가 아닙니다. 제빙기 내부 수많은 물 곰팡이들, 분해 전까지는 모릅니다.</p>
+            <p>더러운 얼음으로 노로 바이러스, 식중독 질병에 감염 됩니다.</p>
+          </div>
+        </div>
+      </section>
       <!-- 메인 섹션 요금안내(채연) -->
       <section class="fullpage check"></section>
       <!-- 메인 섹션 고객리뷰(지수) -->
