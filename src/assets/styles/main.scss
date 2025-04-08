@@ -23,7 +23,6 @@ a {
   }
 }
 
-
 .inner {
   width: 100%;
   max-width: 1240px;
@@ -42,14 +41,38 @@ a {
       height: 30px;
     }
   }
-
+  .sideBtn {
+    width: 180px;
+    height: 80px;
+    border: 2px solid $bingfree-main;
+    background-color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: $bingfree-main;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    a {
+      color: $bingfree-main;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .goTop {
+    cursor: pointer;
+    width: 80px;
+    line-height: 80px;
+    background-color: $bingfree-main;
     color: #fff;
     text-align: center;
     border-radius: 50%;
     float: right;
     font-size: 30px;
   }
-
+}
 // 왼쪽 사이드 (섹션이동, 더보기)
 .sidesection {
   position: fixed;
@@ -138,8 +161,6 @@ a {
     left: 695px;
   }
 }
-
-
 
 section {
   width: 100%;
