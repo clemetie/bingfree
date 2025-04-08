@@ -1,17 +1,47 @@
 @use "./variables" as *;
 .review-title-box {
-  background-color: antiquewhite;
   text-align: center;
-  background-color: $bingfree-main;
 }
-.review-box1 {
-  width: 288px;
-  height: 188px;
-  padding: 25px;
-  background-color: bisque;
-  .review-box-txt {
-    font-size: 13px;
-    font-weight: 500;
-    color: #424242;
+.review-logo-box {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  .review-logo-top, .review-logo-bottom {
+    margin: auto;
+    width: 80%;
+    // background-color: pink;
+    .swiper-wrapper {
+      align-items: center;
+      
+    }
+    .swiper-slide {
+      text-align: center;
+    }
+  }
+}
+
+.review-box-total {
+  margin-top: 65px;
+  display: flex;
+  justify-content: space-between;
+  .review-box {
+    width: 288px;
+    height: 188px;
+    padding: 26px;
+    border-radius: 15px;
+    background-color: #f2f9ff;
+    .review-box-txt {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #424242;
+      // margin-bottom: 25px;
+    }
+    .review-customer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 25px;
+    }
   }
 }
