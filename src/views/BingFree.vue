@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
 import { useRouter } from "vue-router";
 // introbingfree영역
 import "swiper/css/pagination";
@@ -68,8 +68,7 @@ const goToDetail = () => {
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
-//  메인 섹션 빙프리란(수현)
-const modules = [Pagination, Navigation, Autoplay];
+
 </script>
 
 <template>
@@ -240,7 +239,31 @@ const modules = [Pagination, Navigation, Autoplay];
     </div>
   </section>
   <!-- 메인 섹션 요금안내(채연) -->
-  <section class="check" id="check">요금안내</section>
+  <section class="check" id="check">
+    <!-- 전체 요금안내 메인 랩 -->
+    <div ref="wrapper" class="price_wrap inner">
+      <div class="text_content ordinary">
+        <h3 class="description">비용은 줄이고,관리 품격은 높이고</h3>
+        <h1 class="heading">똑똑한 구독 서비스</h1>
+      </div>
+
+      <div ref="sticky" class="sticky">
+        <div class="receipt_section">
+          <!-- 첫 번째 카드 -->
+          <div class="receipt_content receipt_content card1">
+            <div class="front" style="background: url(/public/check/ordinary.png) no-repeat center/contain"></div>
+            <div class="back" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+          </div>
+
+          <!-- 두 번째 카드 -->
+          <div class="receipt_content receipt_content card2" :class="{ flip: currentSection === 'check' }">
+            <div class="front" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+            <div class="back" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- 메인 섹션 고객리뷰(지수) -->
   <section class="review" id="review">리뷰</section>
   <!-- 메인 섹션 예약하기(효빈) -->
