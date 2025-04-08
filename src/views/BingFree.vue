@@ -1,9 +1,12 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+
+import "swiper/css/free-mode";
 import { ref, onMounted, onUnmounted, nextTick } from "vue";
+
 import { useRouter } from "vue-router";
 // introbingfree영역
 import "swiper/css/pagination";
@@ -265,7 +268,95 @@ const scrollToTop = () => {
     </div>
   </section>
   <!-- 메인 섹션 고객리뷰(지수) -->
-  <section class="review" id="review">리뷰</section>
+  <section class="review" id="review">
+    <section class="fullpage review">
+      <div class="review-container inner">
+        <div class="review-title-box">
+          <p class="main-h1" style="color: #212121; margin-bottom: 40px">깨끗한 얼음, 신뢰받는 선택</p>
+          <p style="font-size: 24px; font-weight: 500; line-height: 1.4; color: #212121; margin-bottom: 80px">
+            고객이 안심하고 찾는 매장, 가맹점이 믿고 맡기는 위생 관리! <br />
+            직접 경험한 고객님들의 리얼 후기를 확인하세요.
+          </p>
+        </div>
+        <div class="review-logo-box">
+          <div class="review-logo-top">
+            <swiper
+              :modules="[Autoplay, FreeMode]"
+              :loop="true"
+              :slides-per-view="'auto'"
+              :space-between="30"
+              :autoplay="{ delay: 0, disableOnInteraction: false }"
+              :speed="7000"
+              :free-mode="true"
+              :free-mode-momentum="false"
+              class="w-full h-40">
+              <SwiperSlide v-for="(logo, index) in brandLogos1" :key="index" :style="{ width: '200px' }">
+                <img :src="logo" alt="브랜드 로고" class="h-8 !w-16 object-contain" />
+              </SwiperSlide>
+            </swiper>
+          </div>
+          <div class="review-logo-bottom">
+            <swiper
+              :modules="[Autoplay, FreeMode]"
+              :loop="true"
+              :slides-per-view="'auto'"
+              :space-between="30"
+              :autoplay="{ delay: 0, reverseDirection: true, disableOnInteraction: false }"
+              :speed="7000"
+              :free-mode="true"
+              :free-mode-momentum="false"
+              class="w-full h-40">
+              <SwiperSlide v-for="(logo, index) in brandLogos2" :key="index" :style="{ width: '200px' }">
+                <img :src="logo" alt="브랜드 로고" class="h-12 !w-14 object-contain" />
+              </SwiperSlide>
+            </swiper>
+          </div>
+        </div>
+        <div class="review-box-total">
+          <div class="review-box">
+            <p class="review-box-txt">
+              “바쁜 일정으로 직접 청소할 시간이 부족했는데 청소 후 리포트 서비스로 청결도 신뢰가 가네요. 정기 관리까지
+              해주셔서 정말 편하고 만족스럽습니다!”
+            </p>
+            <div class="review-customer">
+              <img src="/public/review/starbucks_icon.png" alt="스타벅스 아이콘" />
+              <p style="font-size: 15px; font-weight: 700; color: #424242">스타벅스 중앙로점</p>
+            </div>
+          </div>
+          <div class="review-box">
+            <p class="review-box-txt">
+              “눈에 보이지 않아 더러운지 몰랐는데, 지속적인 관리가 필요함을 느꼈습니다. 빙프라임 구독 서비 스로 비용도
+              절감하고 친환경 세제까지 증정 받아 좋았습니다.”
+            </p>
+            <div class="review-customer">
+              <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
+              <p style="font-size: 15px; font-weight: 700; color: #424242">이*현 님</p>
+            </div>
+          </div>
+          <div class="review-box">
+            <p class="review-box-txt">
+              "제빙기 청소 서비스 정말 만족스럽습니다! 얼음 맛과 기계 상태가 확연히 개선되어 다시 깨끗하고 신선한 얼음을
+              사용할 수 있게 됐어요. 정기구독 서비스 가입했답니다."
+            </p>
+            <div class="review-customer">
+              <img src="/public/review/megabox_icon.png" alt="메가박스 아이콘" />
+              <p style="font-size: 15px; font-weight: 700; color: #424242">메가박스 대구점</p>
+            </div>
+          </div>
+          <div class="review-box">
+            <p class="review-box-txt">
+              “쉽고 간편하게 예약할 수 있어 편리했어요! 24시간 서비스로 시간에 구애 받지 않고 원하는 시간에 방문
+              해주셔서 자주 이용할 것 같아요. 주변에도 추천해야겠어요 :)”
+            </p>
+            <div class="review-customer">
+              <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
+              <p style="font-size: 15px; font-weight: 700; color: #424242">김*수 님</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
   <!-- 메인 섹션 예약하기(효빈) -->
   <section class="reservation" id="reserv">예약하기</section>
   <!-- 메인 섹션 하단입니다 -->
