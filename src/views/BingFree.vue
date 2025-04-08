@@ -5,6 +5,11 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { ref, onMounted, onUnmounted, nextTick } from "vue";
 import { useRouter } from "vue-router";
+// introbingfree영역
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css/autoplay";
 
 const router = useRouter();
 const currentSection = ref(""); // 예: 'intro', 'check' 등
@@ -63,82 +68,7 @@ const goToDetail = () => {
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
-// 채연 script
 
-const wrapper = ref(null);
-const sticky = ref(null);
-const cards = ref(new Array(2).fill(null)); // 카드 수만큼 배열 채우기 (원하면 동적으로 변경 가능)
-
-let start = 0;
-let end = 0;
-let step = 0;
-let cardElements = [];
-
-const init = () => {
-  const wrapperEl = wrapper.value;
-  const stickyEl = sticky.value;
-  cardElements = stickyEl.querySelectorAll(".card");
-
-  start = wrapperEl.offsetTop - 100;
-  end = wrapperEl.offsetTop + wrapperEl.offsetHeight - window.innerHeight * 1.2;
-  step = (end - start) / (cardElements.length * 2);
-};
-// await nextTick(); // mount 후 DOM 요소 접근 가능
-// init(); // init 안에서 cardElements가 비어있지 않아야 함
-
-const animate = () => {
-  cardElements.forEach((card) => {
-    if (card.classList.contains("card1")) {
-      // card1은 무조건 고정
-      return;
-    }
-
-    const front = card.querySelector(".front");
-    const back = card.querySelector(".back");
-
-    const isHovered = card.matches(":hover");
-    if (isHovered) return;
-
-    const index = [...cardElements].indexOf(card); // 인덱스 가져오기
-    const s = start + step * index;
-    const e = s + step * (cardElements.length + 1);
-
-    if (scrollY <= s) {
-      front.style.transform = "rotateY(0deg)";
-      back.style.transform = "rotateY(180deg)";
-    } else if (scrollY > s && scrollY <= e - step) {
-      front.style.transform = "rotateY(0deg)";
-      back.style.transform = "rotateY(180deg)";
-    } else if (scrollY > e - step && scrollY <= e) {
-      const rotateY = ((scrollY - (e - step)) / step) * 180;
-      front.style.transform = `rotateY(${-rotateY}deg)`;
-      back.style.transform = `rotateY(${180 - rotateY}deg)`;
-    } else if (scrollY > e) {
-      front.style.transform = "rotateY(-180deg)";
-      back.style.transform = "rotateY(0deg)";
-    }
-  });
-};
-
-const handleScroll = () => {
-  animate();
-};
-
-const handleResize = () => {
-  init();
-};
-
-onMounted(async () => {
-  await nextTick();
-  init();
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleResize);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  window.removeEventListener("resize", handleResize);
-});
 </script>
 
 <template>
@@ -216,7 +146,98 @@ onUnmounted(() => {
     </Swiper>
   </div>
   <!-- 메인 섹션 빙프리란(수현) -->
-  <section class="introBing" id="intro">빙프리란</section>
+  <section class="introBing" id="intro">
+    <div class="inner">
+      <div class="main-introBing-txt">
+        <h1 class="main-h1"><span style="color: #1456fd">제빙기 청소</span>, 왜 전문가가 필요할까요?</h1>
+        <div id="main-introBing-txt-sub" class="main-h4">
+          <p>
+            제빙기의 내부는 항상 습한 환경에 있기 때문에
+            <span style="color: #1456fd">최소 일주일에 한번, 정기적인 관리</span>가 필요합니다.
+          </p>
+          <p>
+            냉각기 성분인 니켈은 관리를 하지 않으면 <span style="color: #1456fd">발암 물질로 변질</span>될 수 있습니다.
+          </p>
+          <p>
+            보이는게 다가 아닙니다. 제빙기 내부 <span style="color: #1456fd">수많은 물 곰팡이들</span>, 본체 전까지는
+            모릅니다.
+          </p>
+          <p>더러운 얼음으로 <span style="color: #1456fd">노로 바이러스, 식중독 질병</span>에 감염 됩니다.</p>
+        </div>
+      </div>
+
+      <!-- before,after swiper 영역 -->
+      <swiper
+        :navigation="true"
+        :autoplay="{
+          delay: 3000,
+        }"
+        :modules="modules"
+        class="mySwiper">
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/1.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/1-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/2.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/2-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        ><swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/3.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/3-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        >
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/4.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/4-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        ><swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/5.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/5-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        >
+      </swiper>
+      <div id="introBing-footer-text" class="main-h1">
+        <span style="color: #1456fd">“</span>빙프리가 해결해드립니다!<span style="color: #1456fd">”</span>
+      </div>
+    </div>
+  </section>
   <!-- 메인 섹션 요금안내(채연) -->
   <section class="check" id="check">
     <!-- 전체 요금안내 메인 랩 -->
