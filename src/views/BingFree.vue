@@ -3,9 +3,16 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+
 import "swiper/css/free-mode";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
+
 import { useRouter } from "vue-router";
+// introbingfree영역
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css/autoplay";
 
 const router = useRouter();
 const currentSection = ref(""); // 예: 'intro', 'check' 등
@@ -65,31 +72,6 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// main-review 브랜드 로고 배열
-const brandLogos1 = [
-  "/review/mondrian_logo.png",
-  "/review/kimteacher_logo.png",
-  "/review/coopang_logo.png",
-  "/review/kyobo_logo.png",
-  "/review/1000cc-coffee_logo.png",
-  "/review/jinair_logo.png",
-  "/review/fastfive_logo.png",
-  "/review/naver_logo.png",
-  "/review/sono_logo.png",
-  "/review/nh_logo.png",
-];
-const brandLogos2 = [
-  "/review/megabox_logo.png",
-  "/review/cj_logo.png",
-  "/review/delivery_logo.png",
-  "/review/megacoffee_logo.png",
-  "/review/hyundai_logo.png",
-  "/review/palgakdo_logo.png",
-  "/review/nexen tire_logo.png",
-  "/review/hdc_logo.png",
-  "/review/seoul dragon city_logo.png",
-  "/review/nexon_logo.png",
-];
 </script>
 
 <template>
@@ -167,9 +149,124 @@ const brandLogos2 = [
     </Swiper>
   </div>
   <!-- 메인 섹션 빙프리란(수현) -->
-  <section class="introBing" id="intro">빙프리란</section>
+  <section class="introBing" id="intro">
+    <div class="inner">
+      <div class="main-introBing-txt">
+        <h1 class="main-h1"><span style="color: #1456fd">제빙기 청소</span>, 왜 전문가가 필요할까요?</h1>
+        <div id="main-introBing-txt-sub" class="main-h4">
+          <p>
+            제빙기의 내부는 항상 습한 환경에 있기 때문에
+            <span style="color: #1456fd">최소 일주일에 한번, 정기적인 관리</span>가 필요합니다.
+          </p>
+          <p>
+            냉각기 성분인 니켈은 관리를 하지 않으면 <span style="color: #1456fd">발암 물질로 변질</span>될 수 있습니다.
+          </p>
+          <p>
+            보이는게 다가 아닙니다. 제빙기 내부 <span style="color: #1456fd">수많은 물 곰팡이들</span>, 본체 전까지는
+            모릅니다.
+          </p>
+          <p>더러운 얼음으로 <span style="color: #1456fd">노로 바이러스, 식중독 질병</span>에 감염 됩니다.</p>
+        </div>
+      </div>
+
+      <!-- before,after swiper 영역 -->
+      <swiper
+        :navigation="true"
+        :autoplay="{
+          delay: 3000,
+        }"
+        :modules="modules"
+        class="mySwiper">
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/1.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/1-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/2.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/2-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        ><swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/3.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/3-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        >
+        <swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/4.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/4-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        ><swiper-slide>
+          <div class="image-wrapper">
+            <div class="image-section">
+              <img src="/introbing/intromain/5.png" alt="Before Image" />
+              <div class="caption">Before</div>
+            </div>
+            <div class="image-section">
+              <img src="/introbing/intromain/5-1.png" alt="After Image" />
+              <div class="caption">After</div>
+            </div>
+          </div></swiper-slide
+        >
+      </swiper>
+      <div id="introBing-footer-text" class="main-h1">
+        <span style="color: #1456fd">“</span>빙프리가 해결해드립니다!<span style="color: #1456fd">”</span>
+      </div>
+    </div>
+  </section>
   <!-- 메인 섹션 요금안내(채연) -->
-  <section class="check" id="check">요금안내</section>
+  <section class="check" id="check">
+    <!-- 전체 요금안내 메인 랩 -->
+    <div ref="wrapper" class="price_wrap inner">
+      <div class="text_content ordinary">
+        <h3 class="description">비용은 줄이고,관리 품격은 높이고</h3>
+        <h1 class="heading">똑똑한 구독 서비스</h1>
+      </div>
+
+      <div ref="sticky" class="sticky">
+        <div class="receipt_section">
+          <!-- 첫 번째 카드 -->
+          <div class="receipt_content receipt_content card1">
+            <div class="front" style="background: url(/public/check/ordinary.png) no-repeat center/contain"></div>
+            <div class="back" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+          </div>
+
+          <!-- 두 번째 카드 -->
+          <div class="receipt_content receipt_content card2" :class="{ flip: currentSection === 'check' }">
+            <div class="front" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+            <div class="back" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- 메인 섹션 고객리뷰(지수) -->
   <section class="review" id="review">
     <section class="fullpage review">
