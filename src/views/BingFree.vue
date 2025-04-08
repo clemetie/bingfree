@@ -7,7 +7,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const currentSection = ref(""); // 예: 'intro', 'check' 등
+const currentSection = ref("visual"); // 예: 'intro', 'check' 등
 
 // 왼쪽 사이드
 // 스크롤
@@ -36,10 +36,20 @@ const handleIntersect = (entries) => {
   });
 };
 
+// 추가: 스크롤로 visual 영역 감지
+const handleScroll = () => {
+  if (window.scrollY < 200) {
+    currentSection.value = "visual";
+  }
+};
+
+window.addEventListener("scroll", handleScroll);
+
 onMounted(() => {
   observer = new IntersectionObserver(handleIntersect, {
     root: null,
-    threshold: 0.6,
+    threshold: 0.1,
+    rootMargin: "0px 0px -20% 0px", // 아래쪽에서 조금 일찍 감지
   });
 
   Object.keys(sectionMap).forEach((id) => {
@@ -62,6 +72,7 @@ const goToDetail = () => {
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
+  console.log("✅ 현재 섹션:", currentSection.value);
 };
 </script>
 
@@ -69,13 +80,25 @@ const scrollToTop = () => {
   <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
   <div class="side">
     <div>
-      <router-link to="/reservation" class="sideBtn reservBtn main-icon-drop">
+      <router-link
+        to="/reservation"
+        class="sideBtn reservBtn main-icon-drop"
+        :class="{ compact: currentSection !== 'visual' }"
+      >
         <img src="/images/calendar_blue.png" alt="캘린더" />
-        예약하기
+        <span class="text">예약하기</span>
       </router-link>
     </div>
-    <div class="sideBtn main-icon-drop">
-      <img src="/images/chabot.png" alt="챗봇이미지" />챗봇&nbsp&nbsp
+    <div
+      class="sideBtn main-icon-drop"
+      :class="{ compact: currentSection !== 'visual' }"
+    >
+      <img
+        src="/images/chabot.png"
+        alt="챗봇이미지"
+        :class="{ compact: currentSection !== 'visual' }"
+      />
+      <span class="text">챗봇&nbsp;&nbsp;</span>
     </div>
     <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
   </div>
@@ -180,7 +203,85 @@ const scrollToTop = () => {
   <!-- 메인 섹션 고객리뷰(지수) -->
   <section class="review" id="review">리뷰</section>
   <!-- 메인 섹션 예약하기(효빈) -->
-  <section class="reservation" id="reserv">예약하기</section>
+  <section
+    class="reservation"
+    id="reserv"
+    :class="{ visible: currentSection === 'reserv' }"
+  >
+    <div class="inner">
+      <div class="reserv_chat">
+        <img
+          class="reserv_phone"
+          src="/reservation/reservmain/reservation_phone.png"
+          alt="휴대폰 화면"
+        />
+        <div class="chat_bing">
+          <div class="chat">
+            <img
+              class="reserv_pp"
+              src="/reservation/reservmain/reserv_pp1.png"
+              alt="사람1"
+            />
+            <div class="bubble left">
+              한 번에 <b> 여러 가맹점 예약</b>도 할 수 있으려나? <br />
+              청소해야할 제빙기가 많은데..
+            </div>
+          </div>
+          <div class="bing">
+            <div class="bubble right">
+              그럼요! 빙프리에서는 <br />
+              <b>최대 10대</b>까지 한 번에
+            </div>
+            <img src="/reservation/reservmain/bing.png" alt="빙프리" />
+          </div>
+          <div class="chat">
+            <img
+              class="reserv_pp"
+              src="/reservation/reservmain/reserv_pp2.png"
+              alt="사람2"
+            />
+            <div class="bubble left">
+              <b>새벽에도 청소</b> 가능한가? <br />
+              24시간 영업이라 낮에는 시간이 없는데…
+            </div>
+          </div>
+          <div class="bing">
+            <div class="bubble right">
+              그럼요! 빙프리에서는 <br />
+              <b>24시간</b> 언제나 가능해요!
+            </div>
+            <img src="/reservation/reservmain/bing.png" alt="빙프리" />
+          </div>
+          <div class="chat">
+            <img
+              class="reserv_pp"
+              src="/reservation/reservmain/reserv_pp3.png"
+              alt="사람3"
+            />
+            <div class="bubble left">
+              혼자 사는 집이라 남성 기사님은 좀 불안한데 .. <br />
+              <b>여성 기사님으로 요청</b> 할 수 있으려나?
+            </div>
+          </div>
+          <div class="bing">
+            <div class="bubble right">
+              네! 빙프리에서는 <br />기사님 <b>성별을 선택할</b>수 있어요!
+            </div>
+            <img src="/reservation/reservmain/bing.png" alt="빙프리" />
+          </div>
+        </div>
+
+        <router-link to="/reservation" class="fast_reserv">
+          빠른 예약하기
+        </router-link>
+        <img
+          class="fast_hand"
+          src="/reservation/reservmain/resrvation_hand.png"
+          alt="손"
+        />
+      </div>
+    </div>
+  </section>
   <!-- 메인 섹션 하단입니다 -->
   <section class="footer" style="background-color: pink"></section>
 </template>
