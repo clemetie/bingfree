@@ -53,44 +53,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    transition: all 0.5s ease;
 
-    img {
-      width: 30px;
-      height: 30px;
-      transition: filter 0.3s ease;
-    }
-
-    .text {
-      display: inline;
-      transition: opacity 0.3s ease;
-    }
-
-    &.compact {
-      width: 80px;
-      height: 80px;
-      &:first-child {
-        background-color: $bingfree-main;
-        color: #fff;
-        img {
-          filter: brightness(0) invert(1); // 흰색 아이콘처럼
-        }
-      }
-      &:nth-child(2) {
-        background: none;
-        border: none;
-        img {
-          width: 75px;
-          height: 75px;
-          transform: scaleX(-1);
-        }
-      }
-      .text {
-        display: none;
-        width: 0;
-        overflow: hidden;
-      }
-    }
   }
 
   .goTop {
