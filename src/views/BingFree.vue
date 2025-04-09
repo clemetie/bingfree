@@ -31,7 +31,7 @@ const sectionMap = {
   intro: "/intro",
   check: "/check",
   review: "/review",
-  reserv: "/reserv",
+  reserv: "/reservation",
 };
 
 let observer;
