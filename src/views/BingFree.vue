@@ -82,7 +82,22 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   console.log("✅ 현재 섹션:", currentSection.value);
 };
+// 채연 icon 이벤트
+window.addEventListener("scroll", () => {
+  const iconContent = document.querySelector(".icon_content");
+  const card2 = document.querySelector(".card2");
 
+
+  const cardRect = card2.getBoundingClientRect();
+  const isFlipped = card2.classList.contains("flip");
+
+  // 카드가 화면의 중간(예: 60% 아래)에 도달했을 때 + 플립된 상태
+  const isInView = cardRect.top < window.innerHeight * 0.6;
+
+  if (isInView && isFlipped) {
+    iconContent.classList.add("show");
+  }
+});
 // main-review 브랜드 로고 배열
 const brandLogos1 = [
   "/review/mondrian_logo.png",
@@ -108,6 +123,7 @@ const brandLogos2 = [
   "/review/seoul dragon city_logo.png",
   "/review/nexon_logo.png",
 ];
+
 </script>
 
 <template>
@@ -141,6 +157,7 @@ const brandLogos2 = [
       {{ currentSection === "review" ? "●" : "○" }} 고객 리뷰
     </li>
     <li @click="scrollToSection('reserv')" :style="{ color: currentSection === 'reserv' ? '#1456fd' : '#9E9E9E' }">
+
       {{ currentSection === "reserv" ? "●" : "○" }} 예약하기
     </li>
     <li>
@@ -309,7 +326,24 @@ const brandLogos2 = [
             <div class="front" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
             <div class="back" style="background: url(/public/check/prime\ receipt.png) no-repeat center/contain"></div>
           </div>
+          <!-- 카드위 3D 아이콘 -->
+          <div class="icon_content">
+            <span class="icon1"><img src="/public/check/goodemoji.png" alt="" /></span>
+            <span class="icon2"><img src="/public/check/mirror.png" alt="" /></span>
+            <span class="icon3"><img src="/public/check/moneyemoji.png" alt="" /></span>
+            <span class="icon4"><img src="/public/check/presentemoji.png" alt="" /></span>
+            <span class="icon5"><img src="/public/check/dartemoji.png" alt="" /></span>
+            <span class="icon6"><img src="/public/check/arrow_left.png" alt="" /></span>
+            <span class="icon7"><img src="/public/check/arrow_right.png" alt="" /></span>
+            <span class="icon8"><img src="/public/check/pointcircle.png" alt="" /></span>
+            <span class="icon9"><img src="/public/check/pointcircle.png" alt="" /></span>
+          </div>
         </div>
+      </div>
+      <!-- 가격 강조 contents -->
+      <div class="price_content">
+        <span>+￦83,640 </span>
+        <span>SAVE</span>
       </div>
     </div>
   </section>
