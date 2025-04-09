@@ -82,6 +82,10 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   console.log("✅ 현재 섹션:", currentSection.value);
 };
+
+//  메인 섹션 빙프리란(수현)
+const modules = [Pagination, Navigation, Autoplay];
+
 // 채연 icon 이벤트
 window.addEventListener("scroll", () => {
   const iconContent = document.querySelector(".icon_content");
@@ -124,6 +128,7 @@ const brandLogos2 = [
   "/review/nexon_logo.png",
 ];
 
+
 </script>
 
 <template>
@@ -157,7 +162,6 @@ const brandLogos2 = [
       {{ currentSection === "review" ? "●" : "○" }} 고객 리뷰
     </li>
     <li @click="scrollToSection('reserv')" :style="{ color: currentSection === 'reserv' ? '#1456fd' : '#9E9E9E' }">
-
       {{ currentSection === "reserv" ? "●" : "○" }} 예약하기
     </li>
     <li>
@@ -235,6 +239,7 @@ const brandLogos2 = [
       <!-- before,after swiper 영역 -->
       <swiper
         :navigation="true"
+        :loop="true"
         :autoplay="{
           delay: 3000,
         }"
@@ -255,7 +260,7 @@ const brandLogos2 = [
         <swiper-slide>
           <div class="image-wrapper">
             <div class="image-section">
-              <img src="/introbing/intromain/2.png" alt="Before Image" />
+              <img style="width=100%" src="/introbing/intromain/2-2.png" alt="Before Image" />
               <div class="caption">Before</div>
             </div>
             <div class="image-section">
@@ -487,8 +492,7 @@ const brandLogos2 = [
       </div>
     </div>
   </section>
-  <!-- 메인 섹션 하단입니다 -->
-  <section class="footer" style="background-color: pink"></section>
+
 </template>
 
 <style lang="scss" scoped></style>
