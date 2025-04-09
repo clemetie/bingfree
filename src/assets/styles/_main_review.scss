@@ -1,18 +1,22 @@
 @use "./variables" as *;
+.review {
+  width: 100%;
+}
 .review-title-box {
+  padding-top: 140px;
   text-align: center;
 }
 .review-logo-box {
   display: flex;
   flex-direction: column;
   gap: 35px;
-  .review-logo-top, .review-logo-bottom {
+  .review-logo-top,
+  .review-logo-bottom {
     margin: auto;
     width: 80%;
     // background-color: pink;
     .swiper-wrapper {
       align-items: center;
-      
     }
     .swiper-slide {
       text-align: center;
@@ -42,6 +46,85 @@
       align-items: center;
       gap: 8px;
       margin-top: 25px;
+    }
+  }
+}
+
+// 고객리뷰 상세
+.banner_bg {
+  width: 100%;
+  height: 990px;
+  margin-top: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.2) 70%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  .banner_container {
+    position: relative;
+    display: flex;
+    height: 990px;
+    padding-top: 245px;
+    // background-color: rgb(248, 225, 228);
+    .banner_event {
+      display: inline-block;
+      position: relative;
+      font-size: 24px;
+      font-weight: 600;
+      color: $bingfree-main;
+    }
+    .banner_event::after {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: $bingfree-point;
+      z-index: -1;
+    }
+    button {
+      width: 170px;
+      height: 70px;
+      color: $bingfree-main;
+      @include text-style(24px, 700);
+      font-family: "Pretendard", sans-serif;
+      background-color: $bingfree-point;
+      border-style: none;
+      border-radius: 14px;
+      margin-top: 60px;
+    }
+
+    .txt_box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 500px;
+      height: 120px;
+      border-radius: 20px;
+      background-color: #e6e0e0;
+    }
+    .txt_box1 {
+      position: absolute;
+      top: 120px;
+      right: 180px;
+      .emoji_face1 {
+        position: absolute;
+        top: 60px;
+        right: -70px;
+      }
+    }
+    .txt_box2 {
+      position: absolute;
+      top: 440px;
+      right: 0px;
+      .emoji_face2{
+        position: absolute;
+        left: -100px;
+        top: 20px;
+      }
     }
   }
 }

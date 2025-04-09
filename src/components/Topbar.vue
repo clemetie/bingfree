@@ -23,6 +23,7 @@
   background-color: #1456fd;
   padding: 0 20px;
   height: 40px;
+  font-size: 16px;
   line-height: 40px;
   color: #fff;
   border-top-left-radius: 10px;

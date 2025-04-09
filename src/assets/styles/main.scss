@@ -54,7 +54,41 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
+    transition: all 0.5s ease;
+    img {
+      width: 30px;
+      height: 30px;
+      transition: filter 0.3s ease;
+    }
+    .text {
+      display: inline;
+      transition: opacity 0.3s ease;
+    }
+    &.compact {
+      width: 80px;
+      height: 80px;
+      &:first-child {
+        background-color: $bingfree-main;
+        color: #fff;
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+      &:nth-child(2) {
+        background: none;
+        border: none;
+        img {
+          width: 75px;
+          height: 75px;
+          transform: scaleX(-1);
+        }
+      }
+      .text {
+        display: none;
+        width: 0;
+        overflow: hidden;
+      }
+    }
   }
 
   .goTop {
@@ -73,13 +107,13 @@ a {
 .sidesection {
   position: fixed;
   top: 50%;
-  left: 10%;
+  left: 8%;
   transform: translateY(-50%);
   li {
     cursor: pointer;
     list-style: none;
     color: $bingfree-main;
-    margin: 5px 0;
+    margin: 6px 0;
     font-weight: 500;
   }
   .viewmore {
@@ -89,9 +123,9 @@ a {
     outline: none;
     box-shadow: none;
     padding: 0;
-    margin: 0;
+    margin-top: 8px;
     cursor: pointer;
-    color: #e9ff54;
+    color: $bingfree-main;
     font-size: 20px;
     border: none;
     &:after {
@@ -100,7 +134,7 @@ a {
       height: 25px;
       border-radius: 50%;
       display: block;
-      background-color: $bingfree-main;
+      background-color: #e9ff54;
       position: absolute;
       top: 0%;
       right: 8px;
