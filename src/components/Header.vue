@@ -29,7 +29,7 @@ header {
     align-items: center;
     justify-content: space-between;
     img {
-      width: 180px;
+      width: 170px;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -37,7 +37,7 @@ header {
     }
     nav a {
       color: #111;
-      font-weight: bold;
+      font-weight: 600;
       margin-left: 70px;
     }
   }
