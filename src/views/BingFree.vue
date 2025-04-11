@@ -7,6 +7,7 @@ import "swiper/css/autoplay";
 import "swiper/css/free-mode";
 import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 
+
 import { useRouter } from "vue-router";
 // introbingfree영역
 import "swiper/css/pagination";
