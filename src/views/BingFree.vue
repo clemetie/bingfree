@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 import "swiper/css/free-mode";
-import { ref, onMounted, onUnmounted, nextTick, watch } from "vue"
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
+
 
 import { useRouter } from "vue-router";
 // introbingfree영역
@@ -137,8 +138,6 @@ const brandLogos2 = [
   "/review/seoul dragon city_logo.png",
   "/review/nexon_logo.png",
 ];
-
-
 </script>
 
 <template>
@@ -382,7 +381,8 @@ const brandLogos2 = [
             :autoplay="{ delay: 0, disableOnInteraction: false }"
             :speed="7000"
             :free-mode="true"
-            :free-mode-momentum="false"
+            :freeModeMomentum="false"
+            :freeModeStick="false"
             class="w-full h-40">
             <SwiperSlide v-for="(logo, index) in brandLogos1" :key="index" :style="{ width: '200px' }">
               <img :src="logo" alt="브랜드 로고" class="h-8 !w-16 object-contain" />
@@ -398,7 +398,8 @@ const brandLogos2 = [
             :autoplay="{ delay: 0, reverseDirection: true, disableOnInteraction: false }"
             :speed="7000"
             :free-mode="true"
-            :free-mode-momentum="false"
+            :freeModeMomentum="false"
+            :freeModeStick="false"
             class="w-full h-40">
             <SwiperSlide v-for="(logo, index) in brandLogos2" :key="index" :style="{ width: '200px' }">
               <img :src="logo" alt="브랜드 로고" class="h-12 !w-14 object-contain" />
@@ -419,7 +420,7 @@ const brandLogos2 = [
         </div>
         <div class="review-box">
           <p class="review-box-txt">
-            “눈에 보이지 않아 더러운지 몰랐는데, 지속적인 관리가 필요함을 느꼈습니다. 빙프라임 구독 서비 스로 비용도
+            “눈에 보이지 않아 더러운지 몰랐는데, 지속적인 관리가 필요함을 느꼈습니다. 빙프라임 구독 서비스로 비용도
             절감하고 친환경 세제까지 증정 받아 좋았습니다.”
           </p>
           <div class="review-customer">
@@ -502,7 +503,6 @@ const brandLogos2 = [
       </div>
     </div>
   </section>
-
 </template>
 
 <style lang="scss" scoped></style>
