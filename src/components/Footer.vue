@@ -4,7 +4,7 @@
     <div class="footer-site-name">
       <img src="/public/images/footer1.png" alt="footer1" />
     </div>
-    <div class="inner">
+    <div id="appr">
       <div class="footer-content">
         <!-- 좌측 영역: 로고 & "Contact us"-->
         <div class="footer-left">
@@ -12,23 +12,24 @@
           <div class="footer-logo">
             <router-link to="/"><img src="/public/images/footer_logo.png" alt="footer_logo" /></router-link>
           </div>
-          <!-- 연락처 -->
-          <div class="footer-contact">
-            <h2 class="footer-contact-title" color="#e9ff54">Contact us</h2>
-            <p class="footer-contact-phone">064-739-6155</p>
-            <p class="footer-contact-email">bingfree.korea@gmail.com</p>
-          </div>
-        </div>
-
-        <!-- 우측 영역: 주소 & 영업시간 -->
-        <div class="footer-right">
-          <div class="footer-address">
-            <h3>address</h3>
-            <p>대구시 중구 중앙대로 394<br />제일빌딩 4F</p>
-          </div>
-          <div class="footer-hours">
-            <h3>cs opening hours</h3>
-            <p>Monday - Friday <br />09:00 AM - 18:00 PM</p>
+          <div class="footer-txt2">
+            <!-- 연락처 -->
+            <div class="footer-contact">
+              <h3 class="footer-contact-title" style="color: #e9ff54">Contact us</h3>
+              <p class="footer-contact-phone">064-739-6155</p>
+              <p class="footer-contact-email">bingfree.korea@gmail.com</p>
+            </div>
+            <!-- 우측 영역: 주소 & 영업시간 -->
+            <div class="footer-right">
+              <div class="footer-address">
+                <h3 style="color: #e9ff54">address</h3>
+                <p class="footer-txt3">대구시 중구 중앙대로 394<br />제일빌딩 4F</p>
+              </div>
+              <div class="footer-hours">
+                <h3 style="color: #e9ff54">cs opening hours</h3>
+                <p class="footer-txt4">Monday - Friday <br />09:00 AM - 18:00 PM</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -44,17 +45,19 @@
 }
 body,
 html {
-  height: auto;
+  height: 100%;
+  margin: 0;
   font-family: "Pretendard", sans-serif;
 }
-.inner {
-  width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
+#app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 푸터 전체 컨테이너 */
 .footer-container {
+  caret-color: transparent;
   background-color: #1456fd; /* 원하는 블루 톤으로 변경 */
   width: 100%;
   height: 700px;
@@ -77,10 +80,61 @@ html {
   display: block;
   object-fit: contain; /* 또는 cover */
 }
+.footer-left {
+  display: flex;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 100%;
+  gap: 15%;
+}
 /* 로고 */
-.footer-logo{
-    background-color: pink;
-    width: 200px;
-    height: 65px;
+.footer-logo {
+  width: 250px;
+  display: block;
+}
+.footer-logo img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* 또는 cover */
+}
+.footer-right {
+  width: 1000px;
+  padding-top: 10%;
+  display: flex;
+  gap: 18%;
+  /* background-color: pink; */
+}
+/* 폰트 컬러, 사이즈 */
+.footer-contact-title {
+  font-weight: 500;
+  font-size: 24px;
+  padding-bottom: 3%;
+}
+.footer-address h3,
+.footer-hours h3 {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.footer-contact-phone,
+.footer-contact-email {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 50px;
+  font-weight: 500;
+}
+.footer-txt3 {
+  padding-top: 7%;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 500;
+}
+.footer-txt4 {
+  padding-top: 15%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
 }
 </style>
