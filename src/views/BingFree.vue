@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 import "swiper/css/free-mode";
-import { ref, onMounted, onUnmounted, nextTick } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 
 import { useRouter } from "vue-router";
 // introbingfree영역
@@ -87,20 +87,50 @@ const scrollToTop = () => {
 const modules = [Pagination, Navigation, Autoplay];
 
 // 채연 icon 이벤트
-window.addEventListener("scroll", () => {
+// ✅ 아이콘 표시 제어 함수
+const toggleIconVisibility = () => {
   const iconContent = document.querySelector(".icon_content");
   const card2 = document.querySelector(".card2");
 
+  if (!iconContent || !card2) return;
 
   const cardRect = card2.getBoundingClientRect();
   const isFlipped = card2.classList.contains("flip");
-
-  // 카드가 화면의 중간(예: 60% 아래)에 도달했을 때 + 플립된 상태
   const isInView = cardRect.top < window.innerHeight * 0.6;
 
-  if (isInView && isFlipped) {
+  if (isFlipped && isInView) {
     iconContent.classList.add("show");
+  } else {
+    iconContent.classList.remove("show");
   }
+};
+
+// ✅ currentSection이 'check'일 때만 watch 작동
+watch(currentSection, async (val) => {
+  if (val === "check") {
+    await nextTick(); // DOM 업데이트 이후 실행
+    toggleIconVisibility();
+  }
+});
+
+// ✅ scroll 이벤트 등록
+let scrollTimeout;
+
+const onScroll = () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    if (currentSection.value === "check") {
+      toggleIconVisibility();
+    }
+  }, 50);
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", onScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", onScroll);
 });
 // main-review 브랜드 로고 배열
 const brandLogos1 = [
@@ -127,8 +157,6 @@ const brandLogos2 = [
   "/review/seoul dragon city_logo.png",
   "/review/nexon_logo.png",
 ];
-
-
 </script>
 
 <template>
@@ -492,7 +520,6 @@ const brandLogos2 = [
       </div>
     </div>
   </section>
-
 </template>
 
 <style lang="scss" scoped></style>

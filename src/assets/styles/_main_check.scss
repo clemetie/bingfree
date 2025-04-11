@@ -12,10 +12,9 @@
   }
 }
 
-
 html {
   font-size: 18px;
-  line-height: 1.5;
+  // line-height: 1.5;
   font-weight: 300;
   color: #333;
 }
@@ -253,7 +252,7 @@ html {
     &:first-child {
       @include text-style(50px, 700);
       color: #212121;
-      margin-top: 5%;
+      // margin-top: 5%;
     }
     &:last-child {
       font-size: 100px;
@@ -376,14 +375,13 @@ html {
         flex-direction: column;
         margin-top: 40px;
         //카드 호버시
-        &:hover{
-          background-color: #f7ffbe;
-          border: 3px solid $bingfree-main ;
+        &:hover {
+          border: 3px solid $bingfree-main;
         }
 
         p {
           color: $sub-black;
-          margin-left: 31px;
+          margin-left: 16px;
           margin-bottom: 8px;
         }
         // 요금제 제목
@@ -472,6 +470,42 @@ html {
             }
           }
         }
+      }
+    }
+  }
+}
+//요금제 섹션
+.price_section {
+  width: 100%;
+  // 일반 요금제 큰 섹션
+  .ordinary_price_content {
+    width: 100%;
+    // 요금제 제목
+    h1 {
+      text-align: center;
+      margin-top: 20%;
+      margin-bottom: 5%;
+      @include text-style(38px, 600);
+      color: $sub-black;
+      strong {
+        font-weight: 600;
+        &:last-child {
+          color: $bingfree-main;
+        }
+      }
+    }
+    //일반 요금제 리스트
+    .ordinary_price_list {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    //빙프라임 구독 요금제 섹션
+    .bingprime_price_content {
+      width: 100%;
+      h1 {
+        text-align: center;
       }
     }
   }
