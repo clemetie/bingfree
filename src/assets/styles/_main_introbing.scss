@@ -1,116 +1,357 @@
 @use "./variables" as *;
+@use "./fonts" as *;
+
+// main-introbing
 .introBing {
   width: 100%;
   max-height: 100vh;
   // background-color: pink;
+
+  .inner {
+    text-align: center;
+  }
+
+  .main-introBing-txt {
+    width: 100%;
+    padding-top: 8%;
+    color: #212121;
+    // background-color: pink;
+  }
+
+  #main-introBing-txt-sub {
+    margin: 5%;
+    font-family: "Pretendard";
+    src: url("../fonts/Pretendard-Regular.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    color: #616161;
+
+    p {
+      margin-top: 1%;
+    }
+  }
+
+  // before, after swiper 영역
+  .mySwiper {
+    width: 60%;
+    height: 100%;
+  }
+
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; // 이미지 사이 간격
+    flex-wrap: wrap;
+  }
+
+  .image-section {
+    flex: 1;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      // height: auto;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  }
+
+  .caption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #212121;
+    font-weight: 500;
+    background-color: #e5e5e5;
+    margin-top: -10px;
+    padding: 10px 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  // swiper button 영역
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: var(--swiper-navigation-top-offset, 50%);
+    width: 40px; // 원하는 크기로 조정
+    height: 40px;
+    margin-top: calc(0px - (40px / 2)); // 사이즈 맞춰 조정
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent; // 기본 아이콘 숨기기
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    user-select: none;
+    outline: none;
+    caret-color: transparent; // 깜빡이는 커서 없애기
+
+    &:after {
+      display: none;
+    }
+
+    &:focus {
+      outline: none;
+      caret-color: transparent;
+    }
+  }
+
+  // 왼쪽 화살표
+  .swiper-button-prev {
+    background-image: url("/public/introbing/intromain/6.png");
+    left: 10px;
+  }
+
+  // 오른쪽 화살표
+  .swiper-button-next {
+    background-image: url("/public/introbing/intromain/7.png");
+    right: 10px;
+  }
+
+  .swiper-button-disabled {
+    opacity: 1 !important; // 투명도 유지
+    pointer-events: auto !important; // 클릭 가능하게
+    cursor: pointer !important; // 마우스 포인터 유지
+  }
+
+  // 푸터 텍스트
+  #introBing-footer-text {
+    margin-top: 5%;
+    color: #212121;
+  }
 }
-.introBing .inner {
-  text-align: center;
-}
-.main-introBing-txt {
+// --------------------------------
+// intro 상세페이지
+// --------------------------------
+
+.intro-wrap {
+  caret-color: transparent;
   width: 100%;
   padding-top: 8%;
   color: #212121;
   // background-color: pink;
+  margin-bottom: 50%;
 }
-#main-introBing-txt-sub {
-  margin: 5%;
-  font-family: "Pretendard";
-  src: url("../fonts/Pretendard-Regular.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  color: #616161;
+// 배너
+.intro-banner {
+  width: 100%;
+  position: relative;
+  background-color: red;
+  overflow: hidden;
 }
-#main-introBing-txt-sub p {
-  margin-top: 1%;
-}
-// before,after swiper 영역
-.mySwiper {
-  width: 60%;
-  height: 100%;
-}
-
-.image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* 이미지 사이 간격 */
-  flex-wrap: wrap;
-}
-
-.image-section {
-  flex: 1;
-  text-align: center;
-}
-
-.image-section img {
+.intro-banner img {
+  width: 100%;
   max-width: 100%;
-  // height: auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: auto;
+  display: block;
 }
-
-.caption {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #212121;
-  font-weight: 500;
-  background-color: #e5e5e5;
-  margin-top: -10px;
-  padding: 10px 0 10px 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-//swiper button 영역
-.swiper-button-prev,
-.swiper-button-next {
+.intro-banner-txtbox {
   position: absolute;
-  top: var(--swiper-navigation-top-offset, 50%);
-  width: 40px; /* 원하는 크기로 조정 */
-  height: 40px;
-  margin-top: calc(0px - (40px / 2)); /* 사이즈 맞춰 조정 */
-  z-index: 10;
-  cursor: pointer;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+.intro-banner-txt1 {
+  line-height: 1.2;
+  margin-bottom: 3%;
+}
+.intro-banner-txt2 {
+  letter-spacing: 0.5px;
+}
+// 예약 배너
+.intro-top2 {
+  width: 100%;
+  height: 160px;
+  background-color: #1456fd;
   display: flex;
+  gap: 9%;
   align-items: center;
-  justify-content: center;
-  color: transparent; /* 기본 아이콘 숨기기 */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  user-select: none;
-  outline: none;
-  caret-color: transparent; /* 깜빡이는 커서 없애기 */
+  justify-content: space-evenly;
 }
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  display: none;
+.intro-top2-bt button {
+  background-color: #fff;
+  border-style: none;
+  padding: 13px 45px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 26px;
+  font-family: "Pretendard", sans-serif;
+  color: #424242;
+  cursor: pointer;
 }
-/* 깜빡이는 커서 없애기 */
-.swiper-button-prev:focus,
-.swiper-button-next:focus {
-  outline: none;
-  caret-color: transparent;
-}
-/* 왼쪽 화살표 */
-.swiper-button-prev {
-  background-image: url("/public/introbing/intromain/6.png");
-  left: 10px;
-}
+// tab
+.intro-wrap {
+  font-family: "NanumSquare", sans-serif;
 
-/* 오른쪽 화살표 */
-.swiper-button-next {
-  background-image: url("/public/introbing/intromain/7.png");
-  right: 10px;
-}
-.swiper-button-disabled {
-  opacity: 1 !important; /* 투명도 유지 */
-  pointer-events: auto !important; /* 클릭 가능하게 */
-  cursor: pointer !important; /* 마우스 포인터 유지 */
-}
-// 푸터txt
-#introBing-footer-text {
-  margin-top: 5%;
-  color: #212121;
+  .introbing_tab {
+    width: 40%;
+    line-height: 200px;
+    margin: auto;
+    list-style: none;
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    position: relative;
+    // background-color: pink;
+
+    li {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: #9e9e9e; // 기본 색상
+
+      &.active {
+        color: #212121; // 클릭했을 때 색상
+      }
+    }
+
+    .divider {
+      cursor: default;
+      color: #9e9e9e;
+    }
+  }
+  // 빙프리-제빙기 케어 서비스 영역
+  .care-service-box {
+    margin: auto;
+    position: relative;
+    border: none;
+    border-radius: 16px;
+    width: 1200px;
+    height: 300px;
+    // padding: 40px;
+    background: url("/public/introbing/introsub/introbingfree/6.png") no-repeat right center;
+    background-size: contain; /* or cover */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 {
+      margin-bottom: 3%;
+    }
+  }
+  // 1.제빙기 케어는 왜 필요할까요?
+  .intro-section1-title {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+  }
+  .intro-section1-p2 {
+    padding-left: 0.7%;
+  }
+  .intro-section1-p3 {
+    padding-left: 4%;
+  }
+  // img
+  .intro-section1-desc {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+  }
+  .intro-section1-desc1,
+  .intro-section1-desc2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    p {
+      margin-top: 5%;
+    }
+  }
+  .desc2-img,
+  .desc1-img {
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 25px;
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  .desc3-img {
+    width: 600px;
+    height: 530px;
+    overflow: hidden;
+    border-radius: 25px;
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  .intro-section1-desc3 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    margin-top: 10%;
+  }
+  // img
+  .care-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* 반응형 */
+  }
+  .care-item {
+    margin-top: 3%;
+    text-align: center;
+    width: 380px;
+    // height: 220px;
+    overflow: hidden;
+  }
+
+  .care-item img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+    display: block;
+    height: 220px;
+    object-fit: cover; /* 비율 유지하면서 꽉 채우기 */
+  }
+  .care-item p {
+    margin-top: 3%;
+    font-size: 15px;
+    color: #495861;
+    font-weight: 750;
+  }
+    // img
+    .care-section2 {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap; /* 반응형 */
+    }
+    .care-item2 {
+      margin-top: 3%;
+      text-align: center;
+      width: 380px;
+   
+    }
+  
+    .care-item2 img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 20px;
+      display: block;
+      height: 220px;
+     
+      object-fit: cover; /* 비율 유지하면서 꽉 채우기 */
+    }
+    .care-item2 p {
+      padding-top: 7%;
+      font-size: 15px;
+      color: #495861;
+      font-weight: 750;
+      // background-color: pink;
+    }
 }

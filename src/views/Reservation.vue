@@ -1,17 +1,14 @@
 <script setup>
+import { ref, computed, onMounted, watch, nextTick, reactive } from "vue";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/material_blue.css"; // 💙 이게 저 UI 스타일!
+import { Korean } from "flatpickr/dist/l10n/ko.js";
 import { useRouter } from "vue-router";
-import { ref, computed, onMounted } from "vue";
 
 const router = useRouter();
 const reservTab = ref("reserv"); // 탭
 const calendar = ref(null); //캘린더
-
-const config = {
-  enableTime: false,
-  dateFormat: "Y-m-d",
-};
+const showModal = ref(false); // 예약하기-> 모달
 
 // 1. 기본정보 : 주소 검색
 function loadDaumPostcodeScript() {
@@ -29,16 +26,12 @@ function loadDaumPostcodeScript() {
     document.head.appendChild(script);
   });
 }
-
 async function openPostcode() {
   await loadDaumPostcodeScript();
 
   new window.daum.Postcode({
     oncomplete: (data) => {
       formData.value.roadAddress = data.roadAddress; // 이 한 줄로 주소 자동입력!
-      setTimeout(() => {
-        step.value = 2; // 다음 단계로 넘어가기
-      }, 300);
     },
   }).open();
 }
@@ -75,6 +68,21 @@ const cardTypes = ref([
   },
 ]);
 
+// 선택한 제빙기
+// count > 0인 옵션만 추출하는 computed
+const selectedIceMakers = computed(() => {
+  return cardTypes.value.flatMap((card) =>
+    card.options
+      .filter((option) => option.count > 0)
+      .map((option) => ({
+        type: card.name,
+        label: option.label,
+        count: option.count,
+        price: option.price,
+      }))
+  );
+});
+
 // 총 금액 계산
 const totalPrice = computed(() =>
   cardTypes.value.reduce((sum, card) => {
@@ -88,6 +96,7 @@ const totalPrice = computed(() =>
   }, 0)
 );
 
+// 서비스 유형
 const serviceOptions = ref([
   { label: "제빙기 점검 서비스(1회)", price: 49900, selected: false },
   { label: "응급 출장(예약 당일 청소)", price: 20000, selected: false },
@@ -104,18 +113,42 @@ const servicePrice = computed(() =>
 );
 const finalPrice = computed(() => totalPrice.value + servicePrice.value);
 
-// 3. 예약정보 (달력)
-onMounted(() => {
-  flatpickr(calendar.value, {
-    locale: "ko",
-    dateFormat: "Y-m-d",
-    minDate: minDate.value,
-    onChange: function (selectedDates) {
-      formData.value.selectedDate = selectedDates[0]; // 또는 포맷팅된 문자열
-    },
-  });
+let calendarInstance = null;
+
+// flatpickr 초기화 함수
+const initCalendar = () => {
+  if (calendarInstance) {
+    calendarInstance.destroy();
+    calendarInstance = null;
+  }
+
+  if (calendar.value) {
+    calendarInstance = flatpickr(calendar.value, {
+      locale: Korean,
+      dateFormat: "Y-m-d",
+      minDate: minDate.value,
+      onChange: function (selectedDates) {
+        formData.value.selectedDate = selectedDates[0];
+      },
+    });
+  }
+};
+
+// 탭 전환 감지 → 달력 초기화
+watch(reservTab, async (newTab) => {
+  if (newTab === "reserv") {
+    await nextTick(); // DOM이 렌더된 후에
+    initCalendar();
+  }
 });
 
+// 페이지 첫 로드시도 달력 초기화 (탭이 이미 reservation일 경우)
+onMounted(async () => {
+  if (reservTab.value === "reserv") {
+    await nextTick();
+    initCalendar();
+  }
+});
 const minDate = computed(() => {
   const today = new Date();
   console.log(today.toISOString());
@@ -136,6 +169,10 @@ const formData = ref({
   gender: "anything",
   notes: "",
 });
+const confirmformData = ref({
+  name: "",
+  phone: "",
+});
 
 // 예약 취소 처리
 // 사용자 확인후 홈페이지로 이동
@@ -144,22 +181,92 @@ const handleCancel = () => {
     router.push("/");
   }
 };
-// 모든 필드가 입력되었는지 확인
-const isFormVaild = computed(() => {
-  return (
-    formData.value.name &&
-    formData.value.phone &&
-    formData.value.type &&
-    formData.value.roadAddress &&
-    formData.value.detailAddress &&
-    formData.value.calendar &&
-    formData.value.selectedDate &&
-    formData.value.dateRestricted &&
-    formData.value.desiredTime &&
-    formData.value.gender &&
-    formData.value.notes
-  );
-});
+
+// 모달 나오게 하기
+const handleSubmit = () => {
+  showModal.value = true;
+};
+
+// 모달에서 예약 확인
+const confirmReservation = () => {
+  showModal.value = false;
+  // 실제 예약 처리 (예: API 호출)
+  alert("예약이 완료되었습니다!");
+  reservTab.value = "reservConfirm";
+};
+
+// 예약 조회하기 누르면
+const isReservationMatched = ref(false);
+
+const showReservationInfo = () => {
+  const name = confirmformData.value.name.trim();
+  const phone = confirmformData.value.phone.trim();
+
+  if (!name || !phone) {
+    alert("이름과 연락처를 모두 입력해주세요.");
+    isReservationMatched.value = false;
+    return;
+  }
+
+  if (
+    formData.value.name === confirmformData.value.name &&
+    formData.value.phone === confirmformData.value.phone
+  ) {
+    confirmformData.value.name = "";
+    confirmformData.value.phone = "";
+    console.log("예약 정보가 일치합니다.");
+    isReservationMatched.value = true;
+  } else {
+    alert("일치하는 예약 정보가 없습니다.");
+    isReservationMatched.value = false;
+  }
+};
+
+// FAQ
+const faqs = reactive([
+  {
+    id: 1,
+    question: "제빙기 청소 출장 가능 지역이 어떻게 되나요?",
+    answer:
+      "현재 저희 빙프리는 전 지역 지점망이 구축되어 있어, 서울부터 제주도까지 전국적인 서비스가 가능합니다.",
+    isOpen: false,
+  },
+  {
+    id: 2,
+    question: "제빙기 청소 작업 시간은 어느 정도 소요되나요?",
+    answer:
+      "평균적으로 1시간 정도 소요됩니다. *제품의 상태 및 주변 환경에 따라 작업 시간이 조금 더 소요될 수 있습니다.",
+    isOpen: false,
+  },
+  {
+    id: 3,
+    question: "제빙기를 가져가서 청소하시나요?",
+    answer:
+      "제빙기를 가져가서 청소하게 되면 해당 기간 동안 업소의 입장에선 얼음이 들어가는 음식을 제공할 수 없는 상황이 발생할 수도 있기 때문에 저희 빙프리에서는 제빙기 분해 청소 시 서비스의 차질이 생기시지 않게끔 현장에서 분해 청소를 진행하고 있습니다. ",
+    isOpen: false,
+  },
+  {
+    id: 4,
+    question: "대량 제빙기 청소 의뢰나 정기적 케어 의뢰도 가능할까요?",
+    answer:
+      "물론입니다. 대량 제빙기 청소는 제빙기의 대수에 따라 고객님과 스케줄을 조율하고 있고 정기적인 케어 역시 빙프라임 구독을 하시면 스케줄 조정 후 케어 진행하며, 빙프라임 고객님들께는 빙프라임 인증 스티커도 함께 제공해드리고 있습니다.",
+    isOpen: false,
+  },
+  {
+    id: 5,
+    question: "제빙기 청소 서비스 가능 시간은 어떻게 되나요?",
+    answer:
+      "업소 오픈 전/후 시간대 및 운영 시간에 상관없이 24시간 작업이 가능하기 때문에 방문 시간은 고객님과 조율하여 진행하고 있습니다.",
+    isOpen: false,
+  },
+  {
+    id: 6,
+    question: "영수증 발급이 가능한가요?",
+    answer:
+      "네, 현장에서 영수증을 발급해드립니다. 필요하시다면 이메일로도 발송 가능합니다.",
+    isOpen: false,
+  },
+]);
 </script>
 
 <template>
@@ -377,7 +484,6 @@ const isFormVaild = computed(() => {
                   type="text"
                   placeholder="날짜 선택"
                   v-model="formData.selectedDate"
-                  :config="config"
                 />
               </div>
               <!-- 날짜 선택 후 라디오 -->
@@ -388,7 +494,7 @@ const isFormVaild = computed(() => {
                     <label
                       :class="[
                         'radio-button',
-                        { selected: dateRestricted === 'yes' },
+                        { selected: formData.dateRestricted === 'yes' },
                       ]"
                     >
                       <input
@@ -402,7 +508,7 @@ const isFormVaild = computed(() => {
                     <label
                       :class="[
                         'radio-button',
-                        { selected: dateRestricted === 'no' },
+                        { selected: formData.dateRestricted === 'yes' },
                       ]"
                     >
                       <input
@@ -543,21 +649,288 @@ const isFormVaild = computed(() => {
                 예약취소하기
               </button>
               <button
+                type="submit"
                 class="reservBtn confirmReservation"
                 style="background-color: #1456fd; color: #fff"
-                :disabled="!isFormVaild"
               >
                 예약하기
               </button>
             </div>
           </fieldset>
         </form>
+        <!-- 모달창 -->
+        <transition name="fade">
+          <div v-if="showModal" class="modal-overlay">
+            <div class="modal-content">
+              <div class="basic_info">
+                <p class="detail-title">예약 정보</p>
+                <hr class="dotted-line" />
+                <p class="detail-txt">
+                  <b>{{ formData.name }} </b>님
+                </p>
+                <p class="detail-txt">
+                  <strong>주소:</strong> {{ formData.roadAddress }}
+                  {{ formData.detailAddress }}
+                </p>
+                <p class="detail-txt">
+                  <strong>예약날짜:</strong>
+                  {{ formData.selectedDate }}
+                  {{ formData.desiredTime }}
+                </p>
+                <p class="detail-txt">
+                  <strong>요청사항:</strong> {{ formData.notes }}
+                </p>
+                <p
+                  style="font-size: 16px; text-align: right; margin-bottom: 5px"
+                >
+                  결제 예상 금액:
+                  <b style="font-size: 18px; font-weight: bold">{{
+                    finalPrice.toLocaleString()
+                  }}</b>
+                  원
+                </p>
+              </div>
+              <hr class="dotted-line" />
+              <div class="notice-box">
+                <p class="detail-txt" style="font-weight: bold; color: red">
+                  ! 꼭 지켜주세요
+                </p>
+                <ul
+                  style="
+                    padding-left: 0;
+                    list-style: none;
+                    color: #555;
+                    font-size: 14px;
+                  "
+                >
+                  <li style="margin-bottom: 6px">
+                    <p class="notice-title" style="color: red">✳ 전원 차단</p>
+                    청소 전 제빙기의 전원을 미리 차단해 주세요.
+                  </li>
+                  <li style="margin-bottom: 6px">
+                    <p class="notice-title" style="color: red">✳ 공간 확보</p>
+                    원활한 작업을 위해 제빙기 주변의 장애물을 정리해 주세요.
+                  </li>
+                  <li>
+                    <p class="notice-title" style="color: red">
+                      ✳ 주차 공간 제공
+                    </p>
+                    기술자의 원활한 방문을 위해 주차 공간을 미리 확보해 주세요.
+                  </li>
+                </ul>
+                <hr class="dotted-line" />
+                <div>
+                  <p
+                    style="
+                      font-weight: bold;
+                      color: #5cb85c;
+                      margin-bottom: 4px;
+                    "
+                  >
+                    ? 청소 진행 및 소요 시간
+                  </p>
+                  <ul
+                    style="
+                      padding-left: 0;
+                      list-style: none;
+                      color: #555;
+                      font-size: 14px;
+                    "
+                  >
+                    <li style="margin-bottom: 6px">
+                      <p class="notice-title" style="color: green">
+                        ✳ 청소 시간
+                      </p>
+                      평균 1~2시간 소요되며, 오염 상태에 따라 변동될 수
+                      있습니다.
+                    </li>
+                    <li style="margin-bottom: 6px">
+                      <p class="notice-title" style="color: green">
+                        ✳ 소음 발생
+                      </p>
+                      청소 과정에서 일부 소음이 발생할 수 있습니다.
+                    </li>
+                    <li>
+                      <p class="notice-title" style="color: green">
+                        ✳ 배수 필요
+                      </p>
+                      청소 중 일정량의 물이 배출될 수 있으니 참고해 주세요.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="modal-buttons">
+                <button @click="confirmReservation" class="confirm">
+                  확인
+                </button>
+                <button @click="showModal = false" class="cancel">취소</button>
+              </div>
+            </div>
+          </div>
+        </transition>
       </div>
-      <div
-        class="reserv inner"
-        v-if="reservTab === 'reservConfirm'"
-        style="height: 2000px"
-      ></div>
+      <div class="reservConfirm inner" v-if="reservTab === 'reservConfirm'">
+        <!-- 예약조회 정보 -->
+        <fieldset class="confirm_info">
+          <input
+            type="text"
+            v-model="confirmformData.name"
+            name="name"
+            class="confirmname"
+            placeholder="이름"
+            required
+          />
+          <input
+            type="tel"
+            v-model="confirmformData.phone"
+            name="phone"
+            class="confirmphone"
+            placeholder="연락처"
+            required
+          />
+          <button
+            type="button"
+            class="reservBtn"
+            style="background-color: #1456fd; color: #fff"
+            @click="showReservationInfo"
+          >
+            예약조회하기
+          </button>
+        </fieldset>
+        <!-- 쿠폰 배너 -->
+        <div class="coupon">
+          <img src="/reservation/reservsub/reservation_coupon.png" alt="쿠폰" />
+
+          <img
+            class="infoicon"
+            src="/reservation/reservsub/reservation_infoicon.png"
+            alt=""
+          />
+          <router-link
+            to="/BingPrime"
+            class="detail-title coupon_ment"
+            style="color: #1456fd; font-weight: bold"
+          >
+            가입하기 ></router-link
+          >
+        </div>
+        <!-- 진행 중인 예약 -->
+        <fieldset v-if="isReservationMatched" class="result_info">
+          <p class="detail-title info-title" style="color: #9abae3">
+            <img
+              class="calendar"
+              src="/reservation/reservsub/calendar-check.png"
+              alt="달력"
+            />
+            진행 중인 예약
+          </p>
+          <hr />
+          <div class="reservation-info-box">
+            <p class="detail-txt">
+              <b>{{ formData.name }} </b>님
+            </p>
+            <span
+              v-if="selectedIceMakers.length > 0"
+              class="detail-info"
+              style="font-size: 24px; font-weight: 800; color: #1456fd"
+            >
+              [{{ selectedIceMakers[0].type }}] {{ selectedIceMakers[0].label }}
+              <template v-if="selectedIceMakers.length > 1">
+                외 {{ selectedIceMakers.length - 1 }}개
+              </template>
+            </span>
+            <ul class="reservation-info-list" style="list-style: none">
+              <li>
+                <p class="detail-txt">
+                  <strong>일정</strong>
+                  {{ formData.selectedDate }}
+                  {{ formData.desiredTime }}
+                </p>
+              </li>
+              <li>
+                <p class="detail-txt">
+                  <strong>요청</strong> {{ formData.notes }}
+                </p>
+              </li>
+              <li>
+                <p class="detail-txt">
+                  <strong style="font-weight: bold">금액</strong>
+                  {{ finalPrice.toLocaleString() }}
+                  원
+                </p>
+              </li>
+            </ul>
+          </div>
+          <button type="button" class="retryreservationBtn">
+            예약수정하기
+          </button>
+        </fieldset>
+        <!-- 자주 묻는 질문 -->
+        <fieldset class="faq-box" v-if="isReservationMatched">
+          <p class="detail-title">� 자주 묻는 질문</p>
+          <hr />
+          <div class="faq-list" v-for="faq in faqs" :key="faq.id">
+            <p class="detail-txt" style="font-weight: 800">
+              Q. {{ faq.question }}
+            </p>
+            <p class="detail-info" style="color: #888; font-weight: 500">
+              A. {{ faq.answer }}
+            </p>
+          </div>
+        </fieldset>
+        <!-- 지난 예약 내역 -->
+        <fieldset v-if="isReservationMatched" class="result_info past">
+          <p class="detail-title info-title" style="color: #888">
+            <img
+              class="calendar"
+              src="/reservation/reservsub/calendar-check.png"
+              alt="달력"
+            />
+            지난 예약 내역
+          </p>
+          <hr />
+          <div class="reservation-info-box">
+            <p class="detail-txt">
+              <b>{{ formData.name }} </b>님
+            </p>
+            <span
+              v-if="selectedIceMakers.length > 0"
+              class="detail-info"
+              style="font-size: 24px; font-weight: 800; color: #1456fd"
+            >
+              [{{ selectedIceMakers[0].type }}] {{ selectedIceMakers[0].label }}
+              <template v-if="selectedIceMakers.length > 1">
+                외 {{ selectedIceMakers.length - 1 }}개
+              </template>
+            </span>
+            <ul class="reservation-info-list" style="list-style: none">
+              <li>
+                <p class="detail-txt">
+                  <strong>일정</strong>
+                  {{ formData.selectedDate }}
+                  {{ formData.desiredTime }}
+                </p>
+              </li>
+              <li>
+                <p class="detail-txt">
+                  <strong>요청</strong> {{ formData.notes }}
+                </p>
+              </li>
+              <li>
+                <p class="detail-txt">
+                  <strong style="font-weight: bold">금액</strong>
+                  {{ finalPrice.toLocaleString() }}
+                  원
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="reservBtn_box">
+            <button class="pastBtn">예약취소하기</button>
+            <button class="pastBtn">예약하기</button>
+          </div>
+        </fieldset>
+      </div>
     </main>
   </div>
 </template>

@@ -157,6 +157,34 @@ const brandLogos2 = [
   "/review/seoul dragon city_logo.png",
   "/review/nexon_logo.png",
 ];
+
+// 채연 icon 이벤트
+// ✅ 아이콘 표시 제어 함수
+const toggleIconVisibility = () => {
+  const iconContent = document.querySelector(".icon_content");
+  const card2 = document.querySelector(".card2");
+
+  if (!iconContent || !card2) return;
+
+  const cardRect = card2.getBoundingClientRect();
+  const isFlipped = card2.classList.contains("flip");
+  const isInView = cardRect.top < window.innerHeight * 0.6;
+
+  if (isFlipped && isInView) {
+    iconContent.classList.add("show");
+  } else {
+    iconContent.classList.remove("show");
+  }
+};
+
+// ✅ currentSection이 'check'일 때만 watch 작동
+watch(currentSection, async (val) => {
+  if (val === "check") {
+    await nextTick(); // DOM 업데이트 이후 실행
+    toggleIconVisibility();
+  }
+});
+
 </script>
 
 <template>
@@ -400,7 +428,8 @@ const brandLogos2 = [
             :autoplay="{ delay: 0, disableOnInteraction: false }"
             :speed="7000"
             :free-mode="true"
-            :free-mode-momentum="false"
+            :freeModeMomentum="false"
+            :freeModeStick="false"
             class="w-full h-40">
             <SwiperSlide v-for="(logo, index) in brandLogos1" :key="index" :style="{ width: '200px' }">
               <img :src="logo" alt="브랜드 로고" class="h-8 !w-16 object-contain" />
@@ -416,7 +445,8 @@ const brandLogos2 = [
             :autoplay="{ delay: 0, reverseDirection: true, disableOnInteraction: false }"
             :speed="7000"
             :free-mode="true"
-            :free-mode-momentum="false"
+            :freeModeMomentum="false"
+            :freeModeStick="false"
             class="w-full h-40">
             <SwiperSlide v-for="(logo, index) in brandLogos2" :key="index" :style="{ width: '200px' }">
               <img :src="logo" alt="브랜드 로고" class="h-12 !w-14 object-contain" />
@@ -437,7 +467,7 @@ const brandLogos2 = [
         </div>
         <div class="review-box">
           <p class="review-box-txt">
-            “눈에 보이지 않아 더러운지 몰랐는데, 지속적인 관리가 필요함을 느꼈습니다. 빙프라임 구독 서비 스로 비용도
+            “눈에 보이지 않아 더러운지 몰랐는데, 지속적인 관리가 필요함을 느꼈습니다. 빙프라임 구독 서비스로 비용도
             절감하고 친환경 세제까지 증정 받아 좋았습니다.”
           </p>
           <div class="review-customer">

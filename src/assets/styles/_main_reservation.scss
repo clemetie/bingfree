@@ -197,7 +197,12 @@
         font-weight: bold;
       }
     }
-
+  }
+  .banner {
+    img {
+      width: 100%;
+      position: relative;
+    }
     .reserv_txtbox {
       position: absolute;
       top: 190px;
@@ -208,6 +213,11 @@
     }
   }
   .reserv {
+    hr {
+      border: none;
+      border-top: 2px dotted #ccc; /* 색, 두께, 점선 스타일 */
+      margin: 10px 0;
+    }
     form {
       .fade-enter-active,
       .fade-leave-active {
@@ -237,7 +247,7 @@
         background-color: #fff;
         padding: 20px 20px;
         border: none;
-        margin: 30px 0;
+        margin: 30px auto;
       }
       .basic_information {
         input.name,
@@ -266,7 +276,7 @@
             text-indent: 30px;
           }
         }
-        #detailAddress{
+        #detailAddress {
           width: 1100px;
           line-height: 60px;
           padding: 0 30px;
@@ -371,11 +381,6 @@
               }
             }
           }
-        }
-        .dotted-line {
-          border: none;
-          border-top: 2px dotted #ccc; /* 색, 두께, 점선 스타일 */
-          margin: 20px 0;
         }
       }
       .coupon {
@@ -567,6 +572,246 @@
           input {
             width: auto;
             height: auto;
+          }
+        }
+      }
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      .modal-content {
+        background: white;
+        padding: 24px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        .basic_info {
+          p {
+            list-style: none;
+            margin: 10px 0;
+            font-weight: bold;
+          }
+        }
+        p {
+          list-style: none;
+          margin: 5px 0;
+          font-weight: bold;
+        }
+        strong {
+          font-weight: bold;
+          color: $bingfree-main;
+        }
+        .notice-title {
+          display: inline-block;
+          width: 25%;
+        }
+      }
+      .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+      }
+      .modal-buttons button {
+        margin-left: 10px;
+        padding: 8px 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+          filter: brightness(0.8);
+        }
+      }
+      .confirm {
+        background: #1456fd;
+        color: white;
+      }
+      .cancel {
+        background: #ccc;
+        color: white;
+      }
+    }
+  }
+  .reservConfirm {
+    hr {
+      border: none;
+      border-top: 2px dotted #ccc; /* 색, 두께, 점선 스타일 */
+      margin: 15px 0;
+    }
+    .confirm_info {
+      width: 600px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      background-color: #fff;
+      padding: 20px 50px;
+      margin: 30px auto;
+      border: none;
+      input {
+        background-color: #eeeeee;
+        border: none;
+        border-radius: 10px;
+        margin: 10px 10px;
+        font-size: 20px;
+        &::placeholder {
+          font-size: 20px;
+          font-weight: bold;
+          transform: translateY(3px);
+        }
+        &.confirmname,
+        &.confirmphone {
+          width: 500px;
+          line-height: 60px;
+          padding: 0 30px;
+        }
+        &.confirmname::-webkit-input-placeholder {
+          background: url("reservation/reservsub/user-alt.png") no-repeat 0px
+            6px / 20px;
+          text-indent: 30px;
+        }
+        &.confirmphone::-webkit-input-placeholder {
+          background: url("reservation/reservsub/phone-alt.png") no-repeat 0px
+            6px / 20px;
+          text-indent: 30px;
+        }
+      }
+      .reservBtn {
+        cursor: pointer;
+        width: 500px;
+        height: 60px;
+        border-radius: 10px;
+        border: none;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 10px;
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+    }
+    .coupon {
+      width: 100%;
+      text-align: center;
+      position: relative;
+      .infoicon {
+        position: absolute;
+        top: 114px;
+        left: 655px;
+      }
+      .coupon_ment {
+        position: absolute;
+        top: 114px;
+        right: 350px;
+      }
+    }
+    fieldset {
+      width: 1100px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      background-color: #fff;
+      padding: 20px 30px;
+      border: none;
+      margin: 30px auto;
+    }
+    .result_info {
+      .info-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img.calendar {
+          width: 25px;
+          height: 25px;
+          filter: brightness(1.3);
+        }
+      }
+      .reservation-info-box {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .reservation-info-list {
+        strong {
+          color: #888;
+          margin-right: 20px;
+        }
+        li {
+          margin: 7px 0;
+          font-weight: 800;
+          p {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .retryreservationBtn {
+      width: 1000px;
+      height: 60px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f1f1f1;
+      color: #888;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 25px 10px;
+      text-align: center;
+    }
+    .faq-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .faq-list p {
+        margin: 8px 0;
+      }
+    }
+    .result_info.past {
+      background-color: #ccc;
+      hr {
+        border: none;
+        border-top: 2px dotted #fff; /* 색, 두께, 점선 스타일 */
+        margin: 15px 0;
+      }
+      .pastBtn {
+        width: 500px;
+        height: 60px;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        color: #888;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .info-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img.calendar {
+          width: 25px;
+          height: 25px;
+          filter: grayscale(1);
+        }
+      }
+      .reservation-info-box {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .reservation-info-list {
+        strong {
+          color: #888;
+          margin-right: 20px;
+        }
+        li {
+          margin: 7px 0;
+          font-weight: 800;
+          p {
+            font-weight: 600;
           }
         }
       }
