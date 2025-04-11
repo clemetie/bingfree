@@ -85,6 +85,7 @@
       background-color: $bingfree-point;
       z-index: -1;
     }
+
     button {
       width: 170px;
       height: 70px;
@@ -95,36 +96,280 @@
       border-style: none;
       border-radius: 14px;
       margin-top: 60px;
+      cursor: pointer;
+      transition: transform 0.2s ease-out, background-color 0.2s;
     }
-
+    button:hover {
+      transform: scale(1.05);
+      // background-color: #d0e347;
+    }
     .txt_box {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 500px;
-      height: 120px;
       border-radius: 20px;
-      background-color: #e6e0e0;
+      background-color: #ffffff;
+      box-shadow: 2px 6px 20px rgba(0, 0, 0, 0.15);
     }
     .txt_box1 {
       position: absolute;
       top: 120px;
       right: 180px;
+      width: 480px;
+      height: 120px;
       .emoji_face1 {
         position: absolute;
-        top: 60px;
+        top: 20px;
         right: -70px;
       }
     }
     .txt_box2 {
       position: absolute;
-      top: 440px;
+      top: 420px;
       right: 0px;
-      .emoji_face2{
+      width: 500px;
+      height: 120px;
+      .emoji_face2 {
         position: absolute;
         left: -100px;
         top: 20px;
       }
     }
+    .txt_box3 {
+      position: absolute;
+      bottom: 180px;
+      right: 240px;
+      width: 500px;
+      height: 120px;
+      .emoji_face3 {
+        position: absolute;
+        top: 5px;
+        right: -140px;
+      }
+    }
   }
+}
+
+// radio
+.review_radio_wrap{
+  display: flex;
+  gap: 20px;
+  background-color: burlywood;
+}
+
+// 고객리뷰 상세
+.inner {
+  // background-color: rgb(123, 164, 199);
+}
+// 전체보기
+// 전체보기 - 사장님 후기 section
+.ceo_review_wrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  .mega_review {
+    position: relative;
+    padding: 30px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    // padding: 41px 61px 41px 50px;
+    .mega_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      // background-color: pink;
+    }
+  }
+  .mass_review {
+    position: relative;
+    padding: 30px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    // padding: 41px 61px 41px 50px;
+    .mass_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
+  }
+}
+
+// 전체보기 - 고객님 후기 section
+.customer_review_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .customer_review_box {
+    border-radius: 2px;
+    overflow: hidden;
+
+    .customer_review_txt {
+      width: 400px;
+      height: 157px;
+      padding: 27px 28px;
+      background-color: #eeeeee;
+      .txt_top {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// 전체보기 - 블로그 후기 section
+.blog_review_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.blog_review_box {
+  display: flex;
+  gap: 20px;
+  .txt_ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; //보여줄 줄 수
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .blog_review_txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+// 사장님 후기만
+.ceo_section {
+  flex-wrap: wrap;
+  row-gap: 180px;
+  margin-bottom: 120px;
+  .delivery_review {
+    position: relative;
+    padding: 30px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    .delivery_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
+  }
+  .ediya_review{
+    position: relative;
+    padding: 30px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    .delivery_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
+  }
+}
+
+// 고객님 후기만
+.customer_review_txt{
+  .txt_bottom{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.customer_review_moreBtn{
+  display: block;
+  margin: 105px auto 100px;
+  width: 150px;
+  height: 50px;
+  border-radius: 9999px;
+  border-style: none;
+  border: 2px solid #E0E0E0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #424242;
+  cursor: pointer;
+  background-color: #ffffff;
+
 }
