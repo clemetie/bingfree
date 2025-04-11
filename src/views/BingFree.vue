@@ -112,6 +112,26 @@ watch(currentSection, async (val) => {
     toggleIconVisibility();
   }
 });
+
+// ✅ scroll 이벤트 등록
+let scrollTimeout;
+
+const onScroll = () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    if (currentSection.value === "check") {
+      toggleIconVisibility();
+    }
+  }, 50);
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", onScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", onScroll);
+});
 // main-review 브랜드 로고 배열
 const brandLogos1 = [
   "/review/mondrian_logo.png",
@@ -137,7 +157,6 @@ const brandLogos2 = [
   "/review/seoul dragon city_logo.png",
   "/review/nexon_logo.png",
 ];
-
 
 // 채연 icon 이벤트
 // ✅ 아이콘 표시 제어 함수
