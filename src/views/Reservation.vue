@@ -4,11 +4,25 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/themes/material_blue.css"; // 💙 이게 저 UI 스타일!
 import { Korean } from "flatpickr/dist/l10n/ko.js";
 import { useRouter } from "vue-router";
+import Cookies from "js-cookie";
 
 const router = useRouter();
 const reservTab = ref("reserv"); // 탭
 const calendar = ref(null); //캘린더
 const showModal = ref(false); // 예약하기-> 모달
+const showFAQ = ref(false);
+const normalizePhone = (phone) => phone.replace(/-/g, "").trim();
+const matchedReservation = ref(null);
+
+// 쿠키에 저장된 정보 가져오기
+onMounted(() => {
+  if (reservTab.value === "reservConfirm") {
+    const savedData = Cookies.get("reservationData");
+    if (savedData) {
+      formData.value = JSON.parse(savedData);
+    }
+  }
+});
 
 // 1. 기본정보 : 주소 검색
 function loadDaumPostcodeScript() {
@@ -187,12 +201,45 @@ const handleSubmit = () => {
   showModal.value = true;
 };
 
-// 모달에서 예약 확인
 const confirmReservation = () => {
   showModal.value = false;
-  // 실제 예약 처리 (예: API 호출)
+
+  // ✅ 기존 예약들 가져오기 (항상 배열로)
+  let existingReservations;
+  try {
+    const parsed = JSON.parse(Cookies.get("reservationData") || "[]");
+    existingReservations = Array.isArray(parsed) ? parsed : [parsed];
+  } catch (e) {
+    existingReservations = [];
+  }
+
+  // ✅ 새 예약 추가
+  existingReservations.push({ ...formData.value });
+
+  // ✅ 쿠키에 다시 저장
+  Cookies.set("reservationData", JSON.stringify(existingReservations), {
+    expires: 1,
+  });
+
+  // ✅ 예약 완료 알림
   alert("예약이 완료되었습니다!");
+
+  // ✅ 예약 확인 탭으로 이동
   reservTab.value = "reservConfirm";
+
+  // ✅ 입력값 초기화
+  formData.value = {
+    name: "",
+    phone: "",
+    type: "business",
+    roadAddress: "",
+    detailAddress: "",
+    selectedDate: null,
+    dateRestricted: null,
+    desiredTime: "",
+    gender: "anything",
+    notes: "",
+  };
 };
 
 // 예약 조회하기 누르면
@@ -200,7 +247,7 @@ const isReservationMatched = ref(false);
 
 const showReservationInfo = () => {
   const name = confirmformData.value.name.trim();
-  const phone = confirmformData.value.phone.trim();
+  const phone = confirmformData.value.phone.trim().replace(/-/g, "");
 
   if (!name || !phone) {
     alert("이름과 연락처를 모두 입력해주세요.");
@@ -208,14 +255,28 @@ const showReservationInfo = () => {
     return;
   }
 
-  if (
-    formData.value.name === confirmformData.value.name &&
-    formData.value.phone === confirmformData.value.phone
-  ) {
+  // 쿠키에서 예약 정보 배열 가져오기 (방어적 파싱)
+  let storedReservations;
+  try {
+    const parsed = JSON.parse(Cookies.get("reservationData") || "[]");
+    storedReservations = Array.isArray(parsed) ? parsed : [parsed];
+  } catch (e) {
+    storedReservations = [];
+  }
+
+  // 전화번호 비교 시 하이픈 제거
+  const matched = storedReservations.find((reservation) => {
+    const storedPhone = reservation.phone.replace(/-/g, "");
+    return reservation.name === name && storedPhone === phone;
+  });
+
+  if (matched) {
+    console.log("예약 정보가 일치합니다.");
+    matchedReservation.value = matched;
+    isReservationMatched.value = true;
+
     confirmformData.value.name = "";
     confirmformData.value.phone = "";
-    console.log("예약 정보가 일치합니다.");
-    isReservationMatched.value = true;
   } else {
     alert("일치하는 예약 정보가 없습니다.");
     isReservationMatched.value = false;
@@ -267,9 +328,41 @@ const faqs = reactive([
     isOpen: false,
   },
 ]);
+
+// 오른쪽 사이드 고탑기능
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  console.log("✅ 현재 섹션:", currentSection.value);
+};
 </script>
 
 <template>
+  <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
+  <div class="side">
+    <div>
+      <router-link
+        to="/reservation"
+        class="sideBtn reservBtn main-icon-drop"
+        :class="{ compact: currentSection !== 'visual' }"
+      >
+        <img src="/images/calendar_blue.png" alt="캘린더" />
+        <span class="text">예약하기</span>
+      </router-link>
+    </div>
+    <div
+      class="sideBtn main-icon-drop"
+      :class="{ compact: currentSection !== 'visual' }"
+    >
+      <img
+        src="/images/chabot.png"
+        alt="챗봇이미지"
+        :class="{ compact: currentSection !== 'visual' }"
+      />
+      <span class="text">챗봇&nbsp;&nbsp;</span>
+    </div>
+
+    <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
+  </div>
   <div class="reserv-wrap">
     <div class="reserv_top" style="margin-top: 80px">
       <div class="banner">
@@ -827,7 +920,7 @@ const faqs = reactive([
           <hr />
           <div class="reservation-info-box">
             <p class="detail-txt">
-              <b>{{ formData.name }} </b>님
+              <b>{{ matchedReservation.name }} </b>님
             </p>
             <span
               v-if="selectedIceMakers.length > 0"
@@ -843,13 +936,13 @@ const faqs = reactive([
               <li>
                 <p class="detail-txt">
                   <strong>일정</strong>
-                  {{ formData.selectedDate }}
-                  {{ formData.desiredTime }}
+                  {{ matchedReservation.selectedDate }}
+                  {{ matchedReservation.desiredTime }}
                 </p>
               </li>
               <li>
                 <p class="detail-txt">
-                  <strong>요청</strong> {{ formData.notes }}
+                  <strong>요청</strong> {{ matchedReservation.notes }}
                 </p>
               </li>
               <li>
@@ -867,13 +960,26 @@ const faqs = reactive([
         </fieldset>
         <!-- 자주 묻는 질문 -->
         <fieldset class="faq-box" v-if="isReservationMatched">
-          <p class="detail-title">� 자주 묻는 질문</p>
-          <hr />
-          <div class="faq-list" v-for="faq in faqs" :key="faq.id">
+          <p class="detail-title">
+            자주 묻는 질문
+            <span v-on:click="showFAQ = !showFAQ">{{
+              showFAQ ? "접기 ▲" : "펼치기 ▼"
+            }}</span>
+          </p>
+          <hr style="margin: 10px 0" />
+          <div
+            class="faq-list"
+            v-if="showFAQ"
+            v-for="faq in faqs"
+            :key="faq.id"
+          >
             <p class="detail-txt" style="font-weight: 800">
               Q. {{ faq.question }}
             </p>
-            <p class="detail-info" style="color: #888; font-weight: 500">
+            <p
+              class="detail-info"
+              style="color: #888; font-weight: 500; line-height: 1.5 !important"
+            >
               A. {{ faq.answer }}
             </p>
           </div>
@@ -891,7 +997,7 @@ const faqs = reactive([
           <hr />
           <div class="reservation-info-box">
             <p class="detail-txt">
-              <b>{{ formData.name }} </b>님
+              <b>{{ matchedReservation.name }} </b>님
             </p>
             <span
               v-if="selectedIceMakers.length > 0"
@@ -907,13 +1013,13 @@ const faqs = reactive([
               <li>
                 <p class="detail-txt">
                   <strong>일정</strong>
-                  {{ formData.selectedDate }}
-                  {{ formData.desiredTime }}
+                  {{ matchedReservation.selectedDate }}
+                  {{ matchedReservation.desiredTime }}
                 </p>
               </li>
               <li>
                 <p class="detail-txt">
-                  <strong>요청</strong> {{ formData.notes }}
+                  <strong>요청</strong> {{ matchedReservation.notes }}
                 </p>
               </li>
               <li>
@@ -926,8 +1032,8 @@ const faqs = reactive([
             </ul>
           </div>
           <div class="reservBtn_box">
-            <button class="pastBtn">예약취소하기</button>
-            <button class="pastBtn">예약하기</button>
+            <button class="pastBtn">다시 예약하기</button>
+            <button class="pastBtn">리뷰 쓰기</button>
           </div>
         </fieldset>
       </div>

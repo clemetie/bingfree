@@ -179,7 +179,7 @@
   }
 }
 .reserv-wrap {
-  font-family: "NanumSquare", sans-serif;
+  font-family: "Pretendard", sans-serif;
   .reserv_top {
     .reserv_tab {
       width: 40%;
@@ -245,7 +245,7 @@
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
         background-color: #fff;
-        padding: 20px 20px;
+        padding: 30px;
         border: none;
         margin: 30px auto;
       }
@@ -267,7 +267,7 @@
           text-indent: 30px;
         }
         .address {
-          width: 1100px;
+          width: 1060px;
           line-height: 60px;
           padding: 0 30px;
           &::-webkit-input-placeholder {
@@ -569,9 +569,15 @@
           justify-content: space-around;
           gap: 10px;
           padding: 20px 0;
+          label{
+
+            cursor: pointer;
+          }
           input {
             width: auto;
             height: auto;
+            cursor: pointer;
+
           }
         }
       }
@@ -769,6 +775,16 @@
       .faq-list p {
         margin: 8px 0;
       }
+      .detail-title {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px 0 0;
+        span {
+          cursor: pointer;
+        }
+      }
     }
     .result_info.past {
       background-color: #ccc;
@@ -814,6 +830,11 @@
             font-weight: 600;
           }
         }
+      }
+      .reservBtn_box {
+        display: flex;
+        justify-content: space-around;
+        margin: 25px auto;
       }
     }
   }
