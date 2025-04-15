@@ -87,24 +87,13 @@ const scrollToTop = () => {
 const modules = [Pagination, Navigation, Autoplay];
 
 // 채연 icon 이벤트
-// ✅ 아이콘 표시 제어 함수
-const toggleIconVisibility = () => {
-  const iconContent = document.querySelector(".icon_content");
-  const card2 = document.querySelector(".card2");
-
-  if (!iconContent || !card2) return;
-
-  const cardRect = card2.getBoundingClientRect();
-  const isFlipped = card2.classList.contains("flip");
-  const isInView = cardRect.top < window.innerHeight * 0.6;
-
-  if (isFlipped && isInView) {
-    iconContent.classList.add("show");
-  } else {
-    iconContent.classList.remove("show");
+// ✅ currentSection이 'check'일 때만 watch 작동
+watch(currentSection, async (val) => {
+  if (val === "check") {
+    await nextTick(); // DOM 업데이트 이후 실행
+    toggleIconVisibility();
   }
-};
-
+});
 // ✅ currentSection이 'check'일 때만 watch 작동
 watch(currentSection, async (val) => {
   if (val === "check") {
@@ -184,7 +173,6 @@ watch(currentSection, async (val) => {
     toggleIconVisibility();
   }
 });
-
 </script>
 
 <template>
