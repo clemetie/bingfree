@@ -147,6 +147,7 @@ const brandLogos2 = [
   "/review/nexon_logo.png",
 ];
 
+
 // 채연 icon 이벤트
 // ✅ currentSection이 'check'일 때만 watch 작동
 watch(currentSection, async (val) => {
@@ -155,6 +156,7 @@ watch(currentSection, async (val) => {
     toggleIconVisibility();
   }
 });
+
 </script>
 
 <template>
