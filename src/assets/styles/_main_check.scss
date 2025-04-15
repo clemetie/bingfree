@@ -313,6 +313,168 @@
     }
   }
 }
+// 탭
+
+.introbing_tab {
+  font-family: "NanumSquare", sans-serif;
+  width: 40%;
+  line-height: 200px;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  position: relative;
+  // background-color: pink;
+
+  li {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: #9e9e9e; // 기본 색상
+
+    &.active {
+      color: #212121; // 클릭했을 때 색상
+    }
+  }
+
+  .divider {
+    cursor: default;
+    color: #9e9e9e;
+  }
+}
+//일반 구독제 설명
+.top3_text_content {
+  margin: 140px auto;
+  text-align: center;
+  p {
+    color: $sub-black;
+    font-family: "NamumSauareL", sans-serif;
+    &:first-child {
+      @include text-style(50px, 700);
+    }
+    &:not(:first-child) {
+      @include text-style(18px, 400);
+    }
+    &:nth-child(2) {
+      margin-top: 30px;
+    }
+    &:nth-child(3) {
+      margin-top: 13px;
+    }
+    &:nth-child(4) {
+      @include text-style(24px, 700);
+      margin-top: 16px;
+      color: $bingfree-main;
+      span {
+        color: $sub-black;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+  }
+}
+// 일반 구독제 카드
+.ordinary_h1 {
+  @include text-style(36px, 800);
+  span {
+    color: $bingfree-main;
+  }
+}
+.ordinary_swiper {
+  width: 80%;
+  .ordinary_content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .ordinary_list {
+      width: calc(100% - 5rem);
+      height: 100%;
+      border: 3px solid #bdbdbd;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+
+      //카드 호버시
+      &:hover {
+        border: 3px solid $bingfree-main;
+      }
+
+      p {
+        color: $sub-black;
+        margin-left: 16px;
+        margin-bottom: 8px;
+      }
+
+      //버튼
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        button {
+          display: inline-block;
+          width: 110px;
+          height: 40px;
+          @include text-style(16px, 600);
+          border-radius: 8px;
+          border: 1px solid #4e4e4e;
+          margin-top: 10px;
+          margin-bottom: 25px;
+          &:first-child {
+            color: $sub-black;
+            background-color: #fff;
+          }
+          &:last-child {
+            border: 2px solid $bingfree-main;
+            &:hover {
+              border: none;
+              background-color: $bingfree-main;
+              color: #fff;
+              @include text-style(16px, 800);
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/// swiper 일반 요금제
+///
+.ordinary_swiper {
+  position: relative;
+  padding: 10x 0;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #4e4e4e;
+    top: 63%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    z-index: 99;
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-button-next {
+    right: -0;
+  }
+
+  @media (max-width: 768px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+  }
+}
+:root {
+  --swiper-navigation-size: 50px;
+}
 
 .top3_price_section {
   width: 100%;
@@ -468,39 +630,318 @@
     }
   }
 }
-//요금제 섹션
-.price_section {
+
+//구독 요금제 섹션
+.bingfrime_wrap_section {
   width: 100%;
-  // 일반 요금제 큰 섹션
-  .ordinary_price_content {
+  // 이너
+  .inner {
     width: 100%;
-    // 요금제 제목
-    h1 {
-      text-align: center;
-      margin-top: 20%;
-      margin-bottom: 5%;
+    //제목
+    p {
       @include text-style(38px, 600);
-      color: $sub-black;
-      strong {
-        font-weight: 600;
-        &:last-child {
+      display: flex;
+      justify-content: center;
+      margin-top: 20%;
+      span:first-child {
+        font-weight: 800;
+        color: $bingfree-main;
+      }
+      span:last-child {
+        font-weight: 800;
+        color: $bingfree-main;
+      }
+    }
+    //카테고리 탭
+    .pricelist_tap {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 8%;
+      button {
+        width: 190px;
+        height: 60px;
+        background-color: transparent;
+        font-size: 28px;
+        font-weight: 500;
+        border: 2px solid #999;
+        color: #999;
+        // 버튼 호버 했을떄
+        &:hover {
           color: $bingfree-main;
+          border: 2px solid $bingfree-main;
+        }
+        // 버튼 클래스 더해졌을때
+        &.active {
+          background-color: $bingfree-main;
+          color: #fff;
+          font-weight: bold;
         }
       }
     }
-    //일반 요금제 리스트
-    .ordinary_price_list {
-      width: 100%;
-      img {
-        width: 100%;
+    //요금제 설명 전체 카드 섹션
+    .price_list {
+      margin-top: 6%;
+      align-content: flex-start;
+      display: flex;
+      gap: 20px;
+      //각각 카테고리 설명 카드
+      .price_list_left {
+        //왼쪽 레이아웃 정리
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+
+        .individual_list {
+          background-color: #dfe5e8;
+          height: 60%;
+
+          //카테고리 버튼
+          .selected_plan_title {
+            margin: auto;
+            margin-top: 7%;
+            margin-left: 6.5%;
+            margin-bottom: 7%;
+
+            width: 88%;
+            height: 68px;
+            background-color: $bingfree-sub;
+            border: none;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: 600;
+
+            color: #fff;
+            .selctedTab_bt {
+              font-weight: 800;
+              color: $bingfree-point;
+            }
+          }
+          // 각각 카테고리 섹션
+          .individual_card {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            @include text-style(24px, 700);
+            margin-bottom: 12%;
+          }
+
+          // 회차
+          .card_in_times {
+            font-weight: bold;
+            color: $sub-black;
+          }
+          .perprice_bt {
+            width: 85px;
+            height: 42px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 600px;
+
+            background-color: transparent;
+            border: 2px solid $bingfree-main;
+          }
+          //가격 전체
+          .card_in_price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            //1회별 가격
+            .card_in_perprice {
+              font-weight: bold;
+              color: $bingfree-main;
+            }
+            //전체 가격
+            .card_in_total {
+              font-size: 18px;
+              font-weight: 600;
+              display: inline-block;
+              position: relative;
+              color: #888888;
+              &:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0.1em; // 텍스트와 밑줄 사이 간격 조정
+                width: 100%;
+                height: 1px;
+                background-color: #888888; // 텍스트 색상과 동일
+              }
+            }
+          }
+
+          //버튼 랩
+          .buttons {
+            display: flex;
+            gap: 12px;
+            button {
+              background-color: $bingfree-main;
+              border-radius: 8px;
+              border: none;
+              width: 116px;
+              height: 53px;
+              font-size: 20px;
+              color: #fff;
+              font-weight: bolder;
+            }
+          }
+        }
+        //구독배너
+        .event_left_banner {
+          width: 100%;
+          margin: 5%;
+          img {
+            width: 90%;
+            margin: auto;
+          }
+        }
+      }
+
+      //  2년 연장 구독 혜택 카드
+      .plus_sale_list {
+        flex: 1.5;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #dfe5e8;
+
+        //혜택 제목
+        h1 {
+          // margin-top: 66px;
+          margin-top: 13%;
+          font-size: 28px;
+          font-weight: 500;
+          color: $sub-black;
+          text-align: center;
+        }
+        // 혜택 전 ( 택 관련 박스)
+        .first_box_before {
+          margin-top: 11%;
+          width: 445px;
+          height: 194px;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 0 19px;
+          display: flex;
+          justify-content: space-around;
+          p {
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            color: $sub-black;
+
+            span {
+              color: #9e9e9e;
+            }
+          }
+        }
+        // 혜택 전 ( 여금제 관련박스)
+        .second_box {
+          margin-top: 11%;
+          width: 445px;
+          height: 194px;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 0 19px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          p {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0;
+            font-size: 17px;
+            font-weight: 400;
+
+            span {
+              display: inline-block;
+              color: $sub-black;
+              font-weight: 500;
+
+              &:first-child {
+                font-weight: bold;
+                text-align: left;
+              }
+              &:last-child {
+                text-align: right;
+              }
+            }
+          }
+        }
+        //혜택 배너
+        .years2_banner {
+          font-size: 17px;
+          color: $sub-black;
+          font-weight: 500;
+          margin-top: 8%;
+          padding: 2%;
+          width: 93%;
+          line-height: 19px;
+          background: #fff;
+          border-radius: 8px;
+        }
+        //혜택 전 버튼
+
+        .years2_bt {
+          display: flex;
+          height: 55px;
+          background: $bingfree-sub;
+          border: none;
+          border-radius: 10px;
+          color: #fff;
+          font-size: 22px;
+          line-height: 22px;
+          font-weight: 700;
+          justify-content: center;
+          align-items: center;
+          width: calc(100% - 48px);
+          margin: 8%;
+        }
+        //혜택 후
+        .first_box_after {
+          background-color: #fff;
+          width: 95%;
+          margin: auto;
+          margin-top: 11%;
+          border-radius: 10px;
+          padding: 0 19px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+
+          p {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 400;
+            color: #4e4e4e;
+            margin: 4% 0;
+
+            span {
+              display: inline-block;
+              color: #4e4e4e;
+              &:nth-child(2) {
+                white-space: nowrap;
+                margin-left: 3%;
+              }
+              img {
+                width: 100%;
+              }
+              strong {
+                color: $bingfree-main;
+              }
+            }
+          }
+        }
       }
     }
-    //빙프라임 구독 요금제 섹션
-    .bingprime_price_content {
-      width: 100%;
-      h1 {
-        text-align: center;
-      }
-    }
+  }
+}
+.calculation_banner {
+  width: 100%;
+  img {
+    width: 100%;
   }
 }
