@@ -131,10 +131,9 @@
 .intro-wrap {
   caret-color: transparent;
   width: 100%;
-  padding-top: 8%;
   color: #212121;
   // background-color: pink;
-  margin-bottom: 50%;
+  margin-bottom: 10%;
 }
 // 배너
 .intro-banner {
@@ -184,10 +183,9 @@
   color: #424242;
   cursor: pointer;
 }
-// tab
 .intro-wrap {
-  font-family: "NanumSquare", sans-serif;
-
+  font-family: "Pretendard", sans-serif;
+  // 탭
   .introbing_tab {
     width: 40%;
     line-height: 200px;
@@ -197,7 +195,6 @@
     flex: 1;
     justify-content: space-evenly;
     position: relative;
-    // background-color: pink;
 
     li {
       cursor: pointer;
@@ -215,6 +212,7 @@
       color: #9e9e9e;
     }
   }
+
   // 빙프리-제빙기 케어 서비스 영역
   .care-service-box {
     margin: auto;
@@ -232,6 +230,9 @@
     justify-content: center;
     h2 {
       margin-bottom: 3%;
+    }
+    p {
+      margin-bottom: 0.5%;
     }
   }
   // 1.제빙기 케어는 왜 필요할까요?
@@ -318,40 +319,209 @@
     object-fit: cover; /* 비율 유지하면서 꽉 채우기 */
   }
   .care-item p {
-    margin-top: 3%;
+    margin-top: 5%;
     font-size: 15px;
-    color: #495861;
+    color: #757575;
     font-weight: 750;
   }
-    // img
-    .care-section2 {
+  // img
+  .care-section2 {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* 반응형 */
+  }
+  .care-item2 {
+    margin-top: 3%;
+    text-align: center;
+    width: 380px;
+  }
+
+  .care-item2 img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+    display: block;
+    height: 220px;
+    object-fit: cover; /* 비율 유지하면서 꽉 채우기 */
+  }
+  .care-item2 p {
+    padding-top: 5%;
+    font-size: 15px;
+    color: #757575;
+    font-weight: 750;
+    // background-color: pink;
+  }
+  .intro-section1-p4 {
+    margin-top: 3%;
+    line-height: 1.8;
+    padding-left: 4%;
+  }
+  .care-section3 {
+    margin: auto;
+    display: flex;
+    margin-top: 5%;
+    .care-section3-img {
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 30px;
-      flex-wrap: wrap; /* 반응형 */
+      align-items: flex-end;
+      width: 40%;
+      margin-left: 5%;
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
     }
-    .care-item2 {
-      margin-top: 3%;
-      text-align: center;
-      width: 380px;
-   
+    .care-section3-txt {
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      margin-left: 4%;
+      h2 {
+        margin-bottom: 7.5%;
+      }
+      p {
+        line-height: 1.4;
+      }
     }
-  
-    .care-item2 img {
+  }
+  // -------빙프리란? 영역---------
+  // certificate section
+  .bingfree-certificate-section {
+    h2 {
+      line-height: 1.6;
+      margin-bottom: 3%;
+    }
+    p {
+      line-height: 1.5;
+    }
+  }
+  .small-title1 {
+    margin-top: 4%;
+    margin-bottom: 5%;
+  }
+  .small-title2 {
+    margin-top: 10%;
+    margin-bottom: 2%;
+  }
+  .certicate-section-img {
+    display: flex;
+    width: 26%;
+    margin: 5% 0 5% 0;
+    gap: 20px;
+    img {
       width: 100%;
       max-width: 100%;
-      border-radius: 20px;
       display: block;
-      height: 220px;
-     
-      object-fit: cover; /* 비율 유지하면서 꽉 채우기 */
     }
-    .care-item2 p {
-      padding-top: 7%;
-      font-size: 15px;
-      color: #495861;
-      font-weight: 750;
-      // background-color: pink;
+  }
+  // now,bingfree
+  .nowbingfree-section1 {
+    margin-top: 8%;
+    display: flex;
+    justify-content: space-between;
+  }
+  // 01.완벽한 클린케어
+  .nowbingfree-section1-img {
+    width: 50%;
+    display: flex;
+    gap: 2%;
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
     }
+    .section1-caption {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 300;
+      background-color: #eeee;
+      padding: 3% 0 3% 0;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+  }
+  // 2.손끝으로 간편 예약
+  .nowbingfree-section2 {
+    margin-top: 8%;
+    display: flex;
+  }
+  .nowbingfree-section2-img {
+    width: 60%;
+    display: flex;
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+  }
+  // 03.시간의 제약 없는 24시간 케어
+  .nowbingfree-section3 {
+    margin-top: 11%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nowbingfree-section3-img {
+    width: 55%;
+    display: flex;
+    gap: 2%;
+  }
+  .section3-img1 {
+    width: 50%;
+    height: 230px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+  }
+  .section3-img2 {
+    width: 50%;
+    overflow: hidden;
+    height: 230px;
+    img {
+      height: 100%;
+      width: 100%; // 비율 유지할 거면
+      object-fit: cover; // 꽉 차게 하고 싶으면 추가
+    }
+  }
+  // 4.똑똑한 구독 서비스
+  .nowbingfree-section4 {
+    margin-top: 11%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .nowbingfree-section4-img {
+    width: 55%;
+    display: flex;
+    gap: 2%;
+  }
+  .section4-img1 {
+    width: 50%;
+    height: 330px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  .section4-img2 {
+    width: 50%;
+    height: 330px;
+    overflow: hidden;
+    img {
+      width: 100%; // 비율 유지할 거면
+      object-fit: cover; // 꽉 차게 하고 싶으면 추가
+    }
+  }
+  .nowbingfree-section4-txt {
+    margin-left: 8%;
+  }
 }
