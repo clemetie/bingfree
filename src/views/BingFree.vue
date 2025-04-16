@@ -183,6 +183,7 @@ const swiperBreakpoints = {
     spaceBetween: 10,
   },
 };
+
 </script>
 
 <template>
@@ -247,7 +248,6 @@ const swiperBreakpoints = {
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-
             <p class="main-h4" style="color: #d9d9d9; margin-top: 40px">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
           </div>
         </div>
