@@ -1,12 +1,112 @@
 @use "./variables" as *;
 @use "./fonts" as *;
 
+@keyframes ani_move {
+  0% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes ani_opacity {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 반응형
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@include mobile {
+  /*브라우저 사이즈 767px이하일때*/
+  .main-h1 {
+    font-size: 30px;
+  }
+  .main-h4 p {
+    margin: auto;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .only-mobile {
+    display: inline;
+  }
+  .introBing .mySwiper {
+    width: 50% !important;
+    padding: 2% 0 4% 0;
+  }
+  .introBing .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .image-section img {
+    height: 33vw;
+    object-fit: cover;
+    background-color: pink;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+  // #introBing-footer-text{
+  //   padding-bottom: 10%;
+  // }
+}
+@include tablet {
+  /*브라우저 사이즈 768px이상, 1023px 이하일때*/
+  .main-h1 {
+    font-size: 38px;
+  }
+  .main-h4 p {
+    margin: auto;
+    font-size: 24px;
+    line-height: 1.6;
+  }
+  .only-mobile {
+    display: inline;
+  }
+  .introBing .mySwiper {
+    width: 90% !important;
+    height: 100%;
+    padding: 2% 0 4% 0;
+  }
+}
+
 // main-introbing
 .introBing {
   width: 100%;
   max-height: 100vh;
   // background-color: pink;
+  .only-mobile {
+    display: none;
 
+    @include tablet {
+      display: inline;
+    }
+
+    @include mobile {
+      display: inline;
+    }
+  }
   .inner {
     text-align: center;
   }
@@ -173,15 +273,17 @@
   justify-content: space-evenly;
 }
 .intro-top2-bt button {
-  background-color: #fff;
+  background-color: $bingfree-point;
   border-style: none;
-  padding: 13px 45px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 26px;
+  width: 200px;
+  height: 65px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 24px;
   font-family: "Pretendard", sans-serif;
-  color: #424242;
+  color: $bingfree-main;
   cursor: pointer;
+  transition: transform 0.2s ease-out, background-color 0.2s;
 }
 .intro-wrap {
   font-family: "Pretendard", sans-serif;
@@ -263,6 +365,7 @@
       margin-top: 5%;
     }
   }
+
   .desc2-img,
   .desc1-img {
     width: 600px;
@@ -400,7 +503,7 @@
   }
   .small-title1 {
     margin-top: 4%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
   }
   .small-title2 {
     margin-top: 10%;
@@ -524,4 +627,25 @@
   .nowbingfree-section4-txt {
     margin-left: 8%;
   }
+}
+// 스크롤 애니메이션
+.observe-me {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.observe-me.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* focus-p 클래스의 초기 상태 */
+.focus-p {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+/* active 클래스를 추가하면 애니메이션 효과 실행 */
+.focus-p.active {
+  opacity: 1;
+  transform: translateY(0);
 }
