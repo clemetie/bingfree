@@ -10,6 +10,9 @@
         <router-link to="/Check">요금안내</router-link>
         <router-link to="/Review">고객리뷰</router-link>
         <router-link to="/Reservation">예약하기</router-link>
+        <router-link to="/login"
+          ><img src="/images/loginicon.png" alt="로그인"
+        /></router-link>
       </nav>
     </div>
   </header>
@@ -35,10 +38,55 @@ header {
       transform: translateY(-50%);
       left: 100px;
     }
-    nav a {
-      color: #111;
-      font-weight: 600;
-      margin-left: 70px;
+    nav {
+      display: flex;
+      a {
+        color: #111;
+        font-weight: 600;
+        margin-left: 70px;
+        position: relative;
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 800px) {
+  header {
+    margin-bottom: -80px;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    .inner {
+      margin: auto;
+      max-width: 700px;
+      // background-color: rgba($color: #ff0000, $alpha: 0.5);
+      img {
+        width: 120px;
+        left: 8%;
+      }
+      nav {
+        display: flex;
+        margin-right: 5%;
+        a {
+          color: #111;
+          font-weight: 600;
+          margin-left: 40px;
+          position: relative;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+          }
+        }
+      }
     }
   }
 }
