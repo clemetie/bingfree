@@ -2,9 +2,7 @@
 <template>
   <header>
     <div class="inner">
-      <router-link to="/"
-        ><img src="/images/main-logo.png" alt=""
-      /></router-link>
+      <router-link to="/"><img src="/images/main-logo.png" alt="" /></router-link>
       <nav>
         <router-link to="/IntroBing">빙프리란? </router-link>
         <router-link to="/Check">요금안내</router-link>

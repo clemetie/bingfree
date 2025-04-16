@@ -5,6 +5,13 @@
 .review-title-box {
   padding-top: 140px;
   text-align: center;
+  .review_subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #212121;
+    margin-bottom: 80px;
+  }
 }
 .review-logo-box {
   display: flex;
@@ -27,11 +34,14 @@
 .review-box-total {
   margin-top: 65px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 16px;
   .review-box {
-    width: 288px;
-    height: 188px;
+    width: 100%;
+    max-width: calc(25% - 12px);
     padding: 26px;
+    flex: 1 1 calc(25% - 12px); // 4개가 한 줄에 보이도록
     border-radius: 15px;
     background-color: #f2f9ff;
     .review-box-txt {
@@ -89,7 +99,7 @@
 
     button {
       width: 170px;
-      height: 70px;
+      height: 65px;
       color: $bingfree-main;
       @include text-style(24px, 700);
       font-family: "Pretendard", sans-serif;
@@ -100,10 +110,7 @@
       cursor: pointer;
       transition: transform 0.2s ease-out, background-color 0.2s;
     }
-    button:hover {
-      transform: scale(1.05);
-      // background-color: #d0e347;
-    }
+
     .txt_box {
       display: flex;
       justify-content: center;
@@ -152,254 +159,307 @@
 }
 
 // 본문
-  // radio
-  .review_radio_wrap {
+// radio
+.review_radio_wrap {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  .radioset {
     display: flex;
-
-    gap: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    .radioset {
+    align-items: center;
+    .radio_input {
+      display: none;
+      &:checked + .radio_ui .custom_radio::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: #888;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .radio_ui {
       display: flex;
       align-items: center;
-      .radio_input {
-        display: none;
+      cursor: pointer;
+
+      .custom_radio {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #e0e0e0;
+        // border: 2px solid #888;
+        border-radius: 50%;
+        margin-right: 6px;
+        position: relative;
       }
-      .radio_ui {
+    }
+  }
+}
+
+// 고객리뷰 상세
+// 전체보기
+// 전체보기 - 사장님 후기 section
+.ceo_review_wrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  .mega_review {
+    position: relative;
+    padding: 45px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    // padding: 41px 61px 41px 50px;
+    .mega_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      // background-color: pink;
+    }
+  }
+  .mass_review {
+    position: relative;
+    padding: 45px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    // padding: 41px 61px 41px 50px;
+    .mass_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
+  }
+}
+
+// 전체보기 - 고객님 후기 section
+.customer_review_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 100px;
+  .customer_review_box {
+    border-radius: 2px;
+    overflow: hidden;
+
+    .customer_review_txt {
+      width: 400px;
+      height: 157px;
+      padding: 30px 28px;
+      background-color: #eeeeee;
+      .txt_top {
         display: flex;
         align-items: center;
-
-        .custom_radio {
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          border: 2px solid #888;
-          border-radius: 50%;
-          margin-right: 8px;
-          position: relative;
-        }
-        .bg_gray_500 {
-          width: 12px;
-          height: 12px;
-          border-radius: 999px;
-          background-color: #888;
-        }
+        gap: 10px;
+        margin-bottom: 10px;
       }
     }
   }
+}
 
-  // 고객리뷰 상세
-  // 전체보기
-  // 전체보기 - 사장님 후기 section
-  .ceo_review_wrap {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    .mega_review {
-      position: relative;
-      padding: 45px 60px;
-      width: 550px;
-      height: 350px;
-      background-color: #ffffff;
-      border: 2px solid #e0e0e0;
-      border-radius: 20px;
-      // padding: 41px 61px 41px 50px;
-      .mega_icon {
-        width: 65px;
-      }
-      .ceo_info {
-        margin-bottom: 40px;
-      }
-      .ceo_image {
-        position: absolute;
-        top: -130px;
-        right: 10px;
-        width: 260px;
-        height: 260px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .ceo_image img {
-        width: 100%;
-        height: 100%;
-        // background-color: pink;
-      }
-    }
-    .mass_review {
-      position: relative;
-      padding: 45px 60px;
-      width: 550px;
-      height: 350px;
-      background-color: #ffffff;
-      border: 2px solid #e0e0e0;
-      border-radius: 20px;
-      // padding: 41px 61px 41px 50px;
-      .mass_icon {
-        width: 65px;
-      }
-      .ceo_info {
-        margin-bottom: 40px;
-      }
-      .ceo_image {
-        position: absolute;
-        top: -130px;
-        right: 10px;
-        width: 260px;
-        height: 260px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .ceo_image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        // background-color: pink;
-      }
-    }
+// 전체보기 - 블로그 후기 section
+.blog_review_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.blog_review_box {
+  display: flex;
+  gap: 20px;
+  .txt_ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; //보여줄 줄 수
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
   }
-
-  // 전체보기 - 고객님 후기 section
-  .customer_review_wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .customer_review_box {
-      border-radius: 2px;
-      overflow: hidden;
-
-      .customer_review_txt {
-        width: 400px;
-        height: 157px;
-        padding: 30px 28px;
-        background-color: #eeeeee;
-        .txt_top {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 10px;
-        }
-      }
-    }
-  }
-
-  // 전체보기 - 블로그 후기 section
-  .blog_review_wrap {
+  .blog_review_txt {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    justify-content: space-between;
   }
-  .blog_review_box {
-    display: flex;
-    gap: 20px;
-    .txt_ellipsis {
-      display: -webkit-box;
-      -webkit-line-clamp: 3; //보여줄 줄 수
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.4;
-    }
-    .blog_review_txt {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
+}
 
-  // 사장님 후기만
-  .ceo_section {
-    flex-wrap: wrap;
-    row-gap: 180px;
-    margin-bottom: 120px;
-    .delivery_review {
-      position: relative;
-      padding: 45px 60px;
-      width: 550px;
-      height: 350px;
-      background-color: #ffffff;
-      border: 2px solid #e0e0e0;
-      border-radius: 20px;
-      .delivery_icon {
-        width: 65px;
-      }
-      .ceo_info {
-        margin-bottom: 40px;
-      }
-      .ceo_image {
-        position: absolute;
-        top: -130px;
-        right: 10px;
-        width: 260px;
-        height: 260px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .ceo_image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        // background-color: pink;
-      }
-    }
-    .ediya_review {
-      position: relative;
-      padding: 45px 60px;
-      width: 550px;
-      height: 350px;
-      background-color: #ffffff;
-      border: 2px solid #e0e0e0;
-      border-radius: 20px;
-      .delivery_icon {
-        width: 65px;
-      }
-      .ceo_info {
-        margin-bottom: 40px;
-      }
-      .ceo_image {
-        position: absolute;
-        top: -130px;
-        right: 10px;
-        width: 260px;
-        height: 260px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .ceo_image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        // background-color: pink;
-      }
-    }
-  }
-
-  // 고객님 후기만
-  .customer_review_txt {
-    .txt_bottom {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  .review_moreBtn {
-    display: block;
-    margin: 60px auto 100px;
-    width: 150px;
-    height: 50px;
-    border-radius: 9999px;
-    border-style: none;
-    border: 2px solid #e0e0e0;
-    font-size: 16px;
-    font-weight: 500;
-    color: #424242;
-    cursor: pointer;
+// 사장님 후기만
+.ceo_section {
+  flex-wrap: wrap;
+  row-gap: 180px;
+  margin-bottom: 120px;
+  .delivery_review {
+    position: relative;
+    padding: 45px 60px;
+    width: 550px;
+    height: 350px;
     background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    .delivery_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
   }
+  .ediya_review {
+    position: relative;
+    padding: 45px 60px;
+    width: 550px;
+    height: 350px;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    .delivery_icon {
+      width: 65px;
+    }
+    .ceo_info {
+      margin-bottom: 40px;
+    }
+    .ceo_image {
+      position: absolute;
+      top: -130px;
+      right: 10px;
+      width: 260px;
+      height: 260px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .ceo_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // background-color: pink;
+    }
+  }
+}
 
+// 고객님 후기만
+.customer_review_txt {
+  .txt_bottom {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.review_moreBtn {
+  display: block;
+  margin: 60px auto 0px;
+  width: 150px;
+  height: 50px;
+  border-radius: 9999px;
+  border-style: none;
+  border: 2px solid #e0e0e0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #424242;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+// 반응형
+@media (max-width: 767px) {
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .inner {
+    margin: auto;
+    max-width: 700px;
+    // background-color: pink;
+    .review_subtitle {
+      font-size: 18px;
+      margin-bottom: 65px;
+    }
+    .review-logo-box {
+      margin: auto;
+
+      .review-logo-bottom .swiper-slide img {
+        // background-color: blue;
+      }
+      .review-logo-top,
+      .review-logo-bottom {
+        margin: auto;
+        width: 80%;
+      }
+    }
+  }
+  .review-box-total {
+    .review-box {
+      width: 100%;
+      max-width: calc(50% - 8px);
+      flex: 1 1 calc(50% - 8px) !important; // 2개씩 2줄로 보이게
+
+      .review-customer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+        img {
+          width: 30px;
+        }
+        .main-h6 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

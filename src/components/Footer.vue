@@ -54,11 +54,10 @@ html {
   display: flex;
   flex-direction: column;
 }
-
 /* 푸터 전체 컨테이너 */
 .footer-container {
   caret-color: transparent;
-  background-color: #1456fd; /* 원하는 블루 톤으로 변경 */
+  background-color: #1456fd;
   width: 100%;
   height: 700px;
   position: relative;
@@ -136,5 +135,85 @@ html {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
+}
+
+/* 모바일 */
+@media (max-width: 767px) {
+}
+/* 태블릿 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* 푸터 전체 컨테이너 */
+  .footer-container {
+    caret-color: transparent;
+    background-color: #1456fd;
+    width: 100%;
+    height: 700px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* bingfree 투명 이미지 */
+  .footer-site-name {
+    width: 600px;
+    padding-left: 30px;
+    /* background-color: pink; */
+    position: absolute;
+    left: 5%;
+    top: -1%;
+  }
+  .footer-site-name img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* 또는 cover */
+  }
+  .footer-left {
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 100%;
+    gap: 15%;
+  }
+  .footer-right {
+    display: block;
+    gap: 18%;
+    padding-top: 03%
+  }
+  .footer-logo {
+    width: 200px;
+    padding-bottom: 3%;
+    display: block;
+  }
+  /* font style */
+  .footer-contact-title {
+    font-size: 18px;
+  }
+  .footer-address h3,
+  .footer-hours h3 {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .footer-contact-phone,
+  .footer-contact-email {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 34px;
+    font-weight: 500;
+  }
+  .footer-txt3 {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 500;
+  }
+  .footer-txt4 {
+    padding-top: 2%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
 }
 </style>

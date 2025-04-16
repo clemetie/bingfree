@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import { onMounted } from "vue";
+import { onBeforeUnmount } from "vue";
 
 const introbingTab = ref("care");
 
@@ -31,8 +33,73 @@ const careList2 = [
   { image: "/introbing/introsub/introcare/cleaning/5.jpg", text: "제품 조립" },
   { image: "/introbing/introsub/introcare/cleaning/6.jpg", text: "얼음 도출 여부 확인 및<br>테스트 작동 후 케어 종료" },
 ];
+// 오른쪽 사이드 고탑기능
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  console.log("✅ 현재 섹션:", currentSection.value);
+};
+
+// 스크롤 애니메이션 대상 클래스를 기준으로 자동 처리
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  // 클래스 이름이 'observe-me'인 모든 요소에 observer 적용
+  const elements = document.querySelectorAll(".observe-me");
+  elements.forEach((el) => observer.observe(el));
+});
+// 반짝빛나는효과
+let observer;
+
+const handleIntersect = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    }
+  });
+};
+
+onMounted(() => {
+  observer = new IntersectionObserver(handleIntersect, {
+    threshold: 0.3, // 30% 이상 보일 때 애니메이션 적용
+  });
+
+  // 'focus-p' 클래스를 가진 모든 <p> 태그에 observer 적용
+  const elements = document.querySelectorAll(".focus-p");
+  elements.forEach((el) => observer.observe(el));
+});
+
+onBeforeUnmount(() => {
+  if (observer) observer.disconnect();
+});
 </script>
 <template>
+  <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
+  <div class="side">
+    <div>
+      <router-link
+        to="/reservation"
+        class="sideBtn reservBtn main-icon-drop"
+        :class="{ compact: currentSection !== 'visual' }">
+        <img src="/images/calendar_blue.png" alt="캘린더" />
+        <span class="text">예약하기</span>
+      </router-link>
+    </div>
+    <div class="sideBtn main-icon-drop" :class="{ compact: currentSection !== 'visual' }">
+      <img src="/images/chabot.png" alt="챗봇이미지" :class="{ compact: currentSection !== 'visual' }" />
+      <span class="text">챗봇&nbsp;&nbsp;</span>
+    </div>
+
+    <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
+  </div>
   <div class="intro-wrap">
     <div class="intro-banner" style="margin-top: 80px">
       <img src="/public/introbing/introsub/introbanner/1.jpg" alt="banner-img" />
@@ -66,7 +133,7 @@ const careList2 = [
         <!-- 빙프리-제빙기 케어 서비스 영역 -->
         <div class="care-service-container" v-show="introbingTab === 'care'">
           <!-- txt,이미지 영역 -->
-          <div class="care-service-box">
+          <div class="care-service-box focus-p">
             <h2 style="color: #212121; font-weight: 800; font-size: 36px; line-height: 1.2">
               빙프리만의 <br />
               제빙기 케어 서비스
@@ -82,7 +149,7 @@ const careList2 = [
           </div>
           <!-- 1.제빙기 케어는 왜 필요할까요? -->
           <div class="intro-section1">
-            <div class="intro-section1-title">
+            <div class="intro-section1-title observe-me">
               <p style="color: #1456fd; font-size: 45px; font-weight: 800" class="intro-section1-p1">1.</p>
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 케어는 왜 필요할까요?
@@ -96,7 +163,7 @@ const careList2 = [
                 <div class="desc1-img">
                   <img src="/public/introbing/introsub/introcare/1-1.jpg" alt="img1-1" />
                 </div>
-                <div class="desc1-txt">
+                <div class="desc1-txt observe-me">
                   <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
                     제빙기의 내부는 항상 습한 환경에 있기 때문에<br />
                     반드시 주기적인 관리가 필요합니다.
@@ -112,7 +179,7 @@ const careList2 = [
                 <div class="desc2-img">
                   <img src="/public/introbing/introsub/introcare/1-2.jpg" alt="img1-2" />
                 </div>
-                <div class="desc1-txt">
+                <div class="desc1-txt observe-me">
                   <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
                     얼음을 얼리는 냉각기 성분인 니켈은<br />
                     관리를 하지 않으면 발암물질로 변질될 수 있습니다.
@@ -130,7 +197,7 @@ const careList2 = [
             <div class="desc3-img">
               <img src="/public/introbing/introsub/introcare/1-3.png" alt="img1-3" />
             </div>
-            <div class="desc1-txt">
+            <div class="desc1-txt observe-me">
               <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
                 2024년 작년 검사 건수 878건으로 증가…<br />
                 6월 추가 검사 예고, 식용 얼음 위생관리 강화
@@ -149,7 +216,7 @@ const careList2 = [
           </div>
           <!-- 2.제빙기 케어가 필요한 시점은? -->
           <div class="intro-section1">
-            <div class="intro-section1-title">
+            <div class="intro-section1-title observe-me">
               <p style="color: #1456fd; font-size: 45px; font-weight: 800" class="intro-section1-p1">2.</p>
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 케어가 필요한 시점은?
@@ -161,13 +228,13 @@ const careList2 = [
             <div class="care-section">
               <div class="care-item" v-for="(item, index) in careList" :key="index">
                 <img :src="item.image" :alt="item.text" />
-                <p>{{ item.text }}</p>
+                <p class="focus-p">{{ item.text }}</p>
               </div>
             </div>
           </div>
           <!-- 3.제빙기 케어 진행 과정 -->
           <div class="intro-section1">
-            <div class="intro-section1-title">
+            <div class="intro-section1-title observe-me">
               <p style="color: #1456fd; font-size: 45px; font-weight: 800" class="intro-section1-p1">3.</p>
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 케어 과정
@@ -176,19 +243,19 @@ const careList2 = [
             <div class="care-section2">
               <div class="care-item2" v-for="(item, index) in careList2" :key="index">
                 <img :src="item.image" :alt="item.text" />
-                <p v-html="item.text"></p>
+                <p class="focus-p" v-html="item.text"></p>
               </div>
             </div>
           </div>
           <!-- 4.제빙기 청소시 어떤 세제를 사용하시나요? -->
           <div class="intro-section1">
-            <div class="intro-section1-title">
+            <div class="intro-section1-title observe-me">
               <p style="color: #1456fd; font-size: 45px; font-weight: 800" class="intro-section1-p1">4.</p>
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 청소시 어떤 세제를 사용하시나요?
               </p>
             </div>
-            <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p4">
+            <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p4 focus-p">
               사람과 자연 모두에게 안전할수 있도록 독일제 150년 전통 최고등급 친환경 세정제를 사용하고 있습니다.<br />
               우리의 소중한 환경을 보호하면서 동시에 완벽한 청결을 약속합니다.
             </p>
@@ -219,8 +286,8 @@ const careList2 = [
       </div>
       <div class="bingfree-container inner" v-show="introbingTab === 'bingfree'">
         <div class="bingfree-certificate-section">
-          <p class="small-title1" style="color: #1456fd; font-size: 18px; font-weight: 600">CERTIFICATE</p>
-          <h2 style="color: #212121; font-size: 36px; font-weight: bold">
+          <p class="small-title1 observe-me" style="color: #1456fd; font-size: 18px; font-weight: 600">CERTIFICATE</p>
+          <h2 style="color: #212121; font-size: 36px; font-weight: bold" class="observe-me">
             청소는 누구나 할 수 있지만,<br />
             위기관리 능력에 대한 경험과 신뢰는 아무나 가질 수 없습니다.
           </h2>
@@ -244,13 +311,17 @@ const careList2 = [
           <div class="nowbingfree-section">
             <!-- 상단 -->
             <div class="nowbingfree-upper">
-              <p class="small-title2" style="color: #1456fd; font-size: 18px; font-weight: 600">NOW, BINGFREE</p>
-              <h2 style="color: #212121; font-size: 36px; font-weight: bold">지금, 빙프리를 선택해야 하는 이유?</h2>
+              <p class="small-title2 observe-me" style="color: #1456fd; font-size: 18px; font-weight: 600">
+                NOW, BINGFREE
+              </p>
+              <h2 style="color: #212121; font-size: 36px; font-weight: bold" class="observe-me">
+                지금, 빙프리를 선택해야 하는 이유?
+              </h2>
             </div>
             <!-- 01.완벽한 클린케어 -->
             <div class="nowbingfree-section1">
               <div class="nowbingfree-section1-txt">
-                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
+                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px" class="observe-me">
                   01.<br />완벽한 클린케어
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
@@ -283,7 +354,7 @@ const careList2 = [
                 </div>
               </div>
               <div class="nowbingfree-section2-txt" style="margin-top: 5%">
-                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
+                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px" class="observe-me">
                   02.<br />손끝으로 간편 예약
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
@@ -298,7 +369,7 @@ const careList2 = [
             <!-- 03.시간의 제약 없는 24시간 케어 -->
             <div class="nowbingfree-section3">
               <div class="nowbingfree-section3-txt">
-                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
+                <h3 class="observe-me" style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px" >
                   03.<br />시간의 제약 없는 24시간 케어
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
@@ -329,7 +400,7 @@ const careList2 = [
                 </div>
               </div>
               <div class="nowbingfree-section4-txt">
-                <h3 style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
+                <h3 class="observe-me" style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
                   04.<br />똑똑한 구독 서비스
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
@@ -337,8 +408,8 @@ const careList2 = [
                     style="color: #1456fd; font-weight: 500"
                     >관리 비용을 줄이고, 체계적인 위생 관리</span
                   >를<br />
-                  받을 수 있습니다.<span style="color: #1456fd; font-weight: 500">빙프리 자체제작 친환경 인증 세제</span
-                  >와<br />
+                  받을 수 있습니다.
+                  <span style="color: #1456fd; font-weight: 500">빙프리 자체제작 친환경 인증 세제</span>와<br />
                   <span style="color: #1456fd; font-weight: 500">빙프라임 마크</span>를 함께<span
                     style="color: #1456fd; font-weight: 500"
                     >제공</span
