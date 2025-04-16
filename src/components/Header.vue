@@ -8,7 +8,9 @@
         <router-link to="/Check">요금안내</router-link>
         <router-link to="/Review">고객리뷰</router-link>
         <router-link to="/Reservation">예약하기</router-link>
-        <router-link to="/login"><img src="/images/loginicon.png" alt="로그인" /></router-link>
+        <router-link to="/login"
+          ><img src="/images/loginicon.png" alt="로그인"
+        /></router-link>
       </nav>
     </div>
   </header>

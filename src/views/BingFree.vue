@@ -88,7 +88,6 @@ const goToDetail = () => {
     router.push(path); // 👉 상세 페이지 이동
   }
 };
-
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -171,6 +170,21 @@ const brandLogos2 = [
   "review/seoul dragon city_logo.png",
   "review/nexon_logo.png",
 ];
+
+// Swiper 반응형 설정
+const swiperBreakpoints = {
+  1024: {
+    spaceBetween: 30,
+  },
+  768: {
+    spaceBetween: 20,
+  },
+  480: {
+    spaceBetween: 10,
+  },
+};
+
+
 </script>
 
 <template>
@@ -235,8 +249,7 @@ const brandLogos2 = [
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-
-            <p class="main-h4" style="color: #d9d9d9">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
+            <p class="main-h4" style="color: #d9d9d9; margin-top: 40px">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
           </div>
         </div>
       </SwiperSlide>
@@ -405,7 +418,7 @@ const brandLogos2 = [
     <div class="review-container inner">
       <div class="review-title-box">
         <p class="main-h1" style="color: #212121; margin-bottom: 40px">깨끗한 얼음, 신뢰받는 선택</p>
-        <p style="font-size: 24px; font-weight: 500; line-height: 1.4; color: #212121; margin-bottom: 80px">
+        <p class="review_subtitle">
           고객이 안심하고 찾는 매장, 가맹점이 믿고 맡기는 위생 관리! <br />
           직접 경험한 고객님들의 리얼 후기를 확인하세요.
         </p>
@@ -417,6 +430,7 @@ const brandLogos2 = [
             :loop="true"
             :slides-per-view="'auto'"
             :space-between="30"
+            :breakpoints="swiperBreakpoints"
             :autoplay="{ delay: 0, disableOnInteraction: false }"
             :speed="7000"
             :free-mode="true"
@@ -458,7 +472,7 @@ const brandLogos2 = [
           </p>
           <div class="review-customer">
             <img src="/public/review/starbucks_icon.png" alt="스타벅스 아이콘" />
-            <p style="font-size: 15px; font-weight: 700; color: #424242">스타벅스 중앙로점</p>
+            <p class="main-h6" style="color: #424242">스타벅스 중앙로점</p>
           </div>
         </div>
         <div class="review-box">
@@ -468,7 +482,7 @@ const brandLogos2 = [
           </p>
           <div class="review-customer">
             <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
-            <p style="font-size: 15px; font-weight: 700; color: #424242">이*현 님</p>
+            <p class="main-h6" style="color: #424242">이*현 님</p>
           </div>
         </div>
         <div class="review-box">
@@ -478,7 +492,7 @@ const brandLogos2 = [
           </p>
           <div class="review-customer">
             <img src="/public/review/megabox_icon.png" alt="메가박스 아이콘" />
-            <p style="font-size: 15px; font-weight: 700; color: #424242">메가박스 대구점</p>
+            <p class="main-h6" style="color: #424242">메가박스 대구점</p>
           </div>
         </div>
         <div class="review-box">
@@ -488,7 +502,7 @@ const brandLogos2 = [
           </p>
           <div class="review-customer">
             <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
-            <p style="font-size: 15px; font-weight: 700; color: #424242">김*수 님</p>
+            <p class="main-h6" style="color: #424242">김*수 님</p>
           </div>
         </div>
       </div>

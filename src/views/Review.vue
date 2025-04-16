@@ -1,7 +1,73 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 // 기본값: 전체보기
 const selectedTab = ref("all");
+
+// 고객님리뷰 radio
+const reviews = ref([
+  {
+    name: "이*현",
+    img: "public/review/customer_review_01.png",
+    text: "24시간 중 원하는 시간에 언제든 서비스 받을 수 있어 좋았어요. 기사님도 너무 친절하시고 꼼꼼하게 케어 해주셔서 믿음이 가요.",
+  },
+  {
+    name: "김*수",
+    img: "public/review/customer_review_02.png",
+    text: "청소 끝나고 다시 얼음 만들어보니까 투명도부터 다르더라고요. 물맛도 좋고, 냉장고 안 냄새도 덜해진 느낌이에요.",
+  },
+  {
+    name: "오*연",
+    img: "public/review/customer_review_03.png",
+    text: "보이지 않던 내부까지 다 분해해서 세척하는 걸 보고 놀랐어요. 청소 후 얼음 색도 더 맑아지고, 냄새도 완전히 사라졌습니다.",
+  },
+  {
+    name: "김*빈",
+    img: "public/review/customer_review_04.png",
+    text: "직접 하기 어려운 부분까지 다 해주시니 너무 편했어요. 정기적으로 꼭 받아야겠다는 생각이 들었어요. 완전 추천합니다!",
+  },
+  {
+    name: "김*리",
+    img: "public/review/customer_review_05.png",
+    text: "전문 청소 서비스를 받고 나서야, 속까지 비로소 안심이 됐습니다. 하얗게 맑아진 얼음을 보고 있으니 마음도 같이 맑아지는 기분이었어요.",
+  },
+  {
+    name: "장*진",
+    img: "public/review/customer_review_06.png",
+    text: "청소 후엔 얼음 투명도도 확실히 좋아졌고, 잡내도 사라졌습니다.",
+  },
+  {
+    name: "김*웅",
+    img: "public/review/customer_review_07.png",
+    text: "집에서 얼음을 자주 쓰다 보니 위생이 걱정됐는데, 전문 청소 후 얼음 맛이 확 달라졌어요. 아이들도 안심하고 마실 수 있어 만족합니다.",
+  },
+  {
+    name: "박*호",
+    img: "public/review/customer_review_08.png",
+    text: "냉장고 청소는 해도 제빙기는 처음 맡겨봤어요. 청소 후 얼음이 맑고 깨끗해서 놀랐습니다. 이젠 마음 놓고 음료에 넣어 마실 수 있어요.",
+  },
+  {
+    name: "강*호",
+    img: "public/review/customer_review_09.png",
+    text: "여름마다 제빙기 돌리는데 얼음 냄새가 살짝 나서 신경 쓰였거든요. 전문 청소 받고 나니 얼음도 더 맑고, 물맛도 깔끔해졌어요. 이젠 가족들 모두 안심하고 시원하게 즐기고 있어요.",
+  },
+  {
+    name: "류*혁",
+    img: "public/review/customer_review_01.png",
+    text: "친절하고 꼼꼼하게 청소해주셔서 믿음이 갔습니다. 위생 걱정이 사라져서 너무 만족해요😊 다음에도 꼭 이용할게요!",
+  },
+  {
+    name: "김*곤",
+    img: "public/review/customer_review_02.png",
+    text: "제빙기 청소 후 얼음이 훨씬 깨끗해지고 맛도 좋아졌어요. 숨어있던 찌든때까지 말끔히 제거해주셔서 완전 새 제빙기 된 느낌이에요!",
+  },
+]);
+
+const visibleCount = ref(6);
+const visibleReviews = computed(() => reviews.value.slice(0, visibleCount.value));
+
+const showMore = () => {
+  visibleCount.value += 3;
+};
 </script>
 <template>
   <!-- 고객리뷰 배너 -->
@@ -45,24 +111,29 @@ const selectedTab = ref("all");
         <input class="radio_input" type="radio" value="all" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
-          <div class="bg_gray_500"></div>
         </div>
-        <span>전체보기</span>
+        <span style="color: #616161; font-weight: 500">전체보기</span>
       </label>
-      <label>
+      <label class="radioset">
         <input class="radio_input" type="radio" value="ceo" v-model="selectedTab" />
-        <span class="custom_radio"></span>
-        <span>사장님후기</span>
+        <div class="radio_ui">
+          <span class="custom_radio"></span>
+        </div>
+        <span style="color: #616161; font-weight: 500">사장님후기</span>
       </label>
-      <label>
+      <label class="radioset">
         <input class="radio_input" type="radio" value="customer" v-model="selectedTab" />
-        <span class="custom_radio"></span>
-        <span>고객님후기</span>
+        <div class="radio_ui">
+          <span class="custom_radio"></span>
+        </div>
+        <span style="color: #616161; font-weight: 500">고객님후기</span>
       </label>
-      <label>
+      <label class="radioset">
         <input class="radio_input" type="radio" value="blog" v-model="selectedTab" />
-        <span class="custom_radio"></span>
-        <span>블로그후기</span>
+        <div class="radio_ui">
+          <span class="custom_radio"></span>
+        </div>
+        <span style="color: #616161; font-weight: 500">블로그후기</span>
       </label>
     </div>
     <!-- 고객리뷰 콘텐츠 -->
@@ -355,146 +426,27 @@ const selectedTab = ref("all");
     <div v-else-if="selectedTab === 'customer'">
       <h2 style="margin: 50px 0 50px; color: #212121">고객님 후기</h2>
       <div class="customer_review_wrap">
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_01.png" alt="고객리뷰 이미지1" style="display: block" />
+        <div v-for="(review, index) in visibleReviews" :key="index" class="customer_review_box">
+          <img :src="review.img" :alt="`고객리뷰 이미지${index + 1}`" style="display: block" />
           <div class="customer_review_txt">
             <div class="txt_top">
               <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">이*현</p>
+              <p style="font-size: 14px; font-weight: 700; color: #616161">{{ review.name }}</p>
             </div>
             <div class="txt_bottom">
               <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                24시간 중 원하는 시간에 언제든 서비스 받을 수 있어 좋았어요. 기사님도 너무 친절하시고 꼼꼼하게 케어
-                해주셔서 믿음이 가요.
+                {{ review.text }}
               </p>
             </div>
           </div>
         </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_02.png" alt="고객리뷰 이미지2" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">김*수</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                청소 끝나고 다시 얼음 만들어보니까 투명도부터 다르더라고요. 물맛도 좋고, 냉장고 안 냄새도 덜해진
-                느낌이에요. 애들도 얼음 잘 먹고 얼음물 맛있다고 하네요ㅎㅎ
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_03.png" alt="고객리뷰 이미지3" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">오*연</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                보이지 않던 내부까지 다 분해해서 세척하는 걸 보고 놀랐어요. 청소 후 얼음 색도 더 맑아지고, 냄새도 완전히
-                사라졌습니다.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_04.png" alt="고객리뷰 이미지4" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">김*빈</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                직접 하기 어려운 부분까지 다 해주시니 너무 편했어요. 정기적으로 꼭 받아야겠다는 생각이 들었어요. 완전
-                추천합니다!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_05.png" alt="고객리뷰 이미지5" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">김*리</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                전문 청소 서비스를 받고 나서야, 속까지 비로소 안심이 됐습니다. 하얗게 맑아진 얼음을 보고 있으니 마음도
-                같이 맑아지는 기분이었어요.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_06.png" alt="고객리뷰 이미지6" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">장*진</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                청소 후엔 얼음 투명도도 확실히 좋아졌고, 잡내도 사라졌습니다.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_07.png" alt="고객리뷰 이미지7" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">김*웅</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                집에서 얼음을 자주 쓰다 보니 위생이 걱정됐는데, 전문 청소 후 얼음 맛이 확 달라졌어요. 아이들도 안심하고
-                마실 수 있어 만족합니다.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_08.png" alt="고객리뷰 이미지8" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">박*호</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                냉장고 청소는 해도 제빙기는 처음 맡겨봤어요. 청소 후 얼음이 맑고 깨끗해서 놀랐습니다. 이젠 마음 놓고
-                음료에 넣어 마실 수 있어요.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="customer_review_box">
-          <img src="/public/review/customer_review_09.png" alt="고객리뷰 이미지9" style="display: block" />
-          <div class="customer_review_txt">
-            <div class="txt_top">
-              <img src="/public/review/star.png" alt="별점" />
-              <p style="font-size: 14px; font-weight: 700; color: #616161">강*호</p>
-            </div>
-            <div class="txt_bottom">
-              <p style="font-size: 16px; font-weight: 400; line-height: 1.4; color: #424242">
-                여름마다 제빙기 돌리는데 얼음 냄새가 살짝 나서 신경 쓰였거든요. 전문 청소 받고 나니 얼음도 더 맑고,
-                물맛도 깔끔해졌어요. 이젠 가족들 모두 안심하고 시원하게 즐기고 있어요.
-              </p>
-            </div>
-          </div>
-        </div>
+
+        <button class="review_moreBtn" v-if="visibleCount < reviews.length" @click="showMore">더보기</button>
       </div>
-      <button class="review_moreBtn">더보기</button>
     </div>
     <div v-else-if="selectedTab === 'blog'">
       <h2 style="margin: 50px 0 50px; color: #212121">블로그 후기</h2>
-      <div class="blog_review_wrap">
+      <div class="blog_review_wrap" style="margin-bottom: 100px">
         <div class="blog_review_box">
           <img style="border-radius: 2px" src="/public/review/blog_review_01.png" alt="블로그후기 이미지1" />
           <div class="blog_review_txt">
@@ -635,8 +587,8 @@ const selectedTab = ref("all");
             </div>
           </div>
         </div>
+        <button class="review_moreBtn">더보기</button>
       </div>
-      <button class="review_moreBtn">더보기</button>
     </div>
   </div>
 </template>
