@@ -1,6 +1,25 @@
 @use "./variables" as *;
 @use "./fonts" as *;
 
+@keyframes ani_move {
+  0% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes ani_opacity {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // main-introbing
 .introBing {
   width: 100%;
@@ -13,7 +32,7 @@
 
   .main-introBing-txt {
     width: 100%;
-    padding-top: 8%;
+     padding-top: 8%;
     color: #212121;
     // background-color: pink;
   }
@@ -173,15 +192,17 @@
   justify-content: space-evenly;
 }
 .intro-top2-bt button {
-  background-color: #fff;
+  background-color: $bingfree-point;
   border-style: none;
-  padding: 13px 45px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 26px;
+  width: 200px;
+  height: 65px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 24px;
   font-family: "Pretendard", sans-serif;
-  color: #424242;
+  color: $bingfree-main;
   cursor: pointer;
+  transition: transform 0.2s ease-out, background-color 0.2s;
 }
 .intro-wrap {
   font-family: "Pretendard", sans-serif;
@@ -263,6 +284,7 @@
       margin-top: 5%;
     }
   }
+
   .desc2-img,
   .desc1-img {
     width: 600px;
@@ -400,7 +422,7 @@
   }
   .small-title1 {
     margin-top: 4%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
   }
   .small-title2 {
     margin-top: 10%;
@@ -524,4 +546,25 @@
   .nowbingfree-section4-txt {
     margin-left: 8%;
   }
+}
+// 스크롤 애니메이션
+.observe-me {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.observe-me.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* focus-p 클래스의 초기 상태 */
+.focus-p {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+/* active 클래스를 추가하면 애니메이션 효과 실행 */
+.focus-p.active {
+  opacity: 1;
+  transform: translateY(0);
 }
