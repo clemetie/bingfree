@@ -1,18 +1,14 @@
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, FreeMode } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/autoplay";
-
-import "swiper/css/free-mode";
-import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
-
-import { useRouter } from "vue-router";
 // introbingfree영역
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/free-mode";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, FreeMode, Pagination, Navigation } from "swiper/modules";
+import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 const currentSection = ref("visual"); // 예: 'intro', 'check' 등
@@ -61,7 +57,7 @@ const handleIntersect = (entries) => {
 
 // 추가: 스크롤로 visual 영역 감지
 const handleScroll = () => {
-  if (window.scrollY < 200) {
+  if (window.scrollY < 100) {
     currentSection.value = "visual";
   }
 };
@@ -88,6 +84,7 @@ onUnmounted(() => {
 const goToDetail = () => {
   const path = sectionMap[currentSection.value];
   if (path) {
+    window.scrollTo({ top: 0 });
     router.push(path); // 👉 상세 페이지 이동
   }
 };
@@ -95,20 +92,31 @@ const goToDetail = () => {
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
-  console.log("✅ 현재 섹션:", currentSection.value);
 };
 
 //  메인 섹션 빙프리란(수현)
 const modules = [Pagination, Navigation, Autoplay];
 
-// 채연 icon 이벤트
-// ✅ currentSection이 'check'일 때만 watch 작동
-watch(currentSection, async (val) => {
-  if (val === "check") {
-    await nextTick(); // DOM 업데이트 이후 실행
-    toggleIconVisibility();
+// 메인 섹션 요금안내(채연)
+// ✅ 아이콘 표시 제어 함수
+const toggleIconVisibility = () => {
+  const iconContent = document.querySelector(".icon_content");
+  const card2 = document.querySelector(".card2");
+
+  if (!iconContent || !card2) return;
+
+  const cardRect = card2.getBoundingClientRect();
+  const isFlipped = card2.classList.contains("flip");
+  const isInView = cardRect.top < window.innerHeight * 0.6;
+
+  if (isFlipped && isInView) {
+    iconContent.classList.add("show");
+  } else {
+    iconContent.classList.remove("show");
   }
-});
+};
+
+// 채연 icon 이벤트
 // ✅ currentSection이 'check'일 때만 watch 작동
 watch(currentSection, async (val) => {
   if (val === "check") {
@@ -136,41 +144,32 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
 });
-// main-review 브랜드 로고 배열
+
+// 메인 섹션 고객리뷰(지수)
 const brandLogos1 = [
-  "/review/mondrian_logo.png",
-  "/review/kimteacher_logo.png",
-  "/review/nh_logo.png",
-  "/review/paradise_logo.png",
-  "/review/1000cc coffee_logo.png",
-  "/review/jinair_logo.png",
-  "/review/fastfive_logo.png",
-  "/review/naver_logo.png",
-  "/review/sono_logo.png",
-  "/review/coupang_logo.png",
+  "review/mondrian_logo.png",
+  "review/kimteacher_logo.png",
+  "review/nh_logo.png",
+  "review/paradise_logo.png",
+  "review/1000cc coffee_logo.png",
+  "review/jinair_logo.png",
+  "review/fastfive_logo.png",
+  "review/naver_logo.png",
+  "review/sono_logo.png",
+  "review/coupang_logo.png",
 ];
 const brandLogos2 = [
-  "/review/megabox_logo.png",
-  "/review/cj_logo.png",
-  "/review/baemin_logo.png",
-  "/review/hyundai_logo.png",
-  "/review/mega coffee_logo.png",
-  "/review/palgakdo_logo.png",
-  "/review/nexen tire_logo.png",
-  "/review/cgv_logo.png",
-  "/review/seoul dragon city_logo.png",
-  "/review/nexon_logo.png",
+  "review/megabox_logo.png",
+  "review/cj_logo.png",
+  "review/delivery_logo.png",
+  "review/hyundai_logo.png",
+  "review/mega coffee_logo.png",
+  "review/palgakdo_logo.png",
+  "review/nexen tire_logo.png",
+  "review/cgv_logo.png",
+  "review/seoul dragon city_logo.png",
+  "review/nexon_logo.png",
 ];
-
-
-// 채연 icon 이벤트
-// ✅ currentSection이 'check'일 때만 watch 작동
-watch(currentSection, async (val) => {
-  if (val === "check") {
-    await nextTick(); // DOM 업데이트 이후 실행
-    toggleIconVisibility();
-  }
-});
 </script>
 
 <template>
@@ -640,7 +639,7 @@ watch(currentSection, async (val) => {
     id="reserv"
     :class="{ visible: currentSection === 'reserv' }"
   >
-    <div class="inner">
+    <div class="inner web">
       <div class="reserv_chat">
         <img
           class="reserv_phone"
@@ -710,6 +709,46 @@ watch(currentSection, async (val) => {
           class="fast_hand"
           src="/reservation/reservmain/resrvation_hand.png"
           alt="손"
+        />
+      </div>
+    </div>
+    <div class="inner tablet">
+      <div class="tablet_top">
+        <div class="top_txt">
+          <div class="top_txt_box">
+            <span class="main-h4 frame_txt"> 빙프리 솔루션 </span>
+            <p class="main-h2" style="font-weight: 600;">
+              제빙기 청소도 간편하게 <br />
+              손끝으로 확인하세요
+            </p>
+            <p class="main-h4">
+              다지점 관리, 서비스 완료내용 확인, <br />
+              예약 내역 관리까지 한 번에 가능해요
+            </p>
+          </div>
+          <div class="appdownloadBox">
+            <p class="main-h4 appdownload first">
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Apple Inc.png"
+                alt="안드로이드"
+              />
+              IOS 다운로드 →
+            </p>
+            <p class="main-h4 appdownload second">
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Android OS.png"
+                alt="안드로이드"
+              />
+              Android 다운로드 →
+            </p>
+          </div>
+        </div>
+
+        <img
+          src="/reservation/reservmain/reservation_phone.png"
+          alt="대화 화면"
         />
       </div>
     </div>
