@@ -77,7 +77,8 @@ type-scale {
   @include text-style(20px, 400);
 }
 
-@media (max-width: 800px) {
+
+@media (min-width: 768px) and (max-width: 1023px) {
   .main-h1 {
     @include text-style(38px, 600);
   }
@@ -86,6 +87,26 @@ type-scale {
   }
   .main-h3 {
     @include text-style(30px, 500);
+  }
+  .main-h4 {
+    @include text-style(16px, 300);
+  }
+  .main-h5 {
+    @include text-style(16px, 300);
+  }
+  .main-h6 {
+    @include text-style(16px, 300);
+  }
+}
+@media (max-width: 767px) {
+  .main-h1 {
+    @include text-style(30px, 600);
+  }
+  .main-h2 {
+    @include text-style(24px, 500);
+  }
+  .main-h3 {
+    @include text-style(20px, 500);
   }
   .main-h4 {
     @include text-style(16px, 300);

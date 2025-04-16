@@ -23,6 +23,7 @@ onMounted(() => {
 <template>
   <div class="prime-wrap" style="margin-top: 80px">
     <div class="main01">
+    <div class="inner">
       <img
         class="prime_sticker1"
         src="/prime/prime_sticker01.png"
@@ -41,6 +42,7 @@ onMounted(() => {
         <p style="font-size: 100px; font-weight: 800; color: #1456fd">
           멤버스 라운지
         </p>
+    </div>
       </div>
     </div>
     <div class="prime_txt">
@@ -48,7 +50,6 @@ onMounted(() => {
         class="main-h1"
         style="
           text-align: center;
-          font-size: 60px;
           color: #1456fd;
           font-weight: 300;
         "
@@ -62,16 +63,15 @@ onMounted(() => {
       <hr
         style="
           margin: 43px auto;
-          width: 1176px;
+          width: 60%;
           border: none;
           border-top: 2px solid #e9ff54;
         "
       />
       <p
-        class="main-h2"
+        class="main-h3"
         style="
           text-align: center;
-          font-size: 40px;
           color: #1456fd;
           font-weight: 300;
         "
@@ -82,10 +82,9 @@ onMounted(() => {
         빙프라임 멤버스 고객님께만 드리는 특별한 혜택을 확인하실 수 있습니다.
       </p>
       <p
-        class="main-h1"
+        class="main-h3"
         style="
           text-align: center;
-          font-size: 40px;
           color: #1456fd;
           font-weight: 300;
           margin-top: 80px;
@@ -118,10 +117,10 @@ onMounted(() => {
       </div>
       <p
         style="
-          font-size: 80px;
+          font-size: 50px;
           color: #001f57;
 
-          margin-left: 280px;
+          margin-left: 20%;
         "
       >
         <b style="font-weight: bold">구독</b>만 해도
@@ -130,23 +129,23 @@ onMounted(() => {
         <div class="img_txt">
           <p
             style="
-              font-size: 80px;
+              font-size: 50px;
               color: #001f57;
               font-weight: bold;
-              margin-left: 280px;
+              margin-left: 20%;
               transform: scaleY(-1);
               filter: blur(5px) opacity(0.4);
             "
           >
             구독만 해도
           </p>
-          <p style="font-size: 80px; color: #001f57; font-weight: 300">
+          <p style="font-size: 50px; color: #001f57; font-weight: 300">
             쏟아지는 <b style="font-weight: bold">혜택!</b>
           </p>
         </div>
         <div class="table_txt">
-          <p style="font-size: 250px; font-weight: bold; color: #1456fd">4</p>
-          <p style="font-size: 80px; color: #1456fd; line-height: 132.4%">
+          <p style="font-size: 150px; font-weight: bold; color: #1456fd">4</p>
+          <p style="font-size: 50px; color: #1456fd; line-height: 132.4%">
             <b style="font-weight: 800">빙프라임 구독</b>하고 <br /><b
               style="font-weight: 800"
               >종 쿠폰</b
@@ -156,7 +155,7 @@ onMounted(() => {
         </div>
         <table
           style="
-            width: 1000px;
+            width: 40%;
             border-collapse: collapse;
             font-family: sans-serif;
             border: 2px solid #1456fd;
@@ -164,16 +163,15 @@ onMounted(() => {
         >
           <thead>
             <tr style="background-color: #1456fd; color: white">
-              <th colspan="2" style="padding: 15px; font-size: 50px">
+              <th colspan="2" class="main-h2" style="padding: 15px;">
                 <strong>구독</strong>만 하면 누. 구. 나
               </th>
             </tr>
           </thead>
-          <tbody style="font-size: 48px; background-color: #fff">
+          <tbody class="main-h3" style="background-color: #fff">
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -184,7 +182,6 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -200,7 +197,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -211,7 +208,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -227,7 +224,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -238,7 +235,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -252,7 +249,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -263,7 +260,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -277,8 +274,8 @@ onMounted(() => {
           </tbody>
         </table>
         <div class="table_txt" style="margin-top: 150px">
-          <p style="font-size: 250px; font-weight: bold; color: #1456fd">4</p>
-          <p style="font-size: 80px; color: #1456fd; line-height: 132.4%">
+          <p style="font-size: 150px; font-weight: bold; color: #1456fd">4</p>
+          <p style="font-size: 50px; color: #1456fd; line-height: 132.4%">
             <b style="font-weight: 800">빙프라임 연장구독</b>하면 <br /><b
               style="font-weight: 800"
               >종 쿠폰</b
@@ -288,7 +285,7 @@ onMounted(() => {
         </div>
         <table
           style="
-            width: 1000px;
+            width: 40%;
             border-collapse: collapse;
             font-family: sans-serif;
             border: 2px solid #e9ff54;
@@ -297,14 +294,15 @@ onMounted(() => {
           <thead>
             <tr style="background-color: #e9ff54; color: white">
               <th
+               class="main-h2"
                 colspan="2"
-                style="padding: 15px; font-size: 50px; color: #1456fd"
+                style="padding: 15px; color: #1456fd"
               >
                 <strong>구독연장</strong>만 하면 한. 번. 더
               </th>
             </tr>
           </thead>
-          <tbody style="font-size: 48px; background-color: #fff">
+          <tbody class="main-h3" style="background-color: #fff">
             <tr>
               <td
                 style="
@@ -318,7 +316,6 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -334,7 +331,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -345,7 +342,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -361,7 +358,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -372,7 +369,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -386,7 +383,7 @@ onMounted(() => {
             <tr>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 12px;
                   font-weight: bold;
                   text-align: center;
@@ -397,7 +394,7 @@ onMounted(() => {
               </td>
               <td
                 style="
-                  border-top: 1px solid #000;
+                  border-top: 1px solid #ccc;
                   padding: 18px 50px;
                   text-align: right;
                   color: #1456fd;
@@ -429,15 +426,15 @@ onMounted(() => {
         </p>
       </div>
       <p
+      class="main-h2"
         style="
           text-align: center;
-          font-size: 60px;
           color: #1456fd;
           margin-bottom: 146px;
         "
       >
         멤버스가 필요로 하는 상품만을 골라 <br />
-        <b style="font-size: 100px; text-align: center; color: #212121"
+        <b class="main-h1" style="text-align: center; color: #212121"
           >멤버스 전용 서프라이즈 혜택!</b
         >
       </p>
@@ -455,7 +452,7 @@ onMounted(() => {
               </p>
             </div>
             <p
-              class="main-h1"
+              class="main-h2"
               style="color: #1456fd; font-weight: 300; margin-left: 30px"
             >
               카페를 운영하고 있어 <br />정기적인 청소가 필요한데 <br />매번
@@ -466,16 +463,16 @@ onMounted(() => {
         <div class="box_bt">
           <div class="bar">
             <img src="/reservation/reservsub/calendar-check.png" alt="달력" />
-            <p class="main-h1" style="color: #fff">
+            <p class="main-h2" style="color: #fff">
               빙프라임만의 <b>자동 예약</b>서비스
             </p>
           </div>
           <div class="bt_txt">
-            <p style="font-size: 40px; font-weight: 500; color: #1651da">
+            <p class="main-h3" style="font-weight: 500; color: #1651da">
               업장 운영을 하고 있어 정기적인<br />
               제빙기 청소 서비스가 필요하진 않으신가요?
             </p>
-            <p style="font-size: 38px">
+            <p class="main-h3" >
               빙프리는 빙프라임 고객님을 위해 <br />편리한
               <b>자동 예약 서비스</b> 를 제공합니다. <br />첫 청소 신청 시
               <b>주기만 설정</b>하시면, <br />주기에 맞춰 안내 후 방문
@@ -502,7 +499,7 @@ onMounted(() => {
               </p>
             </div>
             <p
-              class="main-h1"
+              class="main-h2"
               style="color: #1456fd; font-weight: 300; margin-left: 30px"
             >
               셀프 세척을 하고 싶은데, <br />주방 세제로 해도 될까요? <br />
@@ -513,17 +510,17 @@ onMounted(() => {
         <div class="box_bt">
           <div class="bar">
             <img src="/reservation/reservsub/calendar-check.png" alt="달력" />
-            <p class="main-h1" style="color: #fff">
-              빙프라임만의 <b>가정용 제빙기</b>세척제
+            <p class="main-h2" style="color: #fff">
+              빙프라임만의 <b>가정용 제빙기</b> 세척제
             </p>
           </div>
           <div class="bt_txt">
-            <p style="font-size: 40px; font-weight: 500; color: #1651da">
+            <p class="main-h3" style="font-weight: 500; color: #1651da">
               가정에서 제빙기를 청소할 때<br />
               주방 세제나 락스를 사용하시나요?
             </p>
-            <p style="font-size: 38px">
-              빙프리애서는 가정용 제빙기 사용자를 위해 <br />전용 세척제를
+            <p class="main-h3">
+              빙프리에서는 가정용 제빙기 사용자를 위해 <br />전용 세척제를
               별도로 판매하고 있습니다.<br />청소 서비스 구독 시, 방문할 때마다
               <b>세척제를 증정</b>해드리며, <br /> <b>셀프 청소 꿀팁도 함께 안내</b>해드려요!
             </p>
@@ -607,15 +604,15 @@ p {
   background-position: center;
   position: relative;
   .prime_sticker1 {
-    width: 500px;
+    width: 23%;
     position: absolute;
-    top: 10%;
-    right: 10%;
+    top: 7%;
+    right: 17%;
     animation: ani_opacity 0.6s ease-in-out, ani_move 0.6s ease-in-out,
       ani_loop 2.5s ease infinite;
   }
   .prime_sticker2 {
-    width: 300px;
+    width: 15%;
     position: absolute;
     top: 20%;
     left: 22%;
@@ -650,9 +647,9 @@ p {
 }
 .membersOTP {
   cursor: pointer;
-  width: 300px;
-  height: 75px;
-  margin: 80px auto 400px;
+  width: 10%;
+  padding: 0.5% 0;
+  margin: 5% auto 15%;
   border-radius: 30px 0 30px 0;
   background-color: #1456fd;
   text-align: center;
@@ -671,7 +668,7 @@ p {
   }
   .main02_img {
     width: 100%;
-    height: 2100px;
+    height: 1600px;
     background-image: url("/prime/prime_main02.png");
     background-size: cover;
     background-position: center;
@@ -680,7 +677,7 @@ p {
     &::before {
       content: "";
       position: absolute;
-      top: -100px;
+      top: -10%;
       left: calc(50% + 220px);
       width: 50%;
       max-width: 697px;
@@ -703,11 +700,12 @@ p {
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-left: 220px;
+      margin-left: 20%;
       margin-top: 80px;
     }
     table {
-      margin-left: 177px;
+      margin-left: 20%;
+  
     }
   }
 }
@@ -723,10 +721,11 @@ p {
     }
   }
   .main03_box {
-    width: 1300px;
-    height: 1200px;
+    width: 90%;
+    height: 100%;
     border: 1px solid #1456fd;
     position: relative;
+    margin: auto;
     .box_top {
       display: flex;
       align-items: center;
@@ -738,7 +737,7 @@ p {
         flex-direction: column;
         width: calc(100% / 2);
         .bar {
-          width: 650px;
+          width: 50%;
           height: 80px;
           padding: 20px 30px;
           background-color: #1456fd;
@@ -757,7 +756,7 @@ p {
         padding: 10px 30px;
         background-color: #1456fd;
         img {
-          width: 40px;
+          width: 30px;
           filter: brightness(0) invert(1);
         }
       }
@@ -769,16 +768,16 @@ p {
       }
     }
     .clock_img {
-      width: 800px;
+      width: 50%;
       position: absolute;
       bottom: -2%;
-      right: -19%;
+      right: -13%;
     }
     .cart_img {
-      width: 550px;
+      width: 35%;
       position: absolute;
       bottom: -5%;
-      right: -14%;
+      right: -10%;
     }
   }
 }

@@ -13,6 +13,7 @@ const showModal = ref(false); // 예약하기-> 모달
 const showFAQ = ref(false);
 const normalizePhone = (phone) => phone.replace(/-/g, "").trim();
 const matchedReservation = ref(null);
+const imageUrl = ref(null);
 
 // 쿠키에 저장된 정보 가져오기
 onMounted(() => {
@@ -96,6 +97,14 @@ const selectedIceMakers = computed(() => {
       }))
   );
 });
+
+// 사진 업로드
+const onFileChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    imageUrl.value = URL.createObjectURL(file);
+  }
+};
 
 // 총 금액 계산
 const totalPrice = computed(() =>
@@ -378,20 +387,16 @@ const scrollToTop = () => {
 
           <p
             class="bannerTitle"
-            style="font-size: 58px; font-weight: bold; line-height: 1.15"
+            style="font-size: 50px; font-weight: bold; line-height: 1.15"
           >
             <b style="color: #1456fd">빙프라임</b>
             <br />
             구독 요금제
           </p>
 
-          <router-link
-            to="/BingPrime"
-            class="detail-nav"
-            style="color: #1456fd; font-weight: bold"
-          >
-            구독하러가기 →</router-link
-          >
+          <router-link to="/BingPrime">
+            <button class="yellowBtn main-h4">구독하기</button>
+          </router-link>
         </div>
       </div>
       <!-- 탭 -->
@@ -417,13 +422,13 @@ const scrollToTop = () => {
         </ul>
       </nav>
     </div>
-
     <main>
       <div class="reserv inner" v-if="reservTab === 'reserv'">
         <div class="progress_bar"></div>
         <form @submit.prevent="handleSubmit">
           <!-- 1. 기본정보 -->
           <fieldset class="basic_information">
+            <p class="main-h5" style="margin-bottom: 30px">1. 기본 정보</p>
             <input
               type="text"
               v-model="formData.name"
@@ -460,16 +465,18 @@ const scrollToTop = () => {
                 <span style="font-weight: bold">가정</span>
               </label>
             </div>
-            <input
-              type="text"
-              class="address"
-              v-model="formData.roadAddress"
-              placeholder="주소"
-              readonly
-            />
-            <button type="button" @click="openPostcode">
-              <img src="/reservation/reservsub/search.png" alt="검색아이콘" />
-            </button>
+            <div class="address_box">
+              <input
+                type="text"
+                class="address"
+                v-model="formData.roadAddress"
+                placeholder="주소"
+                readonly
+              />
+              <button type="button" @click="openPostcode">
+                <img src="/reservation/reservsub/search.png" alt="검색아이콘" />
+              </button>
+            </div>
             <input
               v-model="formData.detailAddress"
               type="text"
@@ -480,9 +487,7 @@ const scrollToTop = () => {
           </fieldset>
           <!-- 2. 제빙기 정보 -->
           <fieldset class="icemaker_information">
-            <p class="detail-title" style="color: #9abae3">
-              ❄ 청소할 제빙기의 용량을 선택해주세요.
-            </p>
+            <p class="main-h5">2. 제빙기 정보</p>
 
             <div class="reserv_card_wrap">
               <div
@@ -498,12 +503,10 @@ const scrollToTop = () => {
                   :key="optionIndex"
                 >
                   <div class="card_info">
-                    <p class="detail-txt" style="font-weight: bold">
+                    <p class="detail-txt">
                       {{ option.label }}
                     </p>
-                    <p
-                      style="font-size: 16px; color: #1456fd; font-weight: bold"
-                    >
+                    <p style="font-size: 16px; color: #1456fd">
                       {{ option.price.toLocaleString() }}원
                     </p>
                   </div>
@@ -526,6 +529,14 @@ const scrollToTop = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="image">
+              <input type="file" @change="onFileChange" accept="image/*" />
+              <img
+                v-if="imageUrl"
+                :src="imageUrl"
+                alt="이미지 미리보기"
+              />
             </div>
 
             <!-- 총 금액 -->
@@ -560,13 +571,7 @@ const scrollToTop = () => {
           </div>
           <!-- 3. 예약 정보 -->
           <fieldset class="reservation_information">
-            <p class="detail-title reservTitle" style="color: #407bff">
-              <img
-                src="/reservation/reservsub/calendar-check.png"
-                alt="캘린더"
-              />
-              청소할 날짜와 시간을 선택해주세요.
-            </p>
+            <p class="main-h5 reservTitle">3. 예약 정보</p>
             <div class="date_box">
               <div class="calendar">
                 <p class="detail-txt">* 날짜를 선택해주세요</p>
@@ -601,7 +606,7 @@ const scrollToTop = () => {
                     <label
                       :class="[
                         'radio-button',
-                        { selected: formData.dateRestricted === 'yes' },
+                        { selected: formData.dateRestricted === 'no' },
                       ]"
                     >
                       <input
@@ -687,7 +692,7 @@ const scrollToTop = () => {
                     <input type="checkbox" v-model="service.selected" />
                     <span class="detail-txt"
                       >{{ service.label }}
-                      <p style="color: #1456fd; margin-left: 32px">
+                      <p style="color: #1456fd">
                         +{{ service.price.toLocaleString() }}원
                       </p></span
                     >
@@ -734,23 +739,14 @@ const scrollToTop = () => {
               </span>
             </div>
             <div class="reservBtn_box">
-              <button
-                class="reservBtn cancelReservation"
-                style="background-color: #ccc; color: #fff"
-                @click="handleCancel"
-              >
+              <button class="reservBtn cancel" @click="handleCancel">
                 예약취소하기
               </button>
-              <button
-                type="submit"
-                class="reservBtn confirmReservation"
-                style="background-color: #1456fd; color: #fff"
-              >
-                예약하기
-              </button>
+              <button type="submit" class="reservBtn">예약하기</button>
             </div>
           </fieldset>
         </form>
+
         <!-- 모달창 -->
         <transition name="fade">
           <div v-if="showModal" class="modal-overlay">
@@ -881,12 +877,7 @@ const scrollToTop = () => {
             placeholder="연락처"
             required
           />
-          <button
-            type="button"
-            class="reservBtn"
-            style="background-color: #1456fd; color: #fff"
-            @click="showReservationInfo"
-          >
+          <button type="button" class="reservBtn" @click="showReservationInfo">
             예약조회하기
           </button>
         </fieldset>
@@ -960,7 +951,7 @@ const scrollToTop = () => {
         </fieldset>
         <!-- 자주 묻는 질문 -->
         <fieldset class="faq-box" v-if="isReservationMatched">
-          <p class="detail-title">
+          <p class="main-h3">
             자주 묻는 질문
             <span v-on:click="showFAQ = !showFAQ">{{
               showFAQ ? "접기 ▲" : "펼치기 ▼"
@@ -1033,7 +1024,9 @@ const scrollToTop = () => {
           </div>
           <div class="reservBtn_box">
             <button class="pastBtn">다시 예약하기</button>
-            <button class="pastBtn">리뷰 쓰기</button>
+            <router-link to="/review"
+              ><button class="pastBtn">리뷰 쓰기</button></router-link
+            >
           </div>
         </fieldset>
       </div>

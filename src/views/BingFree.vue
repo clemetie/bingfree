@@ -57,7 +57,7 @@ const handleIntersect = (entries) => {
 
 // 추가: 스크롤로 visual 영역 감지
 const handleScroll = () => {
-  if (window.scrollY < 200) {
+  if (window.scrollY < 100) {
     currentSection.value = "visual";
   }
 };
@@ -91,7 +91,6 @@ const goToDetail = () => {
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
-  console.log("✅ 현재 섹션:", currentSection.value);
 };
 
 //  메인 섹션 빙프리란(수현)
@@ -170,7 +169,6 @@ const brandLogos2 = [
   "review/seoul dragon city_logo.png",
   "review/nexon_logo.png",
 ];
-
 // Swiper 반응형 설정
 const swiperBreakpoints = {
   1024: {
@@ -183,7 +181,6 @@ const swiperBreakpoints = {
     spaceBetween: 10,
   },
 };
-
 
 </script>
 
@@ -509,8 +506,12 @@ const swiperBreakpoints = {
     </div>
   </section>
   <!-- 메인 섹션 예약하기(효빈) -->
-  <section class="reservation" id="reserv" :class="{ visible: currentSection === 'reserv' }">
-    <div class="inner">
+  <section
+    class="reservation"
+    id="reserv"
+    :class="{ visible: currentSection === 'reserv' }"
+  >
+    <div class="inner web">
       <div class="reserv_chat">
         <img class="reserv_phone" src="/reservation/reservmain/reservation_phone.png" alt="휴대폰 화면" />
         <div class="chat_bing">
@@ -557,6 +558,46 @@ const swiperBreakpoints = {
 
         <router-link to="/reservation" class="fast_reserv"> 빠른 예약하기 </router-link>
         <img class="fast_hand" src="/reservation/reservmain/resrvation_hand.png" alt="손" />
+      </div>
+    </div>
+    <div class="inner tablet">
+      <div class="tablet_top">
+        <div class="top_txt">
+          <div class="top_txt_box">
+            <span class="main-h4 frame_txt"> 빙프리 솔루션 </span>
+            <p class="main-h2" style="font-weight: 600;">
+              제빙기 청소도 간편하게 <br />
+              손끝으로 확인하세요
+            </p>
+            <p class="main-h4">
+              다지점 관리, 서비스 완료내용 확인, <br />
+              예약 내역 관리까지 한 번에 가능해요
+            </p>
+          </div>
+          <div class="appdownloadBox">
+            <p class="main-h4 appdownload first">
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Apple Inc.png"
+                alt="안드로이드"
+              />
+              IOS 다운로드 →
+            </p>
+            <p class="main-h4 appdownload second">
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Android OS.png"
+                alt="안드로이드"
+              />
+              Android 다운로드 →
+            </p>
+          </div>
+        </div>
+
+        <img
+          src="/reservation/reservmain/reservation_phone.png"
+          alt="대화 화면"
+        />
       </div>
     </div>
   </section>
