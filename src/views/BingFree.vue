@@ -184,6 +184,7 @@ const swiperBreakpoints = {
   },
 };
 
+
 </script>
 
 <template>
@@ -277,15 +278,17 @@ const swiperBreakpoints = {
         <div id="main-introBing-txt-sub" class="main-h4">
           <p>
             제빙기의 내부는 항상 습한 환경에 있기 때문에
-            <span style="color: #1456fd">최소 일주일에 한번, 정기적인 관리</span>가 필요합니다.
+            <span style="color: #1456fd"
+              ><span class="only-mobile"><br /></span>최소 일주일에 한번, 정기적인 관리</span
+            >가 필요합니다.
           </p>
           <p>
-            냉각기 성분인 니켈은 관리를 하지 않으면
+            냉각기 성분인 니켈은 관리를 하지 않으면 <span class="only-mobile"><br /></span>
             <span style="color: #1456fd">발암 물질로 변질</span>될 수 있습니다.
           </p>
           <p>
-            보이는게 다가 아닙니다. 제빙기 내부
-            <span style="color: #1456fd">수많은 물 곰팡이들</span>, 본체 전까지는 모릅니다.
+            보이는게 다가 아닙니다. <span class="only-mobile"><br /></span>제빙기 내부
+            <span style="color: #1456fd">수많은 물 곰팡이들</span>, 분해 전까지는 모릅니다.
           </p>
           <p>
             더러운 얼음으로
