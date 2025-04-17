@@ -112,28 +112,28 @@ const showMore = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500">전체보기</span>
+        <span style="color: #616161; font-weight: 500; cursor:pointer;">전체보기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="ceo" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500">사장님후기</span>
+        <span style="color: #616161; font-weight: 500; cursor:pointer;">사장님후기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="customer" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500">고객님후기</span>
+        <span style="color: #616161; font-weight: 500; cursor:pointer;">고객님후기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="blog" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500">블로그후기</span>
+        <span style="color: #616161; font-weight: 500; cursor:pointer;">블로그후기</span>
       </label>
     </div>
     <!-- 고객리뷰 콘텐츠 -->

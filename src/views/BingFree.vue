@@ -648,11 +648,8 @@ const swiperBreakpoints = {
             만족스럽습니다!”
           </p>
           <div class="review-customer">
-            <img
-              src="/public/review/starbucks_icon.png"
-              alt="스타벅스 아이콘"
-            />
-            <p class="main-h6" style="color: #424242">스타벅스 중앙로점</p>
+            <img src="/public/review/starbucks_icon.png" alt="스타벅스 아이콘" />
+            <p  style="font-size: 16px; font-weight: 600; color: #424242">스타벅스 중앙로점</p>
           </div>
         </div>
         <div class="review-box">
@@ -663,7 +660,7 @@ const swiperBreakpoints = {
           </p>
           <div class="review-customer">
             <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
-            <p class="main-h6" style="color: #424242">이*현 님</p>
+            <p style="font-size: 16px; font-weight: 600; color: #424242">이*현 님</p>
           </div>
         </div>
         <div class="review-box">
@@ -674,7 +671,7 @@ const swiperBreakpoints = {
           </p>
           <div class="review-customer">
             <img src="/public/review/megabox_icon.png" alt="메가박스 아이콘" />
-            <p class="main-h6" style="color: #424242">메가박스 대구점</p>
+            <p  style="font-size: 16px; font-weight: 600; color: #424242">메가박스 대구점</p>
           </div>
         </div>
         <div class="review-box">
@@ -685,7 +682,7 @@ const swiperBreakpoints = {
           </p>
           <div class="review-customer">
             <img src="/public/review/customer_icon.png" alt="고객 아이콘" />
-            <p class="main-h6" style="color: #424242">김*수 님</p>
+            <p  style="font-size: 16px; font-weight: 600; color: #424242">김*수 님</p>
           </div>
         </div>
       </div>
