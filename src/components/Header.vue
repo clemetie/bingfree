@@ -2,15 +2,14 @@
 <template>
   <header>
     <div class="inner">
-      <router-link to="/"><img src="/images/main-logo.png" alt="" /></router-link>
+      <router-link to="/"
+        ><img src="/images/main-logo.png" alt=""
+      /></router-link>
       <nav>
         <router-link to="/IntroBing">빙프리란? </router-link>
         <router-link to="/Check">요금안내</router-link>
         <router-link to="/Review">고객리뷰</router-link>
         <router-link to="/Reservation">예약하기</router-link>
-        <router-link to="/login"
-          ><img src="/images/loginicon.png" alt="로그인"
-        /></router-link>
       </nav>
     </div>
   </header>
@@ -58,7 +57,6 @@ header {
   header {
     margin-bottom: -80px;
     position: fixed;
-    background-color: #fff;
     top: 0;
     .inner {
       margin: auto;
