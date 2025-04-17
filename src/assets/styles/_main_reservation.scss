@@ -14,7 +14,7 @@
 }
 
 @mixin mobile {
-  @media (min-width: 350px) and (max-width: 767px) {
+  @media (min-width: 390px) and (max-width: 767px) {
     @content;
   }
 }
@@ -39,7 +39,8 @@
         justify-content: space-between;
         text-align: center;
         img {
-          width: 100%;
+          width: 75%;
+          margin: auto;
         }
         .top_txt {
           display: flex;
@@ -135,10 +136,22 @@
   .reserv_card_wrap {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  .banner {
+    img {
+      display: none;
+    }
+    .reserv_txtbox {
+      width: 100%;
+      position: relative !important;
+      text-align: center;
+      left: 0 !important;
+    }
+  }
 }
 
 @include tablet {
   .reservation {
+    margin-bottom: 0 !important;
     .inner.web {
       display: none;
     }
@@ -245,29 +258,15 @@
   .reserv_card_wrap {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-}
-
-.reservBtn {
-  cursor: pointer;
-  width: 48%;
-  height: 65px;
-  border-radius: 14px;
-  border: 2px solid #1456fd;
-  font-size: 24px;
-  font-weight: bold;
-  color: #1456fd;
-  margin: 20px auto;
-  background-color: #fff;
-  &:hover {
-    background-color: #1456fd;
-    color: #fff;
-  }
-  &.cancel {
-    background-color: #e0e0e0;
-    border: none;
-    color: #fff;
-    &:hover {
-      background-color: #bdbdbd;
+  .banner {
+    img {
+      display: none;
+    }
+    .reserv_txtbox {
+      width: 100%;
+      position: relative !important;
+      text-align: center;
+      left: 0 !important;
     }
   }
 }
@@ -354,7 +353,7 @@
         height: 600px;
         display: flex;
         flex-direction: column;
-        margin-left: -80px;
+        margin-left: -5%;
 
         .chat,
         .bing {
@@ -442,6 +441,31 @@
 }
 .reserv-wrap {
   font-family: "Pretendard", sans-serif;
+
+  .reservBtn {
+    cursor: pointer;
+    width: 48%;
+    height: 65px;
+    border-radius: 14px;
+    border: 2px solid #1456fd;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1456fd;
+    margin: 20px auto;
+    background-color: #fff;
+    &:hover {
+      background-color: #1456fd;
+      color: #fff;
+    }
+    &.cancel {
+      background-color: #e0e0e0;
+      border: none;
+      color: #fff;
+      &:hover {
+        background-color: #bdbdbd;
+      }
+    }
+  }
   .reserv_top {
     .reserv_tab {
       width: 40%;
@@ -486,8 +510,10 @@
       }
       a {
         button {
-          padding: 4% 6%;
+          width: 50%;
+          height: 65px;
           color: $bingfree-main;
+          @include text-style(24px, 700);
           font-family: "Pretendard", sans-serif;
           background-color: $bingfree-point;
           border-style: none;

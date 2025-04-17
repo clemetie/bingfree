@@ -213,7 +213,7 @@ const handleSubmit = () => {
 const confirmReservation = () => {
   showModal.value = false;
 
-  // ✅ 기존 예약들 가져오기 (항상 배열로)
+  // 기존 예약들 가져오기
   let existingReservations;
   try {
     const parsed = JSON.parse(Cookies.get("reservationData") || "[]");
@@ -222,21 +222,21 @@ const confirmReservation = () => {
     existingReservations = [];
   }
 
-  // ✅ 새 예약 추가
+  //  새 예약 추가
   existingReservations.push({ ...formData.value });
 
-  // ✅ 쿠키에 다시 저장
+  // 쿠키에 다시 저장
   Cookies.set("reservationData", JSON.stringify(existingReservations), {
-    expires: 1,
+    expires: 3,
   });
 
-  // ✅ 예약 완료 알림
+  // 예약 완료
   alert("예약이 완료되었습니다!");
 
-  // ✅ 예약 확인 탭으로 이동
+  // 예약 조회로 이동
   reservTab.value = "reservConfirm";
 
-  // ✅ 입력값 초기화
+  // 입력값 초기화
   formData.value = {
     name: "",
     phone: "",

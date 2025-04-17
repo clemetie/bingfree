@@ -1,12 +1,46 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
+
+const highlightPaths = ["/", "/IntroBing", "/Check", "/Reservation", "/Review"];
+</script>
 <template>
   <div class="topbar">
-    <router-link to="/">빙프리 홈페이지 </router-link>
-    <router-link to="/BingPrime">빙프라임</router-link>
-    <router-link to="/FreeMall">프리몰</router-link>
+    <router-link
+      to="/"
+      :style="{
+        backgroundColor: highlightPaths.includes(route.path)
+          ? '#1456fd'
+          : 'black',
+        color: highlightPaths.includes(route.path) ? '#fff' : '#9e9e9e',
+      }"
+      >빙프리 홈페이지
+    </router-link>
+    <router-link
+      to="/BingPrime"
+      :style="{
+        backgroundColor: route.path === '/BingPrime' ? '#1456fd' : 'black',
+        color: route.path === '/BingPrime' ? '#fff' : '#9e9e9e',
+      }"
+      >빙프라임</router-link
+    >
+    <router-link
+      to="/FreeMall"
+      :style="{
+        backgroundColor: route.path === '/FreeMall' ? '#1456fd' : 'black',
+        color: route.path === '/FreeMall' ? '#fff' : '#9e9e9e',
+      }"
+      >프리몰</router-link
+    >
   </div>
 </template>
 <style scoped>
+@media (min-width: 390px) and (max-width: 767px) {
+  .topbar a {
+    width: 30% !important;
+    font-size: 11px !important;
+  }
+}
 .topbar {
   position: fixed; /* 또는 absolute / fixed */
   z-index: 100;
@@ -17,10 +51,10 @@
   text-align: center;
 }
 .topbar a {
-  width: 250px;
+  width: 20%;
   margin: 0 5px;
   display: inline-block;
-  background-color: #1456fd;
+  /* background-color: #1456fd; */
   padding: 0 20px;
   height: 40px;
   font-size: 16px;
