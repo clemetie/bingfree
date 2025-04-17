@@ -7,13 +7,17 @@
 }
 // scss 반응형
 @mixin mobile {
-  @media (min-width: 360px) and (max-width: 767px) {
+  @media (max-width: 767px) {
     @content;
   }
 }
 @include mobile {
   .check {
     width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    overflow: hidden;
   }
   .price_wrap {
     max-width: 370px !important;
@@ -113,6 +117,127 @@
   }
 }
 
+//개인 반응형 미디어 쿼러
+@mixin submobile {
+  @media (min-width: 360px) and (max-width: 600px) {
+    @content;
+  }
+}
+@include submobile {
+  .check {
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+  }
+  .price_wrap {
+    max-width: 370px !important;
+    margin: auto !important;
+  }
+
+  .text_content {
+    transform: translateY(60%) !important;
+    .description {
+      transform: translateX(-5%);
+      white-space: nowrap !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
+    .heading {
+      font-size: 30px !important;
+      font-weight: 600 !important;
+    }
+  }
+  .receipt_section {
+    transform: translateX(2%);
+  }
+
+  .receipt_content.card1 {
+    transform: translateX(20%);
+    .front {
+      background: url("/check/price_mobile_ordinary.png") no-repeat center / contain !important;
+      background-size: 47% !important;
+    }
+    .back {
+      width: 100%;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background-size: 47% !important;
+    }
+  }
+
+  .receipt_content.card2 {
+    right: -24%;
+    .front {
+      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background-size: 43% !important;
+    }
+    .back {
+      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background-size: 43% !important;
+    }
+  }
+  .icon_content {
+    span {
+      width: 13% !important;
+      &:first-child {
+        left: -1% !important;
+        top: 129px !important;
+      }
+      &:nth-child(2) {
+        right: 10% !important;
+        top: 138px !important;
+      }
+      &:nth-child(3) {
+        right: 7% !important;
+        top: 287px !important;
+      }
+      &:nth-child(4) {
+        left: -1% !important;
+        top: 300px !important;
+      }
+      &:nth-child(5) {
+        right: 13% !important;
+        top: 330px !important;
+      }
+      &:nth-child(6) {
+        width: 21% !important;
+        left: 60px !important;
+        top: 291px !important;
+      }
+      &:nth-child(7) {
+        top: 291px !important;
+        right: 18% !important;
+        width: 21% !important;
+      }
+      &:nth-child(8) {
+        top: 241px !important;
+        width: 27% !important;
+        right: 6% !important;
+      }
+      &:last-child {
+        width: 24% !important;
+        left: 27% !important;
+        top: 249px !important;
+      }
+    }
+  }
+  .price_content {
+    transform: translateY(-86%) !important;
+
+    span {
+      &:first-child {
+        font-size: 30px !important;
+        white-space: nowrap !important;
+      }
+      &:last-child {
+        font-size: 70px !important;
+        font-weight: 700;
+        color: #e9ff54;
+      }
+    }
+  }
+}
+
 @mixin tablet {
   @media (min-width: 768px) and (max-width: 1023px) {
     @content;
@@ -125,6 +250,7 @@
     margin: auto !important;
   }
   .text_content {
+    transform: translateY(20%) !important;
     .description {
       padding-left: 0 !important;
       font-size: 22px !important;
@@ -184,12 +310,12 @@
         left: 30px !important;
       }
       &:nth-child(7) {
-        right: -6% !important;
-        width: 33% !important;
+        right: -11% !important;
+        width: 45% !important;
       }
       &:nth-child(8) {
-        width: 35% !important;
-        right: -22% !important;
+        width: 38% !important;
+        right: -24% !important;
       }
       &:last-child {
         width: 36% !important;
@@ -212,107 +338,207 @@
   }
 }
 
-ul {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  li {
-    list-style: none;
-    flex: 1;
+.numbering_box {
+  position: relative;
+  top: 315px;
+  padding: 12px;
+  margin: 0 auto;
+  width: 600px;
+  transform: translateY(-20%);
+  border-radius: 12px;
+  background-color: #fff;
 
-    .lt {
+  // 숫자박스
+  .number_ul {
+    width: 100%;
+    display: flex;
+
+    flex-direction: row;
+
+    li {
       position: relative;
+      width: 50%;
+      padding: 20px 10px 40px 10px;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
       align-items: flex-start;
-      padding: 20px 10px 40px 20px;
       border-radius: 10px;
 
-      width: 100%;
-      background-color: rgb(83, 158, 242);
-
-      em {
-        color: #fff;
-        font-size: 28px;
-        display: block;
-        text-align: left;
-      }
-      .numbering {
+      .lt {
+        position: relative;
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 10px 40px 20px;
+        border-radius: 10px;
+        background-color: #539ef2;
+
+        width: 100%;
+        height: 228px;
+
+        em {
+          color: #fff;
+          font-size: 28px;
+          display: block;
+          text-align: left;
+          font-style: normal;
+        }
+      }
+    }
+    .lt_second_Sec {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .numbering {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
         margin-top: 20px;
 
         .n_wrap {
           display: flex;
+          flex-direction: row;
           justify-content: center;
           align-items: center;
-          margin-left: 8px;
-          animation-delay: 0.5s;
 
-          .n_list {
-            width: 45px;
-            height: 78px;
+          span {
+            width: 100%;
+            font-size: 50px;
+            font-weight: bold;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: block;
+          }
+
+          .n_list_sub {
+            position: relative;
             display: inline-block;
-            display: flex;
             color: #fff;
             position: relative;
+            align-self: center;
+            white-space: nowrap;
+
+            width: 45px;
+            height: 78px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease-in forwards;
-
-            i {
-              font-size: 30px;
-            }
+            // 회 애니메이션 제거
           }
+
+          i {
+            transform: translate(12px, -2px) !important;
+            color: #fff;
+            display: block;
+
+            font-size: 46px;
+            font-style: normal;
+          }
+        }
+      }
+      .ar_wrap {
+        width: 32px;
+        margin-top: 20px;
+        img {
+          max-width: 100%;
+          border: 0;
+          vertical-align: top;
+          font-size: 0;
+          line-height: 0;
         }
       }
     }
-    .rt {
-      width: 100%;
+
+    .fixp {
+      font-size: 30px;
+      color: #fff;
+    }
+  }
+  .rt {
+    background-color: rgb(35, 99, 247);
+    position: relative;
+    width: 100%;
+    height: 228px;
+    padding: 20px 10px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 10px;
+    em {
+      color: #fff;
+      font-size: 28px;
+      display: block;
+      text-align: left;
+      font-style: normal;
+    }
+    .b_txt {
+      color: #fff;
+      font-size: 46px;
+      margin-top: 20px;
+
+      b {
+        font-size: 50px;
+        color: #f5ff86;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+    }
+
+    .numbering {
       position: relative;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px 10px 40px 20px;
-      border-radius: 10px;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 0;
+      .n_wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+        margin-top: 5%;
 
-      background-color: rgb(35, 99, 247);
-      em {
-        color: #fff;
-        font-size: 28px;
-        display: block;
-        text-align: left;
-      }
-      .b_txt {
-        display: block;
-        font-size: 46px;
-        margin-top: 20px;
+        animation-delay: 0.5s;
 
-        b {
-          font-size: 60px;
-          color: rgb(245, 255, 134);
+        .n_list_sub {
+          display: inline-block;
+          color: #fff;
+          position: relative;
+          overflow: hidden;
+          width: 90px;
+          height: 40px;
+          opacity: 0;
+          align-self: center;
+          transform: translateY(20px);
+          animation: fadeInUp 1s ease-in forwards;
+
+          font-size: 40px;
           font-weight: 500;
+          color: #f5ff85;
+          span {
+            font-size: 31px;
+            font-weight: 400;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: block;
+          }
         }
-      }
+        i {
+          font-size: 40px;
 
-      .numbering {
-        justify-content: flex-start;
-        margin-top: 0;
+          transform: translateX(-35px) !important;
+          color: #fff;
+          display: block;
 
-        .n_wrap {
-          display: flex;
-          margin-left: 8px;
-          animation-delay: 0.5s;
-
-          i {
-            font-size: 30px;
-          }
-
-          .n_list {
-            width: 90px;
-            height: 40px;
-          }
+          font-style: normal;
         }
       }
     }
@@ -1370,7 +1596,7 @@ h1 {
   height: 628px;
   // 텍스트 박스
   .Top_number_text_content {
-    transform: translateY(80%);
+    transform: translateY(50%);
     display: flex;
     flex-direction: column;
     gap: 10px;
