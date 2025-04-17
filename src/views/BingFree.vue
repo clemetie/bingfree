@@ -376,32 +376,26 @@ const swiperBreakpoints = {
     <div class="inner">
       <div class="main-introBing-txt">
         <h1 class="main-h1">
-          <span style="color: #1456fd">제빙기 청소</span>, 왜 전문가가
-          필요할까요?
+          <span style="color: #1456fd; font-weight: bold">제빙기 청소</span>, 왜 전문가가 필요할까요?
         </h1>
         <div id="main-introBing-txt-sub" class="main-h4">
           <p>
             제빙기의 내부는 항상 습한 환경에 있기 때문에
-            <span style="color: #1456fd"
-              ><span class="only-mobile"><br /></span>최소 일주일에 한번,
-              정기적인 관리</span
+            <span style="color: #616161; font-weight: 600"
+              ><span class="only-mobile"><br /></span>최소 일주일에 한번, 정기적인 관리</span
             >가 필요합니다.
           </p>
           <p>
-            냉각기 성분인 니켈은 관리를 하지 않으면
-            <span class="only-mobile"><br /></span>
-            <span style="color: #1456fd">발암 물질로 변질</span>될 수 있습니다.
+            냉각기 성분인 니켈은 관리를 하지 않으면 <span class="only-mobile"><br /></span>
+            <span style="color: #616161; font-weight: 600">발암 물질로 변질</span>될 수 있습니다.
           </p>
           <p>
-            보이는게 다가 아닙니다.
-            <span class="only-mobile"><br /></span>제빙기 내부
-            <span style="color: #1456fd">수많은 물 곰팡이들</span>, 분해
-            전까지는 모릅니다.
+            보이는게 다가 아닙니다. <span class="only-mobile"><br /></span>제빙기 내부
+            <span style="color: #616161; font-weight: 600">수많은 물 곰팡이들</span>, 분해 전까지는 모릅니다.
           </p>
           <p>
             더러운 얼음으로
-            <span style="color: #1456fd">노로 바이러스, 식중독 질병</span>에
-            감염 됩니다.
+            <span style="color: #616161; font-weight: 600">노로 바이러스, 식중독 질병</span>에 감염 됩니다.
           </p>
         </div>
       </div>
@@ -698,11 +692,7 @@ const swiperBreakpoints = {
     </div>
   </section>
   <!-- 메인 섹션 예약하기(효빈) -->
-  <section
-    class="reservation"
-    id="reserv"
-    :class="{ visible: currentSection === 'reserv' }"
-  >
+  <section class="reservation" id="reserv" :class="{ visible: currentSection === 'reserv' }">
     <div class="inner web">
       <div class="reserv_chat">
         <img
@@ -792,28 +782,17 @@ const swiperBreakpoints = {
           </div>
           <div class="appdownloadBox">
             <p class="main-h4 appdownload first">
-              <img
-                class="appicon"
-                src="/reservation/reservmain/Apple Inc.png"
-                alt="안드로이드"
-              />
+              <img class="appicon" src="/reservation/reservmain/Apple Inc.png" alt="안드로이드" />
               IOS 다운로드 →
             </p>
             <p class="main-h4 appdownload second">
-              <img
-                class="appicon"
-                src="/reservation/reservmain/Android OS.png"
-                alt="안드로이드"
-              />
+              <img class="appicon" src="/reservation/reservmain/Android OS.png" alt="안드로이드" />
               Android 다운로드 →
             </p>
           </div>
         </div>
 
-        <img
-          src="/reservation/reservmain/reservation_phone.png"
-          alt="대화 화면"
-        />
+        <img src="/reservation/reservmain/reservation_phone.png" alt="대화 화면" />
       </div>
     </div>
   </section>
