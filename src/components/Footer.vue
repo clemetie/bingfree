@@ -59,7 +59,7 @@ html {
   caret-color: transparent;
   background-color: #1456fd;
   width: 100%;
-  height: 410px;
+  height: 400px;
   position: relative;
   overflow: hidden;
 }
@@ -104,8 +104,8 @@ html {
 
 .footer-contact-phone,
 .footer-contact-email {
-  color: #fff;
-  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 50px;
   font-weight: 500;
 }
 .footer-txt3 {

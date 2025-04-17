@@ -225,7 +225,7 @@ const swiperBreakpoints = {
     <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
-          <img src="/images/web_visual01.png" alt="비주얼1" />
+          <img src="/public/images/mobile_visual01.png" alt="비주얼1" />
           <div class="txtbox inner">
             <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
             <p class="main-h1" style="color: #fff">

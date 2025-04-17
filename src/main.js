@@ -2,6 +2,8 @@ import "./assets/main.css";
 import "./assets/styles/main.scss";
 import "aos/dist/aos.css";
 
+
+
 import { createApp } from "vue";
 import router from "./router";
 import App from "./App.vue";
@@ -12,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faUserSecret);
 
 const app = createApp(App);
+
 app.directive("title", {
   mounted(el, binding) {
     document.title = binding.value;

@@ -296,17 +296,18 @@ onMounted(() => {
         </div>
         <!-- 숫자 박스 -->
         <div class="numbering_box">
-          <ul>
+          <ul class="number_ul">
             <li v-for="(pair, index) in numberPairs" :key="index" v-show="currentIndex === index">
               <div class="lt">
                 <em>구독권</em>
-                <div class="numbering">
-                  <div class="n_wrap">
-                    <div class="n_list">
-                      <transition-group name="numbering" tag="div" :key="pair[0]">
-                        <span class="n_list_sub" :class="{ animate: animate }">{{ pair[0] }}</span>
+                <div class="lt_second_Sec">
+                  <div class="numbering">
+                    <div class="n_wrap">
+                      <transition-group name="numbering" tag="div">
+                        <span class="n_list_sub" :key="pair[0]" :class="{ animate: animate }">{{
+                          pair[0] + "회"
+                        }}</span>
                       </transition-group>
-                      <i>회</i>
                     </div>
                   </div>
                   <div class="ar_wrap">
@@ -315,6 +316,7 @@ onMounted(() => {
                       class="load_img" />
                   </div>
                 </div>
+
                 <p class="fixp">구독시</p>
               </div>
             </li>
@@ -324,14 +326,9 @@ onMounted(() => {
                 <div class="b_txt"><b>최대20</b>%</div>
                 <div class="numbering">
                   <div class="n_wrap">
-                    <div class="n_list">
-                      <transition-group name="numbering" tag="div">
-                        <span class="n_list" :class="{ animate: animate }" :key="pair[1]">
-                          {{ pair[1] }}
-                        </span>
-                      </transition-group>
-                    </div>
-                    <i>할인</i>
+                    <transition-group name="numbering" tag="div">
+                      <span class="n_list_sub" :class="{ animate: animate }">{{ pair[1] + `%` }}</span>
+                    </transition-group>
                   </div>
                 </div>
               </div>
