@@ -1,10 +1,7 @@
 <script setup></script>
 <template>
   <footer class="footer-container">
-    <div class="footer-site-name">
-      <img src="/public/images/footer1.png" alt="footer1" />
-    </div>
-    <div id="appr">
+    <div id="app">
       <div class="footer-content">
         <!-- 좌측 영역: 로고 & "Contact us"-->
         <div class="footer-left">
@@ -29,6 +26,9 @@
                 <h3 style="color: #e9ff54">cs opening hours</h3>
                 <p class="footer-txt4">Monday - Friday <br />09:00 AM - 18:00 PM</p>
               </div>
+            </div>
+            <div class="footer-copy">
+              <p class="copy">BINGFREE @COPYRIGHT 2025</p>
             </div>
           </div>
         </div>
@@ -59,25 +59,9 @@ html {
   caret-color: transparent;
   background-color: #1456fd;
   width: 100%;
-  height: 600px;
+  height: 400px;
   position: relative;
   overflow: hidden;
-}
-/* bingfree 투명 이미지 */
-.footer-site-name {
-  width: 798px;
-  padding-left: 30px;
-  /* background-color: pink; */
-  position: absolute;
-  right: 5%;
-  top: -1%;
-}
-.footer-site-name img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* 또는 cover */
 }
 .footer-left {
   display: flex;
@@ -89,7 +73,7 @@ html {
 }
 /* 로고 */
 .footer-logo {
-  width: 250px;
+  width: 180px;
   display: block;
 }
 .footer-logo img {
@@ -100,120 +84,119 @@ html {
   object-fit: contain; /* 또는 cover */
 }
 .footer-right {
-  width: 1000px;
-  padding-top: 10%;
+  width: 900px;
+  padding-top: 4%;
   display: flex;
-  gap: 18%;
+  gap: 10%;
   /* background-color: pink; */
 }
 /* 폰트 컬러, 사이즈 */
 .footer-contact-title {
   font-weight: 500;
-  font-size: 24px;
-  padding-bottom: 3%;
+  font-size: 15px;
+  padding-bottom: 1%;
 }
 .footer-address h3,
 .footer-hours h3 {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 15px;
 }
 
 .footer-contact-phone,
 .footer-contact-email {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 38px;
+  font-size: 50px;
   font-weight: 500;
 }
 .footer-txt3 {
-  padding-top: 7%;
+  padding-top: 3%;
   color: #fff;
-  font-size: 34px;
+  font-size: 20px;
   font-weight: 500;
 }
 .footer-txt4 {
-  padding-top: 15%;
+  padding-top: 3%;
   color: #fff;
   font-size: 16px;
   font-weight: 500;
 }
+.footer-copy {
+  color: #fff;
+  font-size: 13px;
+  padding-top: 7%;
+}
 
 /* 모바일 */
-@media (max-width: 767px) {
-}
-/* 태블릿 */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* 푸터 전체 컨테이너 */
-  .footer-container {
-    caret-color: transparent;
-    background-color: #1456fd;
-    width: 100%;
-    height: 700px;
-    position: relative;
-    overflow: hidden;
-  }
-  /* bingfree 투명 이미지 */
-  .footer-site-name {
-    width: 600px;
-    padding-left: 30px;
-    /* background-color: pink; */
-    position: absolute;
-    left: 5%;
-    top: -1%;
-  }
-  .footer-site-name img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+@media (min-width: 390px) and (max-width: 767px) {
+  .footer-logo {
+    padding-bottom: 2%;
+    width: 130px;
     display: block;
-    object-fit: contain; /* 또는 cover */
+  }
+  .footer-address h3,
+  .footer-hours h3 {
+    padding-top: 2%;
+    font-weight: 500;
+    font-size: 11px;
+  }
+  .footer-contact-phone,
+  .footer-contact-email {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .footer-contact-title {
+    font-weight: 500;
+    font-size: 11px;
+    padding-bottom: 1%;
+    padding-top: 4%;
+  }
+  .footer-txt3 {
+    padding-top: 0.8%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .footer-txt4 {
+    padding-top: 0.8%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
   }
   .footer-left {
     display: block;
     position: absolute;
-    top: 15%;
+    top: 17%;
+    left: 10%;
+    width: 100%;
+  }
+  .footer-right {
+    padding-top: 2%;
+    display: block;
+  }
+  .footer-copy {
+    color: #fff;
+    font-size: 9px;
+    padding-top: 7%;
+  }
+}
+/* 태블릿 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-left {
+    display: block;
+    position: absolute;
+    top: 17%;
     left: 10%;
     width: 100%;
     gap: 15%;
   }
-  .footer-right {
-    display: block;
-    gap: 18%;
-    padding-top: 03%
-  }
   .footer-logo {
-    width: 200px;
     padding-bottom: 3%;
-    display: block;
   }
-  /* font style */
-  .footer-contact-title {
-    font-size: 18px;
-  }
-  .footer-address h3,
-  .footer-hours h3 {
-    font-weight: 500;
-    font-size: 18px;
-  }
-
-  .footer-contact-phone,
-  .footer-contact-email {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 34px;
-    font-weight: 500;
-  }
-  .footer-txt3 {
+  .footer-copy {
+    color: #fff;
+    font-size: 13px;
     padding-top: 3%;
-    padding-bottom: 3%;
-    color: #fff;
-    font-size: 34px;
-    font-weight: 500;
-  }
-  .footer-txt4 {
-    padding-top: 2%;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.7;
   }
 }
 </style>
