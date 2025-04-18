@@ -120,6 +120,7 @@ a {
 }
 // 왼쪽 사이드 (섹션이동, 더보기)
 .sidesection {
+  z-index: 999;
   position: fixed;
   top: 50%;
   left: 8%;
