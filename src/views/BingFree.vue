@@ -248,7 +248,6 @@ const swiperBreakpoints = {
           <img style="filter: brightness(1.2)" src="/images/web_visual02.png" alt="비주얼2" />
           <div class="txtbox inner">
             <router-link to="/BingPrime" class="main-h4" style="color: #e9ff54">빙프라임 가입하기 →</router-link>
-
             <p class="main-h1" style="color: #fff">
               인증 라벨 하나로 <br />
               더 강해지는 믿음
@@ -274,7 +273,7 @@ const swiperBreakpoints = {
     </Swiper>
   </div>
   <div class="visual tab">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 83000 }">
+    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
           <img src="/images/tablet_visual01.png" alt="비주얼2" />
@@ -297,7 +296,9 @@ const swiperBreakpoints = {
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-            <p class="main-h6" style="color: #fff; margin: 25px 0px 0px 2px">깨끗한 얼음으로 더 많은 믿음을 얻으세요</p>
+            <p class="main-h6" style="font-weight:300; color: #fff; margin: 25px 0px 0px 2px">
+              깨끗한 얼음으로 더 많은 믿음을 얻으세요
+            </p>
           </div>
         </div>
       </SwiperSlide>
