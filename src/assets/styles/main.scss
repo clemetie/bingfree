@@ -288,6 +288,9 @@ section {
 
 @include mobile {
   /*브라우저 사이즈767px이하일때*/
+  section {
+    height: auto;
+  }
   .sidesection {
     display: none;
   }
@@ -295,7 +298,7 @@ section {
     display: none;
   }
   .visual.tab {
-    margin-top: 120px;
+    margin-top: 80px;
     display: block !important;
     img {
       width: 100%;
@@ -328,6 +331,70 @@ section {
     .phone {
       display: none;
     }
+  }
+  .sideBtn {
+    width: 120px !important;
+    height: 45px !important;
+    border: 2px solid $bingfree-main;
+    background-color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 16px !important;
+    font-weight: 300;
+    color: $bingfree-main;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.5s ease;
+    img {
+      width: 20px !important;
+      height: 20px !important;
+      transition: filter 0.3s ease;
+    }
+    .text {
+      display: inline;
+      transition: opacity 0.3s ease;
+    }
+    &.compact {
+      width: 45px !important;
+      height: 45px !important;
+      &:first-child {
+        background-color: $bingfree-main;
+        color: #fff;
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+      &:nth-child(2) {
+        background: none;
+        border: none;
+        img {
+          width: 40px !important;
+          height: 40px !important;
+        }
+      }
+      .text {
+        display: none;
+        width: 0;
+        overflow: hidden;
+      }
+    }
+  }
+.side{
+  div{
+    margin-bottom: 20px;
+  }
+}
+  .goTop {
+    cursor: pointer;
+    width: 45px !important;
+    line-height: 45px !important;
+    background-color: $bingfree-main;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    float: right;
+    font-size: 24px !important;
   }
 }
 
