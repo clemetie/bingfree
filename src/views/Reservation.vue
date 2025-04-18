@@ -532,11 +532,7 @@ const scrollToTop = () => {
             </div>
             <div class="image">
               <input type="file" @change="onFileChange" accept="image/*" />
-              <img
-                v-if="imageUrl"
-                :src="imageUrl"
-                alt="이미지 미리보기"
-              />
+              <img v-if="imageUrl" :src="imageUrl" alt="이미지 미리보기" />
             </div>
 
             <!-- 총 금액 -->
@@ -951,9 +947,9 @@ const scrollToTop = () => {
         </fieldset>
         <!-- 자주 묻는 질문 -->
         <fieldset class="faq-box" v-if="isReservationMatched">
-          <p class="main-h3">
+          <p class="main-h3" style="color: #424242;">
             자주 묻는 질문
-            <span v-on:click="showFAQ = !showFAQ">{{
+            <span style="color: #424242;" v-on:click="showFAQ = !showFAQ">{{
               showFAQ ? "접기 ▲" : "펼치기 ▼"
             }}</span>
           </p>
@@ -964,7 +960,7 @@ const scrollToTop = () => {
             v-for="faq in faqs"
             :key="faq.id"
           >
-            <p class="detail-txt" style="font-weight: 800">
+            <p class="detail-txt" style="font-weight: 800; color: #424242">
               Q. {{ faq.question }}
             </p>
             <p

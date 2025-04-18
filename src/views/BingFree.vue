@@ -251,7 +251,7 @@ const swiperBreakpoints = {
   </ul>
   <!-- 비주얼 스와이프 -->
   <div class="visual web" :class="{ scroll: isScrolled }">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 93000 }">
+    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
           <img
@@ -259,8 +259,8 @@ const swiperBreakpoints = {
             alt="비주얼1"
           />
           <div class="txtbox inner">
-            <p class="main-h4" style="color: #212121">제빙기 케어</p>
-            <p class="main-h1" style="color: #1456fd">
+            <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
+            <p class="main-h1" style="color: #fff">
               눈에 보이지 않아도, <br />
               우리는 알고 있어야 하니까
             </p>
@@ -275,7 +275,7 @@ const swiperBreakpoints = {
             alt="비주얼2"
           />
           <div class="txtbox inner">
-            <router-link to="/BingPrime" class="main-h3" style="color: #e9ff54"
+            <router-link to="/BingPrime" class="main-h4" style="color: #e9ff54"
               >빙프라임 가입하기 →</router-link
             >
 
@@ -313,7 +313,7 @@ const swiperBreakpoints = {
     </Swiper>
   </div>
   <div class="visual tab">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 83000 }">
+    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
           <img src="/images/tablet_visual01.png" alt="비주얼2" />
@@ -342,7 +342,7 @@ const swiperBreakpoints = {
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-            <p class="main-h6" style="color: #fff; margin: 25px 0px 0px 2px">
+            <p class="main-h6" style="font-weight:300; color: #fff; margin: 25px 0px 0px 2px">
               깨끗한 얼음으로 더 많은 믿음을 얻으세요
             </p>
           </div>
