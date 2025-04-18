@@ -14,10 +14,6 @@
 @include mobile {
   .check {
     width: 100% !important;
-    height: auto !important;
-    min-height: unset !important;
-    max-height: unset !important;
-    overflow: hidden;
   }
   .price_wrap {
     max-width: 370px !important;
@@ -25,7 +21,10 @@
   }
 
   .text_content {
+    transform: translate(-4%, 84%);
+    margin: auto;
     .description {
+      margin-top: 1px !important;
       transform: translateX(-4%);
       white-space: nowrap !important;
       font-size: 20px !important;
@@ -126,9 +125,6 @@
 @include submobile {
   .check {
     width: 100% !important;
-    height: auto !important;
-    min-height: unset !important;
-    max-height: unset !important;
   }
   .price_wrap {
     max-width: 370px !important;
@@ -136,7 +132,8 @@
   }
 
   .text_content {
-    transform: translateY(60%) !important;
+    margin: auto;
+    transform: translate(-8%, 135%) !important;
     .description {
       transform: translateX(-5%);
       white-space: nowrap !important;
@@ -149,7 +146,7 @@
     }
   }
   .receipt_section {
-    transform: translateX(2%);
+    transform: translateX(-1%);
   }
 
   .receipt_content.card1 {
@@ -222,7 +219,7 @@
     }
   }
   .price_content {
-    transform: translateY(-86%) !important;
+    transform: translate(-16%, -86%) !important;
 
     span {
       &:first-child {
@@ -247,7 +244,9 @@
 @include tablet {
   inner {
     max-width: 700px !important;
-    margin: auto !important;
+  }
+  .pric_wrap {
+    left: 10% !important;
   }
   .text_content {
     transform: translateY(20%) !important;
@@ -556,12 +555,13 @@
     rgba(255, 255, 255, 0.8) 100%
   );
   background-attachment: fixed;
+  position: relative;
 }
 
 .price_wrap {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto !important;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -574,9 +574,9 @@
     @include text-style(50px, 700);
     text-transform: uppercase;
     line-height: 1;
-    padding-bottom: 0.3em;
+    // padding-bottom: 0.3em;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     position: relative;
     color: #212121;
 
