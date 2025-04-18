@@ -58,7 +58,7 @@
   }
   .introBing .caption {
     font-size: 9px !important;
-}
+  }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   /*브라우저 사이즈 768px이상, 1023px 이하일때*/
@@ -97,6 +97,9 @@
   }
   .inner {
     text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
   .main-introBing-txt {
