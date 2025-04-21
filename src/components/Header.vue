@@ -28,6 +28,7 @@ const navigateTo = (path) => {
   router.push(path);
   isMenuOpen.value = false;
 };
+
 </script>
 
 <template>
@@ -111,6 +112,11 @@ header {
         font-weight: 600;
         margin-left: 70px;
         position: relative;
+
+        &.active {
+          color: #1651da; // 클릭 이후에도 계속 유지될 텍스트 색상
+          font-weight: 800;
+        }
         img {
           position: absolute;
           top: 50%;
