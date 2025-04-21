@@ -252,6 +252,9 @@
 }
 
 @include tablet {
+  .check {
+    height: auto !important;
+  }
   inner {
     max-width: 700px !important;
   }
@@ -635,7 +638,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  overflow: visible;
 }
 .text_content {
   align-items: center;
