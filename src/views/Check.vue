@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import { onUnmounted } from "vue";
 import Topbar from "@/components/Topbar.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination } from "swiper/modules";
@@ -172,6 +173,28 @@ onMounted(() => {
     }
   }, 3000); // 3초마다 전환
 });
+
+//배너 반응형 이밍지 변경하기
+const imgSrc = ref("//check/check_banner_top.png");
+
+const updateImageSrc = () => {
+  if (window.matchMedia("(min-width: 390px) and (max-width: 767px)").matches) {
+    imgSrc.value = "/check/check_banner_mobile.png";
+  } else if (window.matchMedia("(min-width: 768px) and (max-width: 1023px)").matches) {
+    imgSrc.value = "/check/check_banner_tablet.dc.png";
+  } else {
+    imgSrc.value = "/check/check_banner_top.png";
+  }
+};
+
+onMounted(() => {
+  updateImageSrc();
+  window.addEventListener("resize", updateImageSrc);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateImageSrc);
+});
 </script>
 <template>
   <div class="wrap">
@@ -199,16 +222,17 @@ onMounted(() => {
 
     <!-- 요금제 상세 배너 -->
     <div class="banner_section">
-      <img src="/public/check/check_banner_top.png" alt="" />
+      <img :src="imgSrc" alt="반응형 이미지" />
       <!-- 배너안 텍스트 -->
-      <div class="intro-banner-txtbox">
+      <!-- <div class="intro-banner-txtbox">
         <p class="intro-banner-txt1" style="font-size: 38px; color: #fff; font-weight: 600">
           성수기 일정은 빙프리에게,<br />소통은 실시간으로.
         </p>
         <p class="intro-banner-txt2" style="font-size: 23px; color: #fff; font-weight: 400">
           Trust Bingfree, for timely plans and instant chat.
         </p>
-      </div>
+      </div> -->
+      <button class="reserve-btn">예약하기</button>
     </div>
     <!-- 배너아래 바로가기 -->
     <div class="check-top2">
@@ -229,16 +253,6 @@ onMounted(() => {
       </ul>
     </nav>
     <div class="Tap1_ordinary" v-if="intropiceTab === 'ordinary'">
-      <!-- 일반 요금제 설명 -->
-      <div class="ordinary_text_content">
-        <p>요금안내</p>
-        <p>운영환경에 딱 맞게! 빙프리 일반요금제로 시작하세요</p>
-        <p>매장규모와 제빙기 용량에 따라, 최적의 요금제를 직접 선택할 수 있습니다</p>
-        <p>
-          자사몰 인기상품 추가 구매가능 + 제빙기 점검서비스까지 선택 가능!
-          <span>요금안내참조</span>
-        </p>
-      </div>
       <!-- 일반 요금제 카드 섹션 -->
 
       <!-- 스와이퍼 -->
@@ -246,11 +260,21 @@ onMounted(() => {
         <h1 class="ordinary_h1">KG따라 선택하는 <span>빙프리&nbsp;</span>최적의 기본요금제</h1>
 
         <Swiper
-          :slides-per-view="2"
-          :space-between="24"
           :modules="[Navigation, Pagination]"
           navigation
-          class="ordinary_swiper">
+          class="ordinary_swiper"
+          :slides-per-view="1"
+          :space-between="16"
+          :breakpoints="{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 32,
+            },
+          }">
           <SwiperSlide v-for="(ordinary, index) in ordinarys" :key="index" class="ordinary_content">
             <div class="ordinary_list">
               <p class="or_price_title">{{ ordinary.title }}</p>
@@ -280,6 +304,37 @@ onMounted(() => {
             </div>
           </SwiperSlide>
         </Swiper>
+      </div>
+      <!-- 일반 요금제 설명 -->
+      <div class="ordinary_text_content ordinary_right" data-aos="fade-left" data-aos-duration="1500">
+        <div class="text_box">
+          <p>요금안내</p>
+          <p>운영환경에 딱 맞게! 빙프리 일반요금제로 시작하세요</p>
+          <p>매장규모와 제빙기 용량에 따라, 최적의 요금제를 직접 선택할 수 있습니다</p>
+          <p>
+            자사몰 인기상품 추가 구매가능 + 제빙기 점검서비스까지 선택 가능!<br />
+            <span>요금안내참조</span>
+          </p>
+        </div>
+      </div>
+      <!--  호시 자키에 대한 설명 -->
+      <div class="ordinary_text_content ordinary_left" data-aos="fade-right" data-aos-duration="1500">
+        <div class="text_box">
+          <p>호시자키 모델도 문제없이!</p>
+          <p>
+            분해 난이도가 높은 호시자키 제빙기,<br />
+            <strong>빙프리에서는 추가요금 없이</strong> 일반 요금제로 이용할 수 있습니다.
+          </p>
+          <p>
+            복잡한 구조 때문에 타사에서는 추가 비용이 발생하는 경우가 많지만,<br />
+            빙프리는 <strong>모델 구분 없이 동일한 기준</strong>으로 청소 서비스를 제공합니다.
+          </p>
+          <p>
+            1회 청소만으로도 만족하셨다면,<br />
+            <strong>호시자키 전용 구독 요금제 ‘호시자키’, ‘호시자키+’</strong>로 편하게 이어가 보세요.
+            <span>구독요금 안내참조</span>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -336,24 +391,11 @@ onMounted(() => {
           </ul>
         </div>
       </div>
-      <!-- top event 요금제 섹션 -->
-      <div class="top3_price_section">
-        <div class="inner">
-          <!-- 텍스트 부분 -->
-          <div class="top3_text_content">
-            <p>요금안내</p>
-            <p>깨끗한 얼음, 완벽한 시작! 빙프리와 함께하세요!</p>
-            <p>첫 얼음처럼 맑고 신선한 순간을 위해, 당신의 제빙기 정기 관리가 필요합니다</p>
-            <p>
-              구독 시 최대 20% 할인 + 2년 연장 시 추가 5%! 일반 결제보다 최대 210,000원 절약! <span>요금안내참조</span>
-            </p>
-          </div>
-        </div>
-      </div>
+
       <!--top3 요금제 카드  -->
 
       <div class="inner">
-        <h1>빙프라임+ 구독요금제&nbsp; <span>TOP3</span></h1>
+        <P class="top3_h1">빙프라임+ 구독요금제&nbsp; <span>TOP3</span></P>
         <div class="top3_card_content">
           <div class="top3_card_list" v-for="(description, index) in descriptions" :key="index">
             <!-- 요금제 제목 -->
@@ -401,123 +443,453 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <!-- 빙프리 프라임 구독 요금제 -->
-      <div class="bingfrime_wrap_section">
-        <div class="inner">
-          <p>필요한 만큼 선택하는<span>&nbsp#빙프라임+ 맞춤케어</span><span>&nbsp;구독</span>&nbsp;요금제</p>
-          <div class="pricelist_tap">
-            <ul class="tab_list">
-              <li v-for="tab in tabs" :key="index" class="tab_item" :class="{ on: selectedTab === tab }">
-                <a href="#" class="btn_tab" @click.prevent="selectTab(tab)">
-                  {{ tab }}
-                </a>
-              </li>
-            </ul>
+      <!-- top event 요금제 섹션 -->
+      <div class="top3_price_section">
+        <!-- 텍스트 부분 -->
+        <!-- ////////////////////////////////////////////////////// -->
+        <!-- 일반 요금제 설명 -->
+        <div
+          class="ordinary_text_content ordinary_right"
+          data-aos="fade-left"
+          data-aos-duration="1500"
+          style="margin-left: 41%">
+          <div class="text_box">
+            <p>요금안내</p>
+            <p>깨끗한 얼음, 완벽한 시작! 빙프리와 함께하세요!</p>
+            <p>프랜차이즈 카페·식당 사장님을 위한 스마트한 선택, 제빙기 구독 관리 서비스!</p>
+            <p>
+              구독 시 제빙기 검사 무료 + 전용 세제 무상 제공 + 세균 시트지까지!
+              <br />
+              2년 연장 시 추가 5% 할인, 일반 요금제 대비 최대 210,000원 절약!
+              <br />
+              <span>요금안내참조</span>
+            </p>
           </div>
-          <!-- 요금제 카드 목록 -->
-          <div class="price_list">
-            <!-- 대표 제목 버튼 (탭 선택에 따라 바뀜) -->
-            <!-- price리스트 왼쪽 부분 -->
-            <div class="price_list_left">
-              <button class="selected_plan_title">
-                <span class="selctedTab_bt">{{ selectedTab }}</span>
-                빙프라임+구독회원 요금
-              </button>
-              <div class="individual_list">
-                <div
-                  class="individual_card"
-                  v-for="(plan, idx) in pricePlans[selectedTab]"
-                  :key="idx"
-                  :class="{
-                    'last-card': idx === pricePlans[selectedTab].length - 1,
-                  }">
-                  <div class="card_in_times">
-                    회차: <span>{{ plan.times }}회</span>
-                  </div>
-                  <button class="perprice_bt">1회당</button>
-                  <div class="card_in_price">
-                    <div class="card_in_perprice">
-                      <span>{{ plan.pricePerUse.toLocaleString() }}원</span>
-                    </div>
-                    <div class="card_in_total">
-                      합계: <span>{{ plan.total.toLocaleString() }}원</span>
-                    </div>
-                  </div>
-
-                  <div class="buttons">
-                    <button>구독하기</button>
-                    <button @click="toggleBenefits">혜택보기</button>
-                  </div>
-                </div>
-              </div>
+        </div>
+        <!--  호시 자키에 대한 설명 -->
+        <div
+          class="ordinary_text_content ordinary_left"
+          style="margin-right: 32%"
+          data-aos="fade-right"
+          data-aos-duration="1500">
+          <div class="text_box">
+            <p>호시자키 모델도 문제없이!</p>
+            <p>
+              분해 난이도가 높은 호시자키 제빙기,<br />
+              <strong>빙프리에서는 추가요금 없이</strong> 구독 요금제로 이용할 수 있습니다.
+            </p>
+            <p>
+              복잡한 구조 때문에 타사에서는 추가 비용이 발생하는 경우가 많지만,<br />
+              빙프리는 <strong>모델 구분 없이 동일한 기준</strong>으로 청소 서비스를 제공합니다.
+            </p>
+            <p>
+              1회 청소만으로도 만족하셨다면,<br />
+              <strong>호시자키 전용 구독 요금제 ‘호시자키’, ‘호시자키+’</strong>로 편하게 이어가 보세요.
+              <span>구독요금 안내참조</span>
+            </p>
+          </div>
+        </div>
+        <!-- 빙프리 프라임 구독 요금제 -->
+        <div class="bingfrime_wrap_section">
+          <div class="inner">
+            <p>필요한 만큼 선택하는<span>&nbsp#빙프라임+ 맞춤케어</span><span>&nbsp;구독</span>&nbsp;요금제</p>
+            <div class="pricelist_tap">
+              <ul class="tab_list">
+                <li v-for="tab in tabs" :key="index" class="tab_item" :class="{ on: selectedTab === tab }">
+                  <a href="#" class="btn_tab" @click.prevent="selectTab(tab)">
+                    {{ tab }}
+                  </a>
+                </li>
+              </ul>
             </div>
+            <!-- 요금제 카드 목록 -->
+            <div class="price_list">
+              <!-- 대표 제목 버튼 (탭 선택에 따라 바뀜) -->
+              <!-- price리스트 왼쪽 부분 -->
+              <div class="price_list_left">
+                <button class="selected_plan_title">
+                  <span class="selctedTab_bt">{{ selectedTab }}</span>
+                  빙프라임+구독회원 요금
+                </button>
+                <div class="individual_list">
+                  <div
+                    class="individual_card"
+                    v-for="(plan, idx) in pricePlans[selectedTab]"
+                    :key="idx"
+                    :class="{
+                      'last-card': idx === pricePlans[selectedTab].length - 1,
+                    }">
+                    <div class="card_in_times">
+                      회차: <span>{{ plan.times }}회</span>
+                    </div>
+                    <button class="perprice_bt">1회당</button>
+                    <div class="card_in_price">
+                      <div class="card_in_perprice">
+                        <span>{{ plan.pricePerUse.toLocaleString() }}원</span>
+                      </div>
+                      <div class="card_in_total">
+                        합계: <span>{{ plan.total.toLocaleString() }}원</span>
+                      </div>
+                    </div>
 
-            <!-- 혜택 정보 섹션 그대로 유지 -->
-            <div class="plus_sale_list">
-              <h1>2년 연장회원 특별할인 혜택 계산하기</h1>
-
-              <!-- 혜택 전 -->
-              <div class="first_box_section" v-if="!showBenefits">
-                <div class="first_box_before">
-                  <p>
-                    <span>혜택하기를 누르고<br />자세한 정보를 확인해보세요.</span>
-                  </p>
-                </div>
-                <div class="second_box">
-                  <p>
-                    <span>기본회원권:</span>
-                    <span>가격확인하기</span>
-                  </p>
-                  <p>
-                    <span>2년 연장 혜택:</span>
-                    <span>가격확인하기</span>
-                  </p>
-                </div>
-              </div>
-
-              <!-- 혜택 후 -->
-              <div v-else>
-                <div class="first_box_after">
-                  <p>
-                    <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
-                    <span>3년 구독 혜택으로<strong>&nbsp;5% 추가</strong>할인까지!</span>
-                  </p>
-                  <p>
-                    <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
-                    <span>1년 4회의 청소, <strong>3년까지</strong>사용할 수 있는<br />특별 구독 혜택 </span>
-                  </p>
-                  <p>
-                    <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
-                    <span>동절기엔 청소를 미뤄도 괜찮아요,<br /><strong>AI 알림</strong>&nbsp;으로 언제든 체크!</span>
-                  </p>
-                </div>
-
-                <div class="second_box" v-if="pricePlans[selectedTab].length">
-                  <p>
-                    <span>기본 {{ pricePlans[selectedTab][0].times }}회권</span>
-                    <span>회당 {{ pricePlans[selectedTab][0].pricePerUse.toLocaleString() }}원</span>
-                  </p>
-                  <p>
-                    <span>2년 연장 혜택 {{ pricePlans[selectedTab][1].times }}회권</span>
-                    <span>회당 {{ pricePlans[selectedTab][1].pricePerUse.toLocaleString() }}원</span>
-                  </p>
+                    <div class="buttons">
+                      <button>구독하기</button>
+                      <button @click="toggleBenefits">혜택보기</button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <p class="years2_banner">2년 연장 구독하고 최대 25% 혜택을 누려보세요.</p>
-              <button class="years2_bt">
-                {{ showBenefits ? "구독하기" : "혜택보기" }}
-              </button>
+              <!-- 혜택 정보 섹션 그대로 유지 -->
+              <div class="plus_sale_list">
+                <h1>2년 연장회원 특별할인 혜택 계산하기</h1>
+
+                <!-- 혜택 전 -->
+                <div class="first_box_section" v-if="!showBenefits">
+                  <div class="first_box_before">
+                    <p>
+                      <span>혜택하기를 누르고<br />자세한 정보를 확인해보세요.</span>
+                    </p>
+                  </div>
+                  <div class="second_box">
+                    <p>
+                      <span>기본회원권:</span>
+                      <span>가격확인하기</span>
+                    </p>
+                    <p>
+                      <span>2년 연장 혜택:</span>
+                      <span>가격확인하기</span>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 혜택 후 -->
+                <div v-else>
+                  <div class="first_box_after">
+                    <p>
+                      <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
+                      <span>3년 구독 혜택으로<strong>&nbsp;5% 추가</strong>할인까지!</span>
+                    </p>
+                    <p>
+                      <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
+                      <span>1년 4회의 청소, <strong>3년까지</strong>사용할 수 있는<br />특별 구독 혜택 </span>
+                    </p>
+                    <p>
+                      <span><img class="check_icon" src="/public/check/price_check_icon.png" alt="checkicon" /></span>
+                      <span>동절기엔 청소를 미뤄도 괜찮아요,<br /><strong>AI 알림</strong>&nbsp;으로 언제든 체크!</span>
+                    </p>
+                  </div>
+
+                  <div class="second_box" v-if="pricePlans[selectedTab].length">
+                    <p>
+                      <span>기본 {{ pricePlans[selectedTab][0].times }}회권</span>
+                      <span>회당 {{ pricePlans[selectedTab][0].pricePerUse.toLocaleString() }}원</span>
+                    </p>
+                    <p>
+                      <span>2년 연장 혜택 {{ pricePlans[selectedTab][1].times }}회권</span>
+                      <span>회당 {{ pricePlans[selectedTab][1].pricePerUse.toLocaleString() }}원</span>
+                    </p>
+                  </div>
+                </div>
+
+                <p class="years2_banner">2년 연장 구독하고 최대 25% 혜택을 누려보세요.</p>
+                <button class="years2_bt">
+                  {{ showBenefits ? "구독하기" : "혜택보기" }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 계산하기배너 -->
-    <div class="calculation_banner">
-      <img src="" alt="" />
+      <!-- 계산하기배너 -->
+      <div class="calculation_banner">
+        <img src="" alt="" />
+      </div>
     </div>
   </div>
 </template>
-<style scoped></style>
+
+<style lang="scss">
+/* 반응형 여기에 하겠습니다 */
+
+/* 테블릿 */
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+/* 모바일 */
+@mixin mobile {
+  @media (min-width: 390px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+/* 테블릿용 스타일 */
+@include tablet {
+  .banner_section {
+    margin-top: 120px;
+    width: 100%;
+    height: 400px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .check-top2 {
+    display: none !important;
+  }
+
+  .introbing_tab {
+    margin-top: 51px !important;
+  }
+
+  .reserve-btn {
+    position: absolute;
+    right: 42px;
+    bottom: 47px;
+    display: block;
+    background-color: #e9ff54;
+    border-style: none;
+    width: 179px;
+    height: 42px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 21px;
+    font-family: "Pretendard", sans-serif;
+    color: #1456fd;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, background-color 0.2s;
+  }
+
+  .ordinary_h1 {
+    font-size: 31px;
+  }
+  .ordinary_list {
+    p {
+      margin-left: 5% !important;
+    }
+  }
+
+  .or_price_title {
+    margin-top: 8% !important;
+    font-size: 21px !important;
+  }
+
+  .or_price_weight {
+    text-align: right;
+    margin-right: 5%;
+    font-size: 15px !important;
+  }
+
+  .ordinary span:last-child {
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 13% !important;
+    text-align: left !important;
+  }
+
+  .ordinary {
+    margin-top: 5%;
+    font-size: 14px;
+    overflow-wrap: break-word;
+  }
+
+  .total-price {
+    margin-top: 8%;
+    font-size: 24px !important;
+  }
+
+  .text_box {
+    max-width: 500px !important;
+    p {
+      &:first-child {
+        font-size: 26px !important;
+      }
+      &:not(:first-child) {
+        font-size: 16px !important;
+      }
+      &:nth-child(4) {
+        font-size: 17px !important;
+      }
+    }
+  }
+}
+// @mixin submobile {
+//   @media (min-width: 360px) and (max-width: 600px) {
+//     @content;
+//   }
+// }
+
+// ////////////////////모바일
+/* 모바일용 스타일 */
+@include mobile {
+  .reserve-btn {
+    position: absolute;
+    right: 21px;
+    bottom: 128px;
+    display: block;
+    background-color: #e9ff54;
+    border-style: none;
+    width: 150px;
+    height: 36px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 19px;
+    font-family: "Pretendard", sans-serif;
+    color: #1456fd;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, background-color 0.2s;
+  }
+
+  .check-top2 {
+    display: none !important;
+  }
+
+  .banner_section {
+    margin-top: 80px;
+    width: 100%;
+    height: 360px !important;
+    background-color: antiquewhite !important;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: fit;
+    }
+  }
+  .introbing_tab li {
+    font-size: 17px !important;
+  }
+  .ordinary_h1 {
+    font-size: 20px !important;
+  }
+  .ordinary_list {
+    width: 550px !important;
+    p {
+      margin-left: 5% !important;
+    }
+  }
+  .or_price_title {
+    margin-top: 8% !important;
+    font-size: 20px !important;
+  }
+  .or_price_weight {
+    margin-right: 9% !important;
+    font-size: 15px !important;
+  }
+  .ordinary {
+    span {
+      &:last-child {
+        font-size: 14px !important;
+        display: inline-block !important;
+        margin-left: 12% !important;
+        text-align: left !important;
+      }
+    }
+  }
+  .ordinary_entire_price {
+    font-size: 20px !important;
+  }
+  .text_box {
+    max-width: 250px !important;
+
+    p {
+      &:first-child {
+        font-size: 21px !important;
+      }
+      &:not(:first-child) {
+        font-size: 14px !important;
+      }
+      &:nth-child(4) {
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+////////////////////////////////
+// @include submobile {
+//   .reserve-btn {
+//     position: absolute;
+//     right: 21px;
+//     bottom: 128px;
+//     display: block;
+//     background-color: #e9ff54;
+//     border-style: none;
+//     width: 150px;
+//     height: 36px;
+//     border-radius: 14px;
+//     font-weight: 700;
+//     font-size: 19px;
+//     font-family: "Pretendard", sans-serif;
+//     color: #1456fd;
+//     cursor: pointer;
+//     transition: transform 0.2s ease-out, background-color 0.2s;
+//   }
+
+//   .check-top2 {
+//     display: none !important;
+//   }
+
+//   .banner_section {
+//     margin-top: 80px;
+//     width: 100%;
+//     height: 360px !important;
+//     background-color: antiquewhite !important;
+//     img {
+//       display: block;
+//       width: 100%;
+//       height: 100%;
+//       object-fit: fit;
+//     }
+//   }
+//   .introbing_tab li {
+//     font-size: 17px !important;
+//   }
+//   .ordinary_h1 {
+//     font-size: 20px !important;
+//   }
+//   .ordinary_list {
+//     width: 550px !important;
+//     p {
+//       margin-left: 5% !important;
+//     }
+//   }
+//   .or_price_title {
+//     margin-top: 8% !important;
+//     font-size: 20px !important;
+//   }
+//   .or_price_weight {
+//     margin-right: 9% !important;
+//     font-size: 15px !important;
+//   }
+//   .ordinary {
+//     span {
+//       &:last-child {
+//         font-size: 14px !important;
+//         display: inline-block !important;
+//         margin-left: 12% !important;
+//         text-align: left !important;
+//       }
+//     }
+//   }
+//   .ordinary_entire_price {
+//     font-size: 20px !important;
+//   }
+//   .text_box {
+//     max-width: 250px !important;
+//     &:first-child {
+//       font-size: 21px !important;
+//     }
+//     &:not(:first-child) {
+//       font-size: 14px !important;
+//     }
+//     &:nth-child(4) {
+//       font-size: 16px !important;
+//     }
+//   }
+// }
+</style>
