@@ -265,7 +265,7 @@
     }
   }
   .reserv_card_wrap {
-    grid-template-rows: repeat(1, 1fr) !important;
+    grid-template-columns: repeat(1, 1fr) !important;
   }
   .banner {
     img {
@@ -891,15 +891,20 @@
       width: 100%;
       text-align: center;
       position: relative;
+      img {
+        width: 50%;
+      }
       .infoicon {
+        width: 24px;
+        height: 24px;
         position: absolute;
-        top: 114px;
-        left: 655px;
+        top: 62%;
+        left: 53%;
       }
       .coupon_ment {
         position: absolute;
-        top: 114px;
-        right: 350px;
+        top: 61%;
+        right: 28%;
       }
     }
     .modal-overlay {
@@ -1147,4 +1152,3 @@
     }
   }
 }
-

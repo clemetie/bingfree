@@ -41,7 +41,87 @@ a {
   max-width: 1240px;
   margin: 0 auto;
 }
+// 팝업
+.popupoverlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  z-index: 9999999;
+}
+.popup_wrap {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  .popup_top {
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    max-width: 370px;
+    min-height: 200px;
+    background-color: #ffffff;
+    border-radius: 40px 40px 0 0;
+    text-align: center;
+    p {
+      width: 40%;
+      padding: 1px 2px;
+      margin: auto;
+      text-align: center;
+      font-size: 9px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+    button {
+      border: none;
+      background: none;
+      color: $bingfree-main;
+      font-size: 30px;
+      position: absolute;
+      top: 5%;
+      right: 4%;
+    }
+    img {
+      width: 80%;
+      margin: auto;
+    }
+  }
+  .popup_bt {
+    position: relative;
+    width: 100%;
+    min-width: 450px;
+    min-height: 560px;
+    margin-top: -80px;
+    background: url("/images/popupimg.png") no-repeat center;
+    background-size: contain;
+    a {
+      width: 170px;
+      line-height: 35px;
+      background: white;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      position: absolute;
+      bottom: 8%;
+    }
+    a:first-child {
+      left: 10%;
+    }
 
+    a:last-child {
+      right: 10%;
+      background-color: $bingfree-point;
+    }
+  }
+}
 .side {
   position: fixed;
   bottom: 2%;
@@ -54,6 +134,8 @@ a {
       height: 30px;
     }
   }
+
+  // 오른쪽 사이드
   .sideBtn {
     width: 180px;
     height: 80px;
@@ -103,7 +185,6 @@ a {
       }
     }
   }
-
   .goTop {
     cursor: pointer;
     width: 80px;
@@ -289,6 +370,26 @@ section {
 
 @include mobile {
   /*브라우저 사이즈767px이하일때*/
+  .popup_wrap {
+    .popup_top {
+      max-width: 280px;
+      min-height: 180px;
+    }
+    .popup_bt {
+      min-width: 340px;
+      margin-top: -120px;
+      a {
+        width: 130px;
+        bottom: 18%;
+        &:first-child {
+          left: 8%;
+        }
+        &:last-child {
+          right: 8%;
+        }
+      }
+    }
+  }
   section {
     height: auto;
   }
@@ -381,11 +482,11 @@ section {
       }
     }
   }
-.side{
-  div{
-    margin-bottom: 20px;
+  .side {
+    div {
+      margin-bottom: 20px;
+    }
   }
-}
   .goTop {
     cursor: pointer;
     width: 45px !important;
