@@ -22,7 +22,7 @@
 
 // 반응형
 
-@media (min-width: 390px) and (max-width: 767px) {
+@media (min-width: 370px) and (max-width: 767px) {
   /*브라우저 사이즈 767px이하일때*/
   .introBing {
     width: 100%;
@@ -38,7 +38,7 @@
     line-height: 1.6;
   }
   .only-mobile {
-    display: inline;
+    display: inline !important;
   }
   .introBing .mySwiper {
     width: 50% !important;

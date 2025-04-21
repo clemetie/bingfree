@@ -203,7 +203,7 @@ const swiperBreakpoints = {
 
 <template>
   <!-- 팝업 -->
-  <div v-if="showPopup" class="popupoverlay">
+  <div v-if="showPopup" @click="closePopup" class="popupoverlay">
     <div class="popup_wrap">
       <div class="popup_top">
         <p>JTBC 2024.05.13 뉴스 발췌</p>
@@ -332,7 +332,7 @@ const swiperBreakpoints = {
     </Swiper>
   </div>
   <div class="visual tab">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 93000 }">
+    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
           <img src="/images/tablet_visual01.png" alt="비주얼2" />
@@ -361,7 +361,10 @@ const swiperBreakpoints = {
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-            <p class="main-h5" style="font-weight: 300; color: #fff; margin: 25px 0px 0px 2px">
+            <p
+              class="main-h5"
+              style="font-weight: 300; color: #fff; margin: 25px 0px 0px 2px"
+            >
               깨끗한 얼음으로 더 많은 믿음을 얻으세요
             </p>
           </div>
@@ -375,8 +378,13 @@ const swiperBreakpoints = {
               제빙기를 호텔처럼, <br />
               마음을 담아 관리해드립니다
             </p>
-            <p class="main-h6" style="margin: 15px 0; color: #5c5c5c">#빙프리 꿀팁 #보다 쉽게</p>
-            <router-link to="/BingPrime" class="main-h4 app" style="color: #1456fd; font-weight: 600;"
+            <p class="main-h6" style="margin: 15px 0; color: #5c5c5c">
+              #빙프리 꿀팁 #보다 쉽게
+            </p>
+            <router-link
+              to="/BingPrime"
+              class="main-h4 app"
+              style="color: #1456fd; font-weight: 600"
               >App 다운로드 →
             </router-link>
           </div>
@@ -816,11 +824,19 @@ const swiperBreakpoints = {
           </div>
           <div class="appdownloadBox">
             <p class="main-h5 appdownload first">
-              <img class="appicon" src="/reservation/reservmain/Apple Inc.png" alt="안드로이드" />
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Apple Inc.png"
+                alt="안드로이드"
+              />
               IOS 다운로드 →
             </p>
             <p class="main-h5 appdownload second">
-              <img class="appicon" src="/reservation/reservmain/Android OS.png" alt="안드로이드" />
+              <img
+                class="appicon"
+                src="/reservation/reservmain/Android OS.png"
+                alt="안드로이드"
+              />
               Android 다운로드 →
             </p>
           </div>
