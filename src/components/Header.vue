@@ -29,7 +29,6 @@ const navigateTo = (path) => {
   isMenuOpen.value = false;
 };
 
-
 </script>
 
 <template>

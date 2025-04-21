@@ -19,6 +19,7 @@
   .price_wrap {
     max-width: 370px !important;
     margin: auto !important;
+    overflow: hidden !important;
   }
 
   .text_content {
@@ -125,6 +126,7 @@
 }
 @include submobile {
   .check {
+    height: auto !important;
     width: 100% !important;
     height: auto !important;
     overflow: hidden !important;
@@ -140,16 +142,17 @@
 
   .text_content {
     margin: auto;
-    transform: translate(-8%, 135%) !important;
+    transform: translate(-8%, 210%) !important;
     .description {
       transform: translateX(-5%);
       white-space: nowrap !important;
-      font-size: 18px !important;
+      font-size: 15px !important;
       font-weight: 400 !important;
     }
     .heading {
-      font-size: 30px !important;
+      font-size: 21px !important;
       font-weight: 600 !important;
+      margin-top: 2% !important;
     }
   }
   .receipt_section {
@@ -261,9 +264,9 @@
       padding-left: 0 !important;
       font-size: 22px !important;
       font-weight: 400 !important;
+      transform: translateX(2%) !important;
     }
     .heading {
-      font-size: 38px !important;
       font-weight: 600 !important;
     }
   }
@@ -621,8 +624,8 @@
   );
   background-attachment: fixed;
   position: relative;
-
   overflow: hidden; // 빈 공간 제거 핵심
+  z-index: -1;
 }
 
 .price_wrap {
@@ -639,7 +642,6 @@
   .heading {
     width: 100%;
     // margin-left: 1rem;
-    @include text-style(50px, 700);
     text-transform: uppercase;
     line-height: 1;
     // padding-bottom: 0.3em;
@@ -647,6 +649,7 @@
     margin-bottom: 0.5rem;
     position: relative;
     color: #212121;
+    text-align: center;
 
     &:after {
       display: block;
@@ -1154,7 +1157,7 @@
 }
 
 // top3 요금제 영역
-.top3_h1 {
+.top3_p {
   font-size: 36px;
   font-weight: 600;
   line-height: 1.2 !important;

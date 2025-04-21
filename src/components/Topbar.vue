@@ -25,7 +25,7 @@ const highlightPaths = ["/", "/IntroBing", "/Check", "/Reservation", "/Review"];
       >빙프라임</router-link
     >
     <router-link
-      to="/FreeMall"
+      to="/"
       :style="{
         backgroundColor: route.path === '/FreeMall' ? '#1456fd' : 'black',
         color: route.path === '/FreeMall' ? '#fff' : '#9e9e9e',

@@ -14,7 +14,16 @@ const router = useRouter();
 const currentSection = ref("visual"); // 예: 'intro', 'check' 등
 
 const isScrolled = ref(false); // 스크롤 여부를 추적하는 변수
+// 팝업창
+const showPopup = ref(false);
 
+onMounted(() => {
+  showPopup.value = true;
+});
+
+function closePopup() {
+  showPopup.value = false;
+}
 const handleScrollVisual = () => {
   const scrollY = window.scrollY;
   isScrolled.value = scrollY > 50; // 스크롤이 200px 이상일 때 true로 설정
@@ -193,6 +202,20 @@ const swiperBreakpoints = {
 </script>
 
 <template>
+  <!-- 팝업 -->
+  <div v-if="showPopup" class="popupoverlay">
+    <div class="popup_wrap">
+      <div class="popup_top">
+        <p>JTBC 2024.05.13 뉴스 발췌</p>
+        <button @click="closePopup">X</button>
+        <img src="/images/popup.gif" alt="뉴스 gif" />
+      </div>
+      <div class="popup_bt">
+        <router-link to="/Check">👉가격표 보기</router-link>
+        <router-link to="/Reservation">💬 바로 예약하기</router-link>
+      </div>
+    </div>
+  </div>
   <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
   <div class="side">
     <div>
@@ -309,7 +332,7 @@ const swiperBreakpoints = {
     </Swiper>
   </div>
   <div class="visual tab">
-    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
+    <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 93000 }">
       <SwiperSlide>
         <div class="slide">
           <img src="/images/tablet_visual01.png" alt="비주얼2" />
@@ -338,10 +361,7 @@ const swiperBreakpoints = {
               인증 라벨 하나로 <br />
               더 강해지는 믿음
             </p>
-            <p
-              class="main-h6"
-              style="font-weight: 300; color: #fff; margin: 25px 0px 0px 2px"
-            >
+            <p class="main-h5" style="font-weight: 300; color: #fff; margin: 25px 0px 0px 2px">
               깨끗한 얼음으로 더 많은 믿음을 얻으세요
             </p>
           </div>
@@ -355,14 +375,8 @@ const swiperBreakpoints = {
               제빙기를 호텔처럼, <br />
               마음을 담아 관리해드립니다
             </p>
-
-            <p class="main-h6" style="margin: 15px 0; color: #5c5c5c">
-              #빙프리 꿀팁 #보다 쉽게
-            </p>
-            <router-link
-              to="/BingPrime"
-              class="main-h6 app"
-              style="color: #1456fd; font-weight: 600"
+            <p class="main-h6" style="margin: 15px 0; color: #5c5c5c">#빙프리 꿀팁 #보다 쉽게</p>
+            <router-link to="/BingPrime" class="main-h4 app" style="color: #1456fd; font-weight: 600;"
               >App 다운로드 →
             </router-link>
           </div>
@@ -496,7 +510,7 @@ const swiperBreakpoints = {
     <div ref="wrapper" class="price_wrap inner">
       <div class="text_content ordinary">
         <h3 class="description">비용은 줄이고,관리 품격은 높이고</h3>
-        <h1 class="heading">똑똑한 구독 서비스</h1>
+        <p class="main-h1 heading">똑똑한 구독 서비스</p>
       </div>
 
       <div ref="sticky" class="sticky">
@@ -795,26 +809,18 @@ const swiperBreakpoints = {
               제빙기 청소도 간편하게 <br />
               손끝으로 확인하세요
             </p>
-            <p class="main-h5">
+            <p class="main-h6">
               다지점 관리, 서비스 완료내용 확인, <br />
               예약 내역 관리까지 한 번에 가능해요
             </p>
           </div>
           <div class="appdownloadBox">
-            <p class="main-h4 appdownload first">
-              <img
-                class="appicon"
-                src="/reservation/reservmain/Apple Inc.png"
-                alt="안드로이드"
-              />
+            <p class="main-h5 appdownload first">
+              <img class="appicon" src="/reservation/reservmain/Apple Inc.png" alt="안드로이드" />
               IOS 다운로드 →
             </p>
-            <p class="main-h4 appdownload second">
-              <img
-                class="appicon"
-                src="/reservation/reservmain/Android OS.png"
-                alt="안드로이드"
-              />
+            <p class="main-h5 appdownload second">
+              <img class="appicon" src="/reservation/reservmain/Android OS.png" alt="안드로이드" />
               Android 다운로드 →
             </p>
           </div>

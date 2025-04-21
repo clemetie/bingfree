@@ -395,7 +395,7 @@ onUnmounted(() => {
       <!--top3 요금제 카드  -->
 
       <div class="inner">
-        <P class="top3_h1">빙프라임+ 구독요금제&nbsp; <span>TOP3</span></P>
+        <p class="top3_p">빙프라임+ 구독요금제&nbsp; <span>TOP3</span></p>
         <div class="top3_card_content">
           <div class="top3_card_list" v-for="(description, index) in descriptions" :key="index">
             <!-- 요금제 제목 -->

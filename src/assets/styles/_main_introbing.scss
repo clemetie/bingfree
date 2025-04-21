@@ -24,12 +24,17 @@
 
 @media (min-width: 390px) and (max-width: 767px) {
   /*브라우저 사이즈 767px이하일때*/
+  .introBing {
+    width: 100%;
+    height: auto;
+    padding: 10% 0 10% 0 !important;
+  }
   .main-h1 {
-    font-size: 25px;
+    font-size: 21px;
   }
   .main-h4 p {
     margin: auto;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.6;
   }
   .only-mobile {
@@ -62,8 +67,13 @@
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   /*브라우저 사이즈 768px이상, 1023px 이하일때*/
+  .introBing {
+    width: 100%;
+    height: auto;
+    padding: 10% 0 10% 0 !important;
+  }
   .main-h1 {
-    font-size: 38px;
+    font-size: 33px;
   }
   .main-h4 p {
     margin: auto;
@@ -83,6 +93,7 @@
 .introBing {
   width: 100%;
   max-height: 100vh;
+  padding-top: 5%;
   // background-color: pink;
   .only-mobile {
     display: none;
