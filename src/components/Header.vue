@@ -28,7 +28,24 @@ const navigateTo = (path) => {
   router.push(path);
   isMenuOpen.value = false;
 };
+// 페이지 mo-menu 전체 채우기
+const setViewportHeight = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+};
 
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  setViewportHeight();
+  window.addEventListener("resize", setViewportHeight);
+  window.addEventListener("orientationchange", setViewportHeight); // ✅ 모바일 회전 대응
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("resize", setViewportHeight);
+  window.removeEventListener("orientationchange", setViewportHeight); // ✅ 위치 이동해서 정리
+});
 </script>
 
 <template>
@@ -133,7 +150,7 @@ header {
 }
 
 @mixin mobile {
-  @media (min-width: 390px) and (max-width: 767px) {
+  @media (min-width: 370px) and (max-width: 767px) {
     @content;
   }
 }
@@ -175,7 +192,7 @@ header {
         justify-content: center;
         background: none;
         border: none;
-        width: 37px;
+        width: 30px;
         height: 80px;
         cursor: pointer;
 
@@ -190,9 +207,10 @@ header {
   }
   // 모달 창
   .mo-menu {
+    height: calc(var(--vh, 1vh) * 100); // ✅ 동적 높이 적용
     margin-top: 120px;
     width: 100%;
-    height: 100vh;
+
     position: absolute;
     position: relative;
     top: -40px;
