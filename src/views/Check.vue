@@ -610,29 +610,16 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* 반응형 여기에 하겠습니다 */
 
-/* 테블릿 */
-@mixin tablet {
-  @media (min-width: 768px) and (max-width: 1023px) {
-    @content;
-  }
-}
-
-/* 모바일 */
-@mixin mobile {
-  @media (min-width: 390px) and (max-width: 767px) {
-    @content;
-  }
-}
-
 /* 테블릿용 스타일 */
-@include tablet {
+@media (min-width: 768px) and (max-width: 1023px) {
   .banner_section {
     margin-top: 120px;
     width: 100%;
     height: 400px;
+
     img {
       display: block;
       width: 100%;
@@ -668,6 +655,7 @@ onUnmounted(() => {
   .ordinary_h1 {
     font-size: 31px;
   }
+
   .ordinary_list {
     p {
       margin-left: 5% !important;
@@ -705,6 +693,7 @@ onUnmounted(() => {
 
   .text_box {
     max-width: 500px !important;
+
     p {
       &:first-child {
         font-size: 26px !important;
@@ -717,16 +706,81 @@ onUnmounted(() => {
       }
     }
   }
-}
-// @mixin submobile {
-//   @media (min-width: 360px) and (max-width: 600px) {
-//     @content;
-//   }
-// }
 
-// ////////////////////모바일
+  .Top_number_section {
+    .Top_number_text_content {
+      transform: translateY(60%);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .num_first {
+        font-size: 21px !important;
+      }
+
+      .num_second,
+      .num_third {
+        font-size: 26px !important;
+      }
+    }
+
+    .numbering_box {
+      max-width: 480px !important;
+
+      .number_ul {
+        .lt {
+          gap: 20px !important;
+          em {
+            font-size: 22px !important;
+          }
+
+          .lt_second_Sec {
+            .numbering {
+              .n_wrap {
+                .n_list_sub {
+                  font-size: 38px !important;
+                  height: 50px !important;
+                }
+              }
+            }
+          }
+
+          .fixp {
+            font-size: 22px !important;
+          }
+          .rt {
+            gap: 20px !important;
+            em {
+              font-size: 22px !important;
+            }
+            .b_txt {
+              font-size: 38px !important;
+              b {
+                font-size: 38px !important;
+              }
+            }
+            .numbering {
+              .n_wrap {
+                margin-top: 19% !important;
+                .n_list_sub {
+                  font-size: 38px !important
+              ;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /// top3
+  .top_p{
+    font-size: 31px !important;
+  }
+}
+
 /* 모바일용 스타일 */
-@include mobile {
+@media (min-width: 390px) and (max-width: 767px) {
   .reserve-btn {
     position: absolute;
     right: 21px;
@@ -754,46 +808,54 @@ onUnmounted(() => {
     width: 100%;
     height: 360px !important;
     background-color: antiquewhite !important;
+
     img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: fit;
+      object-fit: cover;
     }
   }
+
   .introbing_tab li {
     font-size: 17px !important;
   }
+
   .ordinary_h1 {
     font-size: 20px !important;
   }
+
   .ordinary_list {
     width: 550px !important;
+
     p {
       margin-left: 5% !important;
     }
   }
+
   .or_price_title {
     margin-top: 8% !important;
     font-size: 20px !important;
   }
+
   .or_price_weight {
     margin-right: 9% !important;
     font-size: 15px !important;
   }
+
   .ordinary {
-    span {
-      &:last-child {
-        font-size: 14px !important;
-        display: inline-block !important;
-        margin-left: 12% !important;
-        text-align: left !important;
-      }
+    span:last-child {
+      font-size: 14px !important;
+      display: inline-block !important;
+      margin-left: 12% !important;
+      text-align: left !important;
     }
   }
+
   .ordinary_entire_price {
     font-size: 20px !important;
   }
+
   .text_box {
     max-width: 250px !important;
 
@@ -809,87 +871,27 @@ onUnmounted(() => {
       }
     }
   }
+
+  .Top_number_section {
+    .Top_number_text_content {
+      transform: translateY(60%);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .num_first {
+        font-size: 21px !important;
+      }
+
+      .num_second,
+      .num_third {
+        font-size: 26px !important;
+      }
+    }
+
+    .numbering_box {
+      max-width: 250px !important;
+    }
+  }
 }
-////////////////////////////////
-// @include submobile {
-//   .reserve-btn {
-//     position: absolute;
-//     right: 21px;
-//     bottom: 128px;
-//     display: block;
-//     background-color: #e9ff54;
-//     border-style: none;
-//     width: 150px;
-//     height: 36px;
-//     border-radius: 14px;
-//     font-weight: 700;
-//     font-size: 19px;
-//     font-family: "Pretendard", sans-serif;
-//     color: #1456fd;
-//     cursor: pointer;
-//     transition: transform 0.2s ease-out, background-color 0.2s;
-//   }
-
-//   .check-top2 {
-//     display: none !important;
-//   }
-
-//   .banner_section {
-//     margin-top: 80px;
-//     width: 100%;
-//     height: 360px !important;
-//     background-color: antiquewhite !important;
-//     img {
-//       display: block;
-//       width: 100%;
-//       height: 100%;
-//       object-fit: fit;
-//     }
-//   }
-//   .introbing_tab li {
-//     font-size: 17px !important;
-//   }
-//   .ordinary_h1 {
-//     font-size: 20px !important;
-//   }
-//   .ordinary_list {
-//     width: 550px !important;
-//     p {
-//       margin-left: 5% !important;
-//     }
-//   }
-//   .or_price_title {
-//     margin-top: 8% !important;
-//     font-size: 20px !important;
-//   }
-//   .or_price_weight {
-//     margin-right: 9% !important;
-//     font-size: 15px !important;
-//   }
-//   .ordinary {
-//     span {
-//       &:last-child {
-//         font-size: 14px !important;
-//         display: inline-block !important;
-//         margin-left: 12% !important;
-//         text-align: left !important;
-//       }
-//     }
-//   }
-//   .ordinary_entire_price {
-//     font-size: 20px !important;
-//   }
-//   .text_box {
-//     max-width: 250px !important;
-//     &:first-child {
-//       font-size: 21px !important;
-//     }
-//     &:not(:first-child) {
-//       font-size: 14px !important;
-//     }
-//     &:nth-child(4) {
-//       font-size: 16px !important;
-//     }
-//   }
-// }
 </style>
