@@ -80,6 +80,7 @@ a {
       border-radius: 5px;
     }
     button {
+      cursor: pointer;
       border: none;
       background: none;
       color: $bingfree-main;
@@ -111,6 +112,10 @@ a {
       text-decoration: none;
       position: absolute;
       bottom: 8%;
+      color: #212121;
+      &:hover {
+        color: $bingfree-main;
+      }
     }
     a:first-child {
       left: 10%;
@@ -164,7 +169,8 @@ a {
       &:first-child {
         background-color: $bingfree-main;
         color: #fff;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), inset -3px -1px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5),
+          inset -3px -1px 10px rgba(0, 0, 0, 0.2);
         img {
           filter: brightness(0) invert(1);
         }
@@ -194,7 +200,8 @@ a {
     border-radius: 50%;
     float: right;
     font-size: 30px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), inset -3px -1px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5),
+      inset -3px -1px 10px rgba(0, 0, 0, 0.2);
   }
 }
 // 왼쪽 사이드 (섹션이동, 더보기)
@@ -277,9 +284,21 @@ a {
       position: absolute;
       left: 0;
       bottom: -20px;
-      background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 90%);
-      background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 90%);
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 90%);
+      background: -moz-linear-gradient(
+        top,
+        rgba(255, 255, 255, 0) 0%,
+        rgb(255, 255, 255) 90%
+      );
+      background: -webkit-linear-gradient(
+        top,
+        rgba(255, 255, 255, 0) 0%,
+        rgb(255, 255, 255) 90%
+      );
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgb(255, 255, 255) 90%
+      );
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#37197d',GradientType=0 );
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -298,8 +317,8 @@ a {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: width 1s ease, height 1s ease, top 1s ease, left 1s ease, border-radius 0.5s ease,
-        background 1s cubic-bezier(0.7, 0, 0.7, 1);
+      transition: width 1s ease, height 1s ease, top 1s ease, left 1s ease,
+        border-radius 0.5s ease, background 1s cubic-bezier(0.7, 0, 0.7, 1);
     }
   }
   .txtbox {
@@ -359,6 +378,14 @@ section {
     .popup_top {
       max-width: 280px;
       min-height: 180px;
+      p {
+        width: 50%;
+        font-size: 10px;
+      }
+      button {
+        font-size: 24px;
+        right: 6%;
+      }
     }
     .popup_bt {
       min-width: 340px;

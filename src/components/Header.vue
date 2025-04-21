@@ -133,7 +133,7 @@ header {
 }
 
 @mixin mobile {
-  @media (min-width: 390px) and (max-width: 767px) {
+  @media (min-width: 370px) and (max-width: 767px) {
     @content;
   }
 }
@@ -175,7 +175,7 @@ header {
         justify-content: center;
         background: none;
         border: none;
-        width: 37px;
+        width: 30px;
         height: 80px;
         cursor: pointer;
 

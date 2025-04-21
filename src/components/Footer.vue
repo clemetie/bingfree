@@ -127,7 +127,7 @@ html {
 }
 
 /* 모바일 */
-@media (min-width: 390px) and (max-width: 767px) {
+@media (min-width: 370px) and (max-width: 767px) {
   .footer-logo {
     padding-bottom: 2%;
     width: 130px;

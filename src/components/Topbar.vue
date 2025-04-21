@@ -35,7 +35,7 @@ const highlightPaths = ["/", "/IntroBing", "/Check", "/Reservation", "/Review"];
   </div>
 </template>
 <style scoped>
-@media (min-width: 390px) and (max-width: 767px) {
+@media (min-width: 370px) and (max-width: 767px) {
   .topbar a {
     width: 30% !important;
     font-size: 11px !important;
