@@ -104,8 +104,8 @@ html {
 
 .footer-contact-phone,
 .footer-contact-email {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 50px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 500;
 }
 .footer-txt3 {

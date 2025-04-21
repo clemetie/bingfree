@@ -1,40 +1,18 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-// 부모로부터 currentSection 값을 받음
-const props = defineProps({
-  currentSection: String,
-});
+const route = useRoute();
+const router = useRouter();
 
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
-// 스크롤 시 부드럽게 이동
-const scrollToSection = (id, event) => {
-  event.preventDefault(); // 기본 동작인 페이지 이동을 막음
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
-  currentSection.value = id; // nav a 색상 변경
-  isMenuOpen.value = false; // 메뉴 닫기
-};
-
-const scrollToTop = (event) => {
-  event.preventDefault(); // 라우팅 막고
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
-
-// 테블릿 픽스바 백색상 변경
 const isScrolled = ref(false);
-
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 30; // 스크롤 30px 이상일 때 배경 변경
+  isScrolled.value = window.scrollY > 30;
 };
 
 onMounted(() => {
@@ -45,38 +23,25 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 
-// 테블릿에서 해당 섹션 click 이벤트시 nav a 카테고리 색상 변경
-const currentSection = ref("intro");
+// 페이지 이동 및 메뉴 닫기
+const navigateTo = (path) => {
+  router.push(path);
+  isMenuOpen.value = false;
+};
 </script>
 
 <template>
   <header :class="{ scrolled: isScrolled || isMenuOpen }">
     <div class="inner">
-      <a href="/" @click="scrollToTop">
-        <img src="/images/main-logo.png" alt="" />
-      </a>
+      <router-link to="/" @click="isMenuOpen = false">
+        <img src="/images/main-logo.png" alt="메인 로고" />
+      </router-link>
       <nav :class="{ open: isMenuOpen }">
-        <a href="#intro" @click="scrollToSection('intro', $event)" :class="{ active: props.currentSection === 'intro' }"
-          >빙프리란?</a
-        >
-        <a href="#check" @click="scrollToSection('check', $event)" :class="{ active: props.currentSection === 'check' }"
-          >요금안내</a
-        >
-        <a
-          href="#review"
-          @click="scrollToSection('review', $event)"
-          :class="{ active: props.currentSection === 'review' }"
-          >고객리뷰</a
-        >
-        <a
-          href="#reserv"
-          @click="scrollToSection('reserv', $event)"
-          :class="{ active: props.currentSection === 'reserv' }"
-          >예약하기</a
-        >
+        <router-link to="/IntroBing" :class="{ active: route.path === '/IntroBing' }"> 빙프리란? </router-link>
+        <router-link to="/Check" :class="{ active: route.path === '/Check' }"> 요금안내 </router-link>
+        <router-link to="/Review" :class="{ active: route.path === '/Review' }"> 고객리뷰 </router-link>
+        <router-link to="/Reservation" :class="{ active: route.path === '/Reservation' }"> 예약하기 </router-link>
       </nav>
-
-      <!-- 햄버거 아이콘 -->
 
       <div class="hamburger" @click="toggleMenu">
         <img
@@ -85,7 +50,8 @@ const currentSection = ref("intro");
       </div>
     </div>
   </header>
-  <!-- 햄버거 모달창 -->
+
+  <!-- 모바일 햄버거 메뉴 -->
   <nav class="mo-menu" v-show="isMenuOpen">
     <ul class="mo-sns">
       <li>
@@ -104,45 +70,18 @@ const currentSection = ref("intro");
     </div>
     <ul class="menu-list">
       <li class="first">
-        <a
-          href="#intro"
-          @click="scrollToSection('intro', $event)"
-          style="opacity: 1; font-weight: 700"
-          :class="{ active: currentSection === 'intro' || (isMenuOpen && currentSection === 'intro') }"
-          >ABOUT</a
-        >
+        <a @click.prevent="navigateTo('/IntroBing')" :class="{ active: route.path === '/IntroBing' }"> ABOUT </a>
       </li>
       <li>
-        <a
-          href="#check"
-          @click="scrollToSection('check', $event)"
-          :class="{ inactive: isMenuOpen && currentSection !== 'check' }"
-          >PRICING</a
-        >
+        <a @click.prevent="navigateTo('/Check')" :class="{ inactive: route.path !== '/Check' }"> PRICING </a>
       </li>
       <li>
-        <a
-          href="#review"
-          @click="scrollToSection('review', $event)"
-          :class="{ inactive: isMenuOpen && currentSection !== 'review' }"
-          >REVIEWS</a
-        >
+        <a @click.prevent="navigateTo('/Review')" :class="{ inactive: route.path !== '/Review' }"> REVIEWS </a>
       </li>
       <li>
-        <a
-          href="#reserv"
-          @click="scrollToSection('reserv', $event)"
-          :class="{ inactive: isMenuOpen && currentSection !== 'reserv' }"
-          >RESERVATION</a
-        >
-      </li>
-      <li>
-        <a
-          href="#footer"
-          @click="scrollToSection('contact', $event)"
-          :class="{ inactive: isMenuOpen && currentSection !== 'contact' }"
-          >CONTACT US</a
-        >
+        <a @click.prevent="navigateTo('/Reservation')" :class="{ inactive: route.path !== '/Reservation' }">
+          RESERVATION
+        </a>
       </li>
     </ul>
   </nav>
@@ -287,12 +226,12 @@ header {
       position: absolute;
       top: calc(50% + -22px);
       left: 27px;
-      gap: 15px;
+      gap: 22px;
       transform: translateY(-50%);
       li {
         font-weight: 500;
         a {
-          font-size: 34px;
+          font-size: 32px;
           color: #fff;
           padding-left: 20px;
           display: inline;
