@@ -18,7 +18,7 @@
   }
   .price_wrap {
     max-width: 370px !important;
-    margin: auto !important;
+    margin: -70px auto -100px !important;
     overflow: hidden !important;
   }
 
@@ -40,12 +40,14 @@
   .receipt_content.card1 {
     transform: translateX(17%);
     .front {
-      background: url("/check/price_mobile_ordinary.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_ordinary.png") no-repeat center /
+        contain !important;
       background-size: 60% !important;
     }
     .back {
       width: 100%;
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 60% !important;
     }
   }
@@ -53,11 +55,13 @@
   .receipt_content.card2 {
     right: -35%;
     .front {
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 55% !important;
     }
     .back {
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 55% !important;
     }
   }
@@ -162,12 +166,14 @@
   .receipt_content.card1 {
     transform: translateX(20%);
     .front {
-      background: url("/check/price_mobile_ordinary.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_ordinary.png") no-repeat center /
+        contain !important;
       background-size: 47% !important;
     }
     .back {
       width: 100%;
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 47% !important;
     }
   }
@@ -175,11 +181,13 @@
   .receipt_content.card2 {
     right: -24%;
     .front {
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 43% !important;
     }
     .back {
-      background: url("/check/price_mobile_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_mobile_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 43% !important;
     }
   }
@@ -252,7 +260,7 @@
 }
 
 @include tablet {
-  .check{
+  .check {
     height: auto !important;
   }
   inner {
@@ -276,12 +284,14 @@
   .receipt_content.card1 {
     transform: translateX(10%);
     .front {
-      background: url("/check/price_tablet_ordinary.png") no-repeat center / contain !important;
+      background: url("/check/price_tablet_ordinary.png") no-repeat center /
+        contain !important;
       background-size: 80% !important;
     }
     .back {
       width: 100%;
-      background: url("/check/price_tablet_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_tablet_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 80% !important;
     }
   }
@@ -289,11 +299,13 @@
   .receipt_content.card2 {
     right: -42%;
     .front {
-      background: url("/check/price_tablet_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_tablet_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 70% !important;
     }
     .back {
-      background: url("/check/price_tablet_binfprime.png") no-repeat center / contain !important;
+      background: url("/check/price_tablet_binfprime.png") no-repeat center /
+        contain !important;
       background-size: 70% !important;
     }
   }
