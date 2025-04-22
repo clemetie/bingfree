@@ -88,17 +88,17 @@ onBeforeUnmount(() => {
     </div>
     <ul class="menu-list">
       <li class="first">
-        <a @click.prevent="navigateTo('/IntroBing')" :class="{ active: route.path === '/IntroBing' }"> ABOUT </a>
+        <a @click.prevent="navigateTo('/IntroBing')" :class="{ active: route.path === '/IntroBing' }"> 빙프리란? </a>
       </li>
       <li>
-        <a @click.prevent="navigateTo('/Check')" :class="{ inactive: route.path !== '/Check' }"> PRICING </a>
+        <a @click.prevent="navigateTo('/Check')" :class="{ inactive: route.path !== '/Check' }"> 요금 안내 </a>
       </li>
       <li>
-        <a @click.prevent="navigateTo('/Review')" :class="{ inactive: route.path !== '/Review' }"> REVIEWS </a>
+        <a @click.prevent="navigateTo('/Review')" :class="{ inactive: route.path !== '/Review' }"> 고객리뷰 </a>
       </li>
       <li>
         <a @click.prevent="navigateTo('/Reservation')" :class="{ inactive: route.path !== '/Reservation' }">
-          RESERVATION
+          예약하기
         </a>
       </li>
     </ul>
