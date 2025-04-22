@@ -20,10 +20,10 @@ function goToReservation() {
 const careList = [
   { image: "/introbing/introsub/introcare/2-1.jpg", text: "얼음 안에 이물질이 들어가 있을 때" },
   { image: "/introbing/introsub/introcare/2-2.jpg", text: "얼음에서 이상한 냄새가 날 때" },
-  { image: "/introbing/introsub/introcare/2-3.jpg", text: "완전분해 케어를 받아보지 않았거나 케어 시점이 도래했을 때" },
+  { image: "/introbing/introsub/introcare/2-3.jpg", text: "완전 분해 청소 이력이 없거나, 관리 주기를 초과한 경우" },
 ];
 const careList2 = [
-  { image: "/introbing/introsub/introcare/cleaning/1.jpg", text: "제품안전 분해" },
+  { image: "/introbing/introsub/introcare/cleaning/1.jpg", text: "제품 완전분해" },
   {
     image: "/introbing/introsub/introcare/cleaning/2.jpg",
     text: "전용 친환경 약품 세척제를 통한<br>부품 세척 & 본체 세척",
@@ -135,14 +135,14 @@ onBeforeUnmount(() => {
           <!-- txt,이미지 영역 -->
           <div class="care-service-box focus-p">
             <h2 style="color: #212121; font-weight: 800; font-size: 36px; line-height: 1.2">
-              빙프리<br>
+              빙프리<br />
               제빙기 케어 서비스
             </h2>
             <p style="color: #1456fd; font-size: 18px; font-weight: bold">빙프리의 제빙기 케어 서비스는</p>
             <p style="color: #212121; font-size: 16px; font-weight: 500">
               제빙기 내부를 깨끗하게 세척하고 성능을 최적화하여 위생적인 얼음 생산을 보장합니다.<br />
-    정기 관리로 불순물과 성능 저하를 예방하고, 제빙기 수명을 연장합니다.<br />
-    신선한 얼음을 언제든지, 더욱 위생적으로 만드세요.
+              정기 관리로 불순물과 성능 저하를 예방하고, 제빙기 수명을 연장합니다.<br />
+              신선한 얼음을 언제든지, 더욱 위생적으로 만드세요.
             </p>
           </div>
           <!-- 1.제빙기 케어는 왜 필요할까요? -->
@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
                 제빙기 케어는 왜 필요할까요?
               </p>
               <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
-                빙프리는 오염된 내부를 세부분해하여 완벽하게 청소해 드리겠습니다.
+                직접 분해하기 어려운 오염된 내부까지 세부 분해하여 완벽하게 청소해드립니다.
               </p>
             </div>
             <div class="intro-section1-desc">
@@ -163,9 +163,9 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="desc1-txt observe-me">
                   <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
-                     제빙기 내부는 습한 환경으로 주기적인 관리가 필수입니다.
+                    제빙기 내부는 습한 환경으로 주기적인 관리가 필수입니다.
                   </p>
-                  <p style="color: #495861; font-size: 15px; font-weight: 750">
+                  <p style="color: #9e9e9e; font-size: 15px; font-weight: 750">
                     물기가 남아있으면 곰팡이가 발생할 수 있습니다.<br />
                     초기에는 분홍색, 나중엔 검은색 곰팡이가 생기며,<br />
                     이는 면역력이 약한 사람에게 폐혈증, 폐렴 등을 유발할 수 있습니다.
@@ -197,15 +197,25 @@ onBeforeUnmount(() => {
                 2024년 작년 검사 건수 878건으로 증가…<br />
                 6월 추가 검사 예고, 식용 얼음 위생관리 강화
               </p>
-              <p style="color: #495861; font-size: 15px; font-weight: 750; margin-top: 5%">
-                식품의약품안전처가 식용얼음의 위생 관리를 강화하기 위해 지난해부터 검사 건수를 2배 이상<br />
-                확대해 운영하고 있다고 19일 밝혔다. 식약처에 따르면, 2023년 483건이던 검사 건수는<br />
-                2024년 878건으로 증가했으며, 올해 2월에만 389건의 검사를 진행했다.<br />
-                추가적인 점검은 오는 6월에도 실시될 예정이다. 이번 검사에서는 커피 전문점, 음식점 등<br />
-                식품 접객업소에서 사용하는 제빙기 얼음을 대상으로 식중독균(살모넬라), 대장균, 세균수 기준을<br />
-                점검했으며, 2건이 부적합 판정을 받았다.<br />
-                식약처는 “식품 소비 트렌드 변화에 맞춰 선제적으로 안전 관리를 강화해 국민이 안심하고 먹을<br />
-                수 있는 환경을 조성해 나가겠다” 고 밝혔다.<br />
+              <p style="color: #616161; font-size: 15px; font-weight: 750; margin-top: 5%">
+                ❗ 식약처, 식용 얼음 검사 2배 확대
+              </p>
+              <p style="color: #9e9e9e; font-size: 15px; font-weight: 750; margin-top: 5%">
+                ㆍ2023년 483건 → 2024년 878건으로 검사 건수 2배 이상 확대<br />
+                ㆍ올해 2월에만 389건 검사 진행<br />
+                ㆍ6월에도 추가 점검 예정<br />
+              </p>
+              <p style="color: #616161; font-size: 15px; font-weight: 750; margin-top: 5%">
+                ⚠ 제빙기 얼음 위생 점검 강화
+              </p>
+              <p style="color: #9e9e9e; font-size: 15px; font-weight: 750; margin-top: 5%">
+                ㆍ대상: 커피 전문점, 음식점 제빙기 얼음 <br />
+                ㆍ검사 항목: 살모넬라균, 대장균, 세균수 → 부적합 판정<br />
+              </p>
+              <p style="color: #616161; font-size: 15px; font-weight: 750; margin-top: 5%">✅ 식약처 발표</p>
+              <p style="color: #9e9e9e; font-size: 15px; font-weight: 750; margin-top: 5%">
+                “소비 트렌드에 맞춘 선제적 관리로 <br />
+                안심할 수 있는 먹거리 환경 조성하겠다”
               </p>
             </div>
           </div>
@@ -217,7 +227,7 @@ onBeforeUnmount(() => {
                 제빙기 케어가 필요한 시점은?
               </p>
               <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
-                평상시에는 3개월에 한번 여름철에는 최소 1~2개월에 한번 완전분해 케어가 필요합니다.
+                평상시: 3개월에 한 번, 여름철: 1~2개월에 한 번 완전분해 케어가 필요합니다.
               </p>
             </div>
             <div class="care-section">
@@ -249,11 +259,14 @@ onBeforeUnmount(() => {
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 청소시 어떤 세제를 사용하시나요?
               </p>
+              <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
+                화학물질을 일체 사용하지 않은 특허받은 친환경 살균제를 사용합니다.
+              </p>
             </div>
-            <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p4 focus-p">
+            <!-- <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p4 focus-p">
               사람과 자연 모두에게 안전할수 있도록 독일제 150년 전통 최고등급 친환경 세정제를 사용하고 있습니다.<br />
               우리의 소중한 환경을 보호하면서 동시에 완벽한 청결을 약속합니다.
-            </p>
+            </p> -->
           </div>
           <div class="care-section3">
             <div class="care-section3-img">
@@ -364,7 +377,7 @@ onBeforeUnmount(() => {
             <!-- 03.시간의 제약 없는 24시간 케어 -->
             <div class="nowbingfree-section3">
               <div class="nowbingfree-section3-txt">
-                <h3 class="observe-me" style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px" >
+                <h3 class="observe-me" style="color: #212121; font-weight: bold; line-height: 1.5; font-size: 28px">
                   03.<br />시간의 제약 없는 24시간 케어
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
