@@ -406,17 +406,13 @@ const handleReSubmit = () => {
           alt="예약하기배너"
         />
         <div class="reserv_txtbox">
-          <p class="detail-info">
-            필요할 때마다 시원하게! 얼음처럼 투명한 케어
-          </p>
-
           <p
-            class="bannerTitle"
-            style="font-size: 50px; font-weight: bold; line-height: 1.15"
+            class="bannerTitle main-h2"
+            style="font-weight: bold; line-height: 1.15"
           >
-            <b style="color: #1456fd">빙프라임</b>
+            최대 <b style="color: #1456fd">20% 할인</b>은 기본!
             <br />
-            구독 요금제
+            전용 할인 <b style="color: #1456fd">쿠폰</b>까지
           </p>
 
           <router-link to="/BingPrime">
@@ -498,8 +494,14 @@ const handleReSubmit = () => {
                 placeholder="주소"
                 readonly
               />
-              <button type="button" @click="openPostcode">
-                <img src="/reservation/reservsub/search.png" alt="검색아이콘" />
+              
+              <button
+                class="main-h6"
+                style="color: #757575"
+                type="button"
+                @click="openPostcode"
+              >
+              | &nbsp&nbsp 검색하기
               </button>
             </div>
             <input
@@ -520,7 +522,7 @@ const handleReSubmit = () => {
                 :key="card.id"
                 class="reserv_card"
               >
-                <p class="card_title detail-title">[{{ card.name }}]</p>
+                <p class="card_title main-h4">[{{ card.name }}]</p>
 
                 <div
                   class="card_inner"
@@ -528,7 +530,7 @@ const handleReSubmit = () => {
                   :key="optionIndex"
                 >
                   <div class="card_info">
-                    <p class="detail-txt">
+                    <p class="main-h6">
                       {{ option.label }}
                     </p>
                     <p style="font-size: 16px; color: #1456fd">
@@ -584,7 +586,7 @@ const handleReSubmit = () => {
             />
             <router-link
               to="/BingPrime"
-              class="detail-title coupon_ment"
+              class="main-h4 coupon_ment"
               style="color: #1456fd; font-weight: bold"
             >
               가입하기 ></router-link
@@ -595,7 +597,7 @@ const handleReSubmit = () => {
             <p class="main-h5 reservTitle">3. 예약 정보</p>
             <div class="date_box">
               <div class="calendar">
-                <p class="detail-txt">* 날짜를 선택해주세요</p>
+                <p class="main-h4">* 날짜를 선택해주세요</p>
                 <input
                   ref="calendar"
                   class="date"
@@ -608,7 +610,7 @@ const handleReSubmit = () => {
               <!-- 날짜 선택 후 라디오 -->
               <transition class="selectedDate" name="fade">
                 <div v-if="formData.selectedDate">
-                  <p class="detail-txt">* 해당 날짜에만 청소가 가능한가요?</p>
+                  <p class="main-h4">* 해당 날짜에만 청소가 가능한가요?</p>
                   <div class="label">
                     <label
                       :class="[
@@ -644,7 +646,7 @@ const handleReSubmit = () => {
             <!-- 희망시간선택 -->
             <transition class="selectTime" name="fade">
               <div v-if="formData.dateRestricted" class="fade-box">
-                <p class="detail-txt">* 희망하시는 청소 시간을 입력해주세요</p>
+                <p class="main-h4">* 희망하시는 청소 시간을 입력해주세요</p>
                 <input
                   type="text"
                   placeholder="ex) 오후 11시 30분 ~ 00시에 방문해주세요"
@@ -655,9 +657,7 @@ const handleReSubmit = () => {
             <!-- 기사님 선택 -->
             <transition name="fade">
               <div v-if="formData.dateRestricted" class="fade-box">
-                <p class="detail-txt">
-                  * 희망하시는 기사님 성별을 선택해주세요
-                </p>
+                <p class="main-h4">* 희망하시는 기사님 성별을 선택해주세요</p>
                 <div class="gender-group">
                   <label>
                     <input
@@ -692,7 +692,7 @@ const handleReSubmit = () => {
             <!-- 요청사항 -->
             <transition class="selectTime" name="fade">
               <div v-if="formData.dateRestricted" class="fade-box">
-                <p class="detail-txt">* 요청사항이 있으신가요?</p>
+                <p class="main-h4">* 요청사항이 있으신가요?</p>
                 <input
                   type="text"
                   v-model="formData.notes"
@@ -703,7 +703,7 @@ const handleReSubmit = () => {
             <!-- 서비스 선택 -->
             <transition class="selectTime" name="fade">
               <div v-if="formData.dateRestricted" class="fade-box">
-                <p class="detail-txt">* 추가로 원하시는 서비스가 있나요?</p>
+                <p class="main-h4">* 추가로 원하시는 서비스가 있나요?</p>
                 <div class="service-options">
                   <label
                     v-for="(service, index) in serviceOptions"
@@ -711,7 +711,7 @@ const handleReSubmit = () => {
                     class="service-option"
                   >
                     <input type="checkbox" v-model="service.selected" />
-                    <span class="detail-txt"
+                    <span class="main-h4"
                       >{{ service.label }}
                       <p style="color: #1456fd">
                         +{{ service.price.toLocaleString() }}원
@@ -732,7 +732,7 @@ const handleReSubmit = () => {
                 원
               </p>
               <span
-                class="detail-txt"
+                class="main-h4"
                 style="
                   float: right;
                   background: linear-gradient(
@@ -760,10 +760,10 @@ const handleReSubmit = () => {
               </span>
             </div>
             <div class="reservBtn_box">
-              <button class="reservBtn cancel" @click="handleCancel">
+              <button class="main-h4 reservBtn cancel" @click="handleCancel">
                 예약취소하기
               </button>
-              <button type="submit" class="reservBtn">예약하기</button>
+              <button type="submit" class="main-h4 reservBtn">예약하기</button>
             </div>
           </fieldset>
         </form>
@@ -773,21 +773,21 @@ const handleReSubmit = () => {
           <div v-if="showModal" class="modal-overlay">
             <div class="modal-content">
               <div class="basic_info">
-                <p class="detail-title">예약 정보</p>
+                <p class="main-h3">예약 정보</p>
                 <hr class="dotted-line" />
-                <p class="detail-txt">
+                <p class="main-h4">
                   <b>{{ formData.name }} </b>님
                 </p>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>주소:</strong> {{ formData.roadAddress }}
                   {{ formData.detailAddress }}
                 </p>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>예약날짜:</strong>
                   {{ formData.selectedDate }}
                   {{ formData.desiredTime }}
                 </p>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>요청사항:</strong> {{ formData.notes }}
                 </p>
                 <p
@@ -802,7 +802,7 @@ const handleReSubmit = () => {
               </div>
               <hr class="dotted-line" />
               <div class="notice-box">
-                <p class="detail-txt" style="font-weight: bold; color: red">
+                <p class="main-h4" style="font-weight: bold; color: red">
                   ! 꼭 지켜주세요
                 </p>
                 <ul
@@ -913,7 +913,7 @@ const handleReSubmit = () => {
           />
           <router-link
             to="/BingPrime"
-            class="detail-title coupon_ment"
+            class="main-h3 coupon_ment"
             style="color: #1456fd; font-weight: bold"
           >
             가입하기 ></router-link
@@ -921,7 +921,7 @@ const handleReSubmit = () => {
         </div>
         <!-- 진행 중인 예약 -->
         <fieldset v-if="isReservationMatched" class="result_info">
-          <p class="detail-title info-title" style="color: #9abae3">
+          <p class="main-h3 info-title" style="color: #9abae3">
             <img
               class="calendar"
               src="/reservation/reservsub/calendar-check.png"
@@ -931,12 +931,12 @@ const handleReSubmit = () => {
           </p>
           <hr />
           <div class="reservation-info-box">
-            <p class="detail-txt">
+            <p class="main-h4">
               <b>{{ matchedReservation.name }} </b>님
             </p>
             <span
               v-if="selectedIceMakers.length > 0"
-              class="detail-info"
+              class="main-h5"
               style="font-size: 24px; font-weight: 800; color: #1456fd"
             >
               [{{ selectedIceMakers[0].type }}] {{ selectedIceMakers[0].label }}
@@ -946,19 +946,19 @@ const handleReSubmit = () => {
             </span>
             <ul class="reservation-info-list" style="list-style: none">
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>일정</strong>
                   {{ matchedReservation.selectedDate }}
                   {{ matchedReservation.desiredTime }}
                 </p>
               </li>
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>요청</strong> {{ matchedReservation.notes }}
                 </p>
               </li>
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong style="font-weight: bold">금액</strong>
                   {{ finalPrice.toLocaleString() }}
                   원
@@ -989,11 +989,11 @@ const handleReSubmit = () => {
             v-for="faq in faqs"
             :key="faq.id"
           >
-            <p class="detail-txt" style="font-weight: 800; color: #424242">
+            <p class="main-h4" style="font-weight: 800; color: #424242">
               Q. {{ faq.question }}
             </p>
             <p
-              class="detail-info"
+              class="main-h5"
               style="color: #888; font-weight: 500; line-height: 1.5 !important"
             >
               A. {{ faq.answer }}
@@ -1002,7 +1002,7 @@ const handleReSubmit = () => {
         </fieldset>
         <!-- 지난 예약 내역 -->
         <fieldset v-if="isReservationMatched" class="result_info past">
-          <p class="detail-title info-title" style="color: #888">
+          <p class="main-h3 info-title" style="color: #888">
             <img
               class="calendar"
               src="/reservation/reservsub/calendar-check.png"
@@ -1012,12 +1012,12 @@ const handleReSubmit = () => {
           </p>
           <hr />
           <div class="reservation-info-box">
-            <p class="detail-txt">
+            <p class="main-h4">
               <b>{{ matchedReservation.name }} </b>님
             </p>
             <span
               v-if="selectedIceMakers.length > 0"
-              class="detail-info"
+              class="main-h5"
               style="font-size: 24px; font-weight: 800; color: #1456fd"
             >
               [{{ selectedIceMakers[0].type }}] {{ selectedIceMakers[0].label }}
@@ -1027,19 +1027,19 @@ const handleReSubmit = () => {
             </span>
             <ul class="reservation-info-list" style="list-style: none">
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>일정</strong>
                   {{ matchedReservation.selectedDate }}
                   {{ matchedReservation.desiredTime }}
                 </p>
               </li>
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong>요청</strong> {{ matchedReservation.notes }}
                 </p>
               </li>
               <li>
-                <p class="detail-txt">
+                <p class="main-h4">
                   <strong style="font-weight: bold">금액</strong>
                   {{ finalPrice.toLocaleString() }}
                   원

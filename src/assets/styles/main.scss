@@ -263,19 +263,18 @@ a {
         opacity: 1;
         z-index: 99999;
       }
-    }
-    .slide img {
-      width: 100%;
-      border-radius: 0;
-      top: 0;
-      transform: translateZ(1.2);
+      .slide-img {
+        width: 100%;
+        height: 1000px;
+        max-height: 100%;
+        border-radius: 0;
+        transform: translateZ(1.2);
+      }
     }
   }
   .slide {
     width: 100%;
     height: 100vh;
-    background-size: contain;
-    background-position: center;
     position: relative;
     &::after {
       content: "";
@@ -304,8 +303,8 @@ a {
       transition: opacity 0.3s ease;
       z-index: 999999;
     }
-    img {
-      width: 90%;
+    .slide-img {
+      width: 93%;
       height: 1000px;
       max-height: 100%;
       border-radius: 555px;
