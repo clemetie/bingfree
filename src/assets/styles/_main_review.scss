@@ -426,9 +426,12 @@
       font-size: 14px;
       margin-bottom: 50px;
     }
+    .review-title-box{
+      padding-top: 100px;
+    }
     .review-box-total {
       .review-box {
-        max-width: 100%;
+        max-width: 90%;
         flex: 1 1 100%;
         margin: auto;
       }
