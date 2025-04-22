@@ -277,7 +277,13 @@ const swiperBreakpoints = {
     <Swiper :modules="[Autoplay]" :loop="true" :autoplay="{ delay: 3000 }">
       <SwiperSlide>
         <div class="slide">
-          <img src="/images/web_visual01.png" alt="비주얼1" />
+          <div
+            class="slide-img"
+            style="
+              background: url('/images/web_visual01.png') no-repeat;
+              background-size: cover;
+            "
+          ></div>
           <div class="txtbox inner">
             <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
             <p class="main-h1" style="color: #fff">
@@ -289,11 +295,13 @@ const swiperBreakpoints = {
       </SwiperSlide>
       <SwiperSlide>
         <div class="slide">
-          <img
-            style="filter: brightness(1.2)"
-            src="/images/web_visual02.png"
-            alt="비주얼2"
-          />
+          <div
+            class="slide-img"
+            style="
+              background: url('/images/web_visual02.png') no-repeat;
+              background-size: cover;
+            "
+          ></div>
           <div class="txtbox inner">
             <router-link to="/BingPrime" class="main-h4" style="color: #e9ff54"
               >빙프라임 가입하기 →</router-link
@@ -310,7 +318,13 @@ const swiperBreakpoints = {
       </SwiperSlide>
       <SwiperSlide>
         <div class="slide">
-          <img src="/images/web_visual03.png" alt="비주얼3" />
+          <div
+            class="slide-img"
+            style="
+              background: url('/images/web_visual03.png') no-repeat;
+              background-size: cover;
+            "
+          ></div>
           <div class="txtbox inner">
             <p class="main-h1">
               제빙기를 호텔처럼, <br />

@@ -54,13 +54,33 @@
             -webkit-text-fill-color: transparent;
             padding: max(
               0em,
-              calc(calc(1.3em - var(--framer-blockquote-line-height, var(--framer-line-height, 1.3em))) / 2)
+              calc(
+                calc(
+                    1.3em -
+                      var(
+                        --framer-blockquote-line-height,
+                        var(--framer-line-height, 1.3em)
+                      )
+                  ) / 2
+              )
             );
             margin: min(
               0em,
-              calc(calc(1.3em - var(--framer-blockquote-line-height, var(--framer-line-height, 1.3em))) / -2)
+              calc(
+                calc(
+                    1.3em -
+                      var(
+                        --framer-blockquote-line-height,
+                        var(--framer-line-height, 1.3em)
+                      )
+                  ) / -2
+              )
             );
-            background-image: linear-gradient(90deg, rgb(0, 212, 190) 17%, rgb(55, 64, 214) 100%);
+            background-image: linear-gradient(
+              90deg,
+              rgb(0, 212, 190) 17%,
+              rgb(55, 64, 214) 100%
+            );
           }
           p {
             margin: 20px 0;
@@ -116,14 +136,22 @@
   }
   .banner {
     margin-top: 120px;
+    background: url("/reservation/reservsub/reservation_banner_tab.png")
+      no-repeat;
     img {
       display: none;
     }
     .reserv_txtbox {
       width: 100%;
       position: relative !important;
-      text-align: center;
-      left: 0 !important;
+      text-align: left;
+      left: 15% !important;
+
+      a {
+        button {
+          width: 20% !important;
+        }
+      }
     }
   }
 }
@@ -136,7 +164,7 @@
     .inner.tablet {
       display: block !important;
       .tablet_top {
-        padding: 50px 0 0 0;
+        padding: 70px 0 0 0;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -157,13 +185,33 @@
             -webkit-text-fill-color: transparent;
             padding: max(
               0em,
-              calc(calc(1.3em - var(--framer-blockquote-line-height, var(--framer-line-height, 1.3em))) / 2)
+              calc(
+                calc(
+                    1.3em -
+                      var(
+                        --framer-blockquote-line-height,
+                        var(--framer-line-height, 1.3em)
+                      )
+                  ) / 2
+              )
             );
             margin: min(
               0em,
-              calc(calc(1.3em - var(--framer-blockquote-line-height, var(--framer-line-height, 1.3em))) / -2)
+              calc(
+                calc(
+                    1.3em -
+                      var(
+                        --framer-blockquote-line-height,
+                        var(--framer-line-height, 1.3em)
+                      )
+                  ) / -2
+              )
             );
-            background-image: linear-gradient(90deg, rgb(0, 212, 190) 17%, rgb(55, 64, 214) 100%);
+            background-image: linear-gradient(
+              90deg,
+              rgb(0, 212, 190) 17%,
+              rgb(55, 64, 214) 100%
+            );
           }
           p {
             margin: 20px 0;
@@ -224,18 +272,69 @@
       }
     }
   }
+  .reserv-wrap {
+    .reserv_top {
+      .reserv_tab {
+        width: 100% !important;
+        line-height: 100px !important;
+        li {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .reserv {
+      form {
+        fieldset {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+  input.name,
+  input.phone,
+  .radio-group {
+    width: 100% !important;
+    padding: 1.25% 3%;
+    margin: 5% auto;
+  }
   .reserv_card_wrap {
     grid-template-columns: repeat(1, 1fr) !important;
   }
   .banner {
+    width: 100%;
+    height: 200px !important;
+    background: url("/reservation/reservsub/reservation_banner_tab.png")
+      no-repeat;
+    background-size: contain;
     img {
       display: none;
     }
     .reserv_txtbox {
       width: 100%;
       position: relative !important;
-      text-align: center;
-      left: 0 !important;
+      text-align: left;
+      left: 9% !important;
+
+      a {
+        button {
+          width: 20% !important;
+          height: 40px !important;
+        }
+      }
+    }
+  }
+  .coupon {
+    img {
+      width: 80% !important;
+    }
+    .infoicon {
+      display: none !important;
+    }
+    .coupon_ment {
+      position: absolute;
+      top: 57% !important;
+      right: 15% !important;
     }
   }
 }
@@ -302,7 +401,8 @@
         border-radius: 20px;
         border: none;
         padding: 20px 0;
-        box-shadow: inset -8px -5px 10px rgba($color: #000000, $alpha: 0.25), 0 4px 24px rgba(0, 0, 0, 0.25);
+        box-shadow: inset -8px -5px 10px rgba($color: #000000, $alpha: 0.25),
+          0 4px 24px rgba(0, 0, 0, 0.25);
         @include text-style(30px, 600);
         color: $bingfree-main;
         text-align: center;
@@ -412,10 +512,9 @@
   .reservBtn {
     cursor: pointer;
     width: 48%;
-    height: 65px;
+    height: 3.5rem;
     border-radius: 14px;
     border: 2px solid #1456fd;
-    font-size: 24px;
     font-weight: bold;
     color: #1456fd;
     margin: 20px auto;
@@ -456,31 +555,21 @@
     height: 360px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(
-      90deg,
-      #89d2ff 0%,
-      /* 0% 지점: 주황빛 */ #fffac6 50%,
-      /* 50% 지점: 밝은 주황 */ #89d2ff 100% /* 100% 지점: 파란빛 */
-    );
     img {
-      width: 60%;
-      position: absolute;
-      top: -5%;
-      left: 20%;
+      width: 100%;
     }
     .reserv_txtbox {
       position: absolute;
-      top: 18%;
+      top: 22%;
       left: 23%;
       p {
-        margin: 10px 0;
+        margin: 20px 0;
       }
       a {
         button {
           width: 50%;
           height: 65px;
           color: $bingfree-main;
-          @include text-style(24px, 700);
           font-family: "Pretendard", sans-serif;
           background-color: $bingfree-point;
           border-style: none;
@@ -542,14 +631,25 @@
           margin-right: 2%;
         }
         .address_box {
+          width: 100%;
+          background-color: #f5f5f5;
+          border: 1px solid #eee;
+          border-radius: 5px;
+          margin: 1% 0;
+          font-size: 20px;
           display: flex;
           align-items: center;
+          justify-content: space-between;
+          color: #757575;
           gap: 1%;
           .address {
-            width: 95%;
-            padding: 1.25% 3%;
+            width: 80%;
+            padding: 0.2% 3%;
+            background: none;
+            border: none;
           }
           button {
+            padding-right: 3%;
             border: none;
             background: none;
             cursor: pointer;
@@ -639,18 +739,15 @@
             .card_count {
               display: flex;
               width: 120px;
-              height: 40px;
-              border-radius: 30px;
+              height: 30px;
               background-color: #fff;
               align-items: center;
               justify-content: space-between;
-              padding: 5px 6px;
               button {
                 width: 30px;
                 line-height: 30px;
-                border-radius: 50%;
                 border: none;
-                background-color: #d9d9d9;
+                background-color: #e0e0e0;
                 font-size: 24px;
                 font-weight: bold;
                 text-align: center;
