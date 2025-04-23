@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onMounted, computed, nextTick } from "vue";
+import { ref, onMounted, computed, nextTick, onBeforeUnmount } from "vue";
 import { onUnmounted } from "vue";
 import Topbar from "@/components/Topbar.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -221,6 +222,27 @@ const handleBottomButtonClick = () => {
     });
   }
 };
+
+// 모바일 미디어쿼리 변경시 swiper 자동 재생
+const isAutoplayActive = ref(false);
+
+const checkMediaQuery = () => {
+  // 390px ~ 767px 구간에만 true
+  const mq = window.matchMedia("(min-width: 390px) and (max-width: 767px)");
+  isAutoplayActive.value = mq.matches;
+  swiperKey.value++; // Swiper 강제 리렌더링
+};
+
+onMounted(() => {
+  checkMediaQuery();
+  window.addEventListener("resize", checkMediaQuery);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", checkMediaQuery);
+});
+// 스와이퍼가 반응이 안돼서 강제 렌더링 해야함
+const swiperKey = ref(0);
 </script>
 <template>
   <div class="wrap">
@@ -230,20 +252,17 @@ const handleBottomButtonClick = () => {
     <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
     <div class="side">
       <div>
-        <router-link
-          to="/reservation"
-          class="sideBtn reservBtn main-icon-drop"
-          :class="{ compact: currentSection !== 'visual' }">
+        <router-link to="/reservation" class="sideBtn reservBtn main-icon-drop compact">
           <img src="/images/calendar_blue.png" alt="캘린더" />
           <span class="text">예약하기</span>
         </router-link>
       </div>
-      <div class="sideBtn main-icon-drop" :class="{ compact: currentSection !== 'visual' }">
-        <img src="/images/chabot.png" alt="챗봇이미지" :class="{ compact: currentSection !== 'visual' }" />
+      <div class="sideBtn main-icon-drop compact">
+        <img src="/images/chabot.png" alt="챗봇이미지" />
         <span class="text">챗봇&nbsp;&nbsp;</span>
       </div>
 
-      <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
+      <div class="goTop main-icon-drop compact" @click="scrollToTop">↑</div>
     </div>
 
     <!-- 요금제 상세 배너 -->
@@ -286,10 +305,13 @@ const handleBottomButtonClick = () => {
         <h1 class="ordinary_h1">KG따라 선택하는 <span>빙프리&nbsp;</span>최적의 기본요금제</h1>
 
         <Swiper
-          :modules="[Navigation, Pagination]"
+          v-if="swiperKey"
+          :key="swiperKey"
+          :modules="[Navigation, Pagination, Autoplay]"
           navigation
           class="ordinary_swiper"
           :slides-per-view="1"
+          :autoplay="isAutoplayActive ? { delay: 3000, disableOnInteraction: false } : false"
           :space-between="16"
           :breakpoints="{
             768: {
@@ -570,7 +592,7 @@ const handleBottomButtonClick = () => {
 
               <!-- 혜택 정보 섹션 그대로 유지 -->
               <div class="plus_sale_list">
-                <h1>2년 연장회원 특별할인 혜택 계산하기</h1>
+                <h1 class="twoyear_h1">2년 연장회원 특별할인 혜택 계산하기</h1>
 
                 <!-- 혜택 전 -->
                 <div class="first_box_section" v-if="!showBenefits">
@@ -665,8 +687,8 @@ const handleBottomButtonClick = () => {
 
   .reserve-btn {
     position: absolute !important;
-    right: 42px !important;
-    bottom: 47px !important;
+    left: 125px !important;
+    bottom: 92px !important;
     display: block !important;
     background-color: #e9ff54 !important;
     border-style: none !important;
@@ -890,16 +912,16 @@ const handleBottomButtonClick = () => {
 @media (min-width: 390px) and (max-width: 767px) {
   .reserve-btn {
     position: absolute !important;
-    right: 21px !important;
-    bottom: 128px !important;
+    left: 50px !important;
+    top: 128px !important;
     display: block !important;
     background-color: #e9ff54 !important;
     border-style: none !important;
-    width: 150px !important;
-    height: 36px !important;
+    width: 140px !important;
+    height: 33px !important;
     border-radius: 14px !important;
-    font-weight: 700 !important;
-    font-size: 19px !important;
+    font-weight: 800 !important;
+    font-size: 18px !important;
     font-family: "Pretendard", sans-serif !important;
     color: #1456fd !important;
     cursor: pointer !important;
@@ -925,7 +947,7 @@ const handleBottomButtonClick = () => {
   }
 
   .introbing_tab li {
-    font-size: 17px !important;
+    font-size: 16px !important;
   }
 
   .ordinary_h1 {
@@ -1105,42 +1127,117 @@ const handleBottomButtonClick = () => {
   }
   .bingfrime_wrap_section {
     .bing_h1 {
-      font-size: 21px;
+      font-size: 23px;
       // white-space: wrap;
       flex-direction: column;
       margin: auto;
     }
     .tab_list {
-      font-size: 18px;
       flex-wrap: wrap;
       gap: 20px;
+      .btn_tab {
+        font-size: 16px !important;
+      }
     }
     .price_list {
       flex-direction: column;
       width: 100%;
       .price_list_left {
         .selected_plan_title {
-          font-size: 19px;
+          font-size: 17px;
           height: 56px;
         }
         .individual_list {
           .individual_card {
             justify-content: space-evenly;
             .perprice_bt {
-              font-size: 14px;
+              flex: 0.5;
+              font-size: 10px;
               border-radius: 8px;
             }
             //버튼
             .buttons {
+              flex: 1;
               gap: 5px;
               width: 130px;
               height: 20px;
+              align-items: center;
 
               button {
-                font-size: 12px;
+                font-size: 10px;
+                &:hover {
+                  font-size: 10px;
+                }
+              }
+            }
+            .card_in_times {
+              flex: 0.5;
+              font-size: 10px;
+            }
+            .card_in_price {
+              flex: 1;
+              .card_in_perprice {
+                font-size: 10px;
+              }
+              .card_in_total {
+                font-size: 10px;
               }
             }
           }
+        }
+      }
+
+      .plus_sale_list {
+        .twoyear_h1 {
+          font-size: 17px;
+        }
+        //혜택 전
+        .first_box_section {
+          .first_box_before {
+            width: 280px;
+            p {
+              margin-top: 14%;
+            }
+
+            span {
+              font-size: 14px;
+            }
+          }
+
+          .second_box {
+            width: 280px;
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+        //혜택 후
+        .first_box_after {
+          width: 280px;
+          p {
+            font-size: 12px;
+            span {
+              img {
+                width: 70%;
+              }
+            }
+          }
+        }
+        .second_box {
+          width: 280px;
+          span {
+            font-size: 12px;
+          }
+        }
+
+        .years2_banner {
+          margin-top: 10%;
+          font-size: 14px;
+        }
+        .years2_bt {
+          width: 300px !important;
+          height: 48px;
+          font-size: 17px;
         }
       }
     }
