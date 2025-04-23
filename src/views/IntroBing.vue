@@ -101,7 +101,7 @@ onBeforeUnmount(() => {
     <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
   </div>
   <div class="intro-wrap">
-    <div class="intro-banner" style="margin-top: 80px">
+    <div class="intro-banner">
       <img src="/public/introbing/introsub/introbanner/1.jpg" alt="banner-img" />
       <div class="intro-banner-txtbox">
         <p class="intro-banner-txt1" style="font-size: 38px; color: #fff; font-weight: 600">
@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 케어는 왜 필요할까요?
               </p>
-              <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
+              <p style="color: #1456fd; font-size: 18px; font-weight: bold" class="intro-section1-p3">
                 직접 분해하기 어려운 오염된 내부까지 세부 분해하여 완벽하게 청소해드립니다.
               </p>
             </div>
@@ -165,10 +165,10 @@ onBeforeUnmount(() => {
                   <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
                     제빙기 내부는 습한 환경으로 주기적인 관리가 필수입니다.
                   </p>
-                  <p style="color: #9e9e9e; font-size: 15px; font-weight: 750">
+                  <p style="color: #9e9e9e; font-size: 15px; font-weight: 700">
                     물기가 남아있으면 곰팡이가 발생할 수 있습니다.<br />
                     초기에는 분홍색, 나중엔 검은색 곰팡이가 생기며,<br />
-                    이는 면역력이 약한 사람에게 폐혈증, 폐렴 등을 유발할 수 있습니다.
+                    면역력이 약한 사람에게 폐혈증, 폐렴 등을 유발할 수 있습니다.
                   </p>
                 </div>
               </div>
@@ -180,7 +180,7 @@ onBeforeUnmount(() => {
                   <p style="color: #212121; font-size: 19px; font-weight: 800; line-height: 1.3">
                     냉각기 니켈은 관리하지 않으면 발암물질로 변질됩니다.
                   </p>
-                  <p style="color: #9e9e9e; font-size: 15px; font-weight: 750">
+                  <p style="color: #9e9e9e; font-size: 15px; font-weight: 700">
                     제빙기 냉각기의 니켈 도금이 벗겨지며 그 가루가 수조에 담깁니다.<br />
                     니켈은 폐암 및 신장암을 유발할 수 있어 정기적인 관리가 필요합니다.<br />
                   </p>
@@ -226,7 +226,7 @@ onBeforeUnmount(() => {
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 케어가 필요한 시점은?
               </p>
-              <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
+              <p style="color: #1456fd; font-size: 18px; font-weight: bold" class="intro-section1-p3">
                 평상시: 3개월에 한 번, 여름철: 1~2개월에 한 번 완전분해 케어가 필요합니다.
               </p>
             </div>
@@ -259,7 +259,7 @@ onBeforeUnmount(() => {
               <p style="color: #212121; font-size: 36px; font-weight: 750" class="intro-section1-p2">
                 제빙기 청소시 어떤 세제를 사용하시나요?
               </p>
-              <p style="color: #757575; font-size: 18px; font-weight: bold" class="intro-section1-p3">
+              <p style="color: #1456fd; font-size: 18px; font-weight: bold" class="intro-section1-p3">
                 화학물질을 일체 사용하지 않은 특허받은 친환경 살균제를 사용합니다.
               </p>
             </div>
@@ -294,15 +294,16 @@ onBeforeUnmount(() => {
       </div>
       <div class="bingfree-container inner" v-show="introbingTab === 'bingfree'">
         <div class="bingfree-certificate-section">
-          <p class="small-title1 observe-me" style="color: #1456fd; font-size: 18px; font-weight: 600">CERTIFICATE</p>
+          <div class="bingfree-certificate">
+          <p class="small-title1 observe-me" style="color: #1456fd; font-size: 15px; font-weight: 600">CERTIFICATE</p>
           <h2 style="color: #212121; font-size: 36px; font-weight: bold" class="observe-me">
             청소는 누구나 할 수 있지만,<br />
             위기관리 능력에 대한 경험과 신뢰는 아무나 가질 수 없습니다.
           </h2>
           <p style="color: #212121; font-size: 18px; font-weight: normal">
-            빙프리는 각종 국제 인증 및 특허를 통해 검증된 전문성을 바탕으로 지속 가능한 위생 관리 솔루션을
-            제공합니다.<br />
-            경영 혁신과 품질 향상을 위해 끊임없이 연구하며, 최상의 서비스로 신뢰를 쌓아갑니다.
+            검증된 기술, 믿을 수 있는 위생 관리 <br />
+            국제 인증과 특허로 검증된 빙프리의 솔루션.<br />
+            지속 가능한 청결, 지금 경험해보세요
           </p>
           <div class="certicate-section-img">
             <img src="/public/introbing/introsub/introbingfree/1-1.jpg" alt="img1" />
@@ -315,14 +316,15 @@ onBeforeUnmount(() => {
             국제표준기구(ISO) 기술위원회에서 제정한 환경경영체제에 관한 국제 표준인 'ISO 14000 시리즈'중 <br />
             가장 중요하게 여겨지는 품질경영시스템과 환경경영 시스템을 인증받았습니다.
           </p>
+        </div>
           <!-- 지금, 빙프리를 선택해야하는 이유? -->
           <div class="nowbingfree-section">
             <!-- 상단 -->
             <div class="nowbingfree-upper">
-              <p class="small-title2 observe-me" style="color: #1456fd; font-size: 18px; font-weight: 600">
+              <p class="small-title2 observe-me" style="color: #1456fd; font-size: 15px; font-weight: 600">
                 NOW, BINGFREE
               </p>
-              <h2 style="color: #212121; font-size: 36px; font-weight: bold" class="observe-me">
+              <h2 style="color: #212121; font-size: 40px; font-weight: bold" class="observe-me">
                 지금, 빙프리를 선택해야 하는 이유?
               </h2>
             </div>
@@ -366,7 +368,7 @@ onBeforeUnmount(() => {
                   02.<br />손끝으로 간편 예약
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
-                  <span style="color: #1456fd; font-weight: 500">빙프리 어플 하나로</span>예약, 일정 확인, 작업
+                  <span style="color: #1456fd; font-weight: 500">빙프리 어플 하나로</span> 예약, 일정 확인, 작업
                   사진까지<br />
                   <span style="color: #1456fd; font-weight: 500"> 간편하게 관리</span> 할 수 있어요.<br />
                   번거로운 전화 상담 없이, 누구나
@@ -381,8 +383,9 @@ onBeforeUnmount(() => {
                   03.<br />시간의 제약 없는 24시간 케어
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
-                  바쁜 일상 속에서도<span style="color: #1456fd; font-weight: 500">원하는 시간에 맞춰 청소 서비스</span
-                  >를 받을 수 있습니다.<br />
+                  바쁜 일상 속에서도
+                  <span style="color: #1456fd; font-weight: 500">원하는 시간에 맞춰 청소 서비스</span>를 받을 수
+                  있습니다.<br />
                   혹시라도 만족스럽지 않다면<span style="color: #1456fd; font-weight: 500"> 24시간안에 재방문</span
                   >하여<br />
                   <span style="color: #1456fd; font-weight: 500">끝까지 책임지는 A/S 서비스</span>를 보장해드립니다.
@@ -413,18 +416,17 @@ onBeforeUnmount(() => {
                 </h3>
                 <p style="margin-top: 4%; color: #8a8a8a; font-weight: 400; line-height: 1.5; font-size: 18px">
                   <span style="color: #1456fd; font-weight: 500">정기적인 구독</span>으로<span
-                    style="color: #1456fd; font-weight: 500"
-                    >관리 비용을 줄이고, 체계적인 위생 관리</span
+                    style="color: #1456fd; font-weight: 500">
+                    관리 비용을 줄이고, 체계적인 위생 관리</span
                   >를<br />
                   받을 수 있습니다.
                   <span style="color: #1456fd; font-weight: 500">빙프리 자체제작 친환경 인증 세제</span>와<br />
-                  <span style="color: #1456fd; font-weight: 500">빙프라임 마크</span>를 함께<span
-                    style="color: #1456fd; font-weight: 500"
-                    >제공</span
-                  >합니다.
+                  <span style="color: #1456fd; font-weight: 500">빙프라임 마크</span>를 함께
+                  <span style="color: #1456fd; font-weight: 500">제공</span>합니다.
                 </p>
               </div>
             </div>
+         
           </div>
         </div>
       </div>

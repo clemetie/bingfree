@@ -372,7 +372,7 @@ const swiperBreakpoints = {
     <div class="inner">
       <div class="main-introBing-txt">
         <h1 class="main-h1">
-          <span style="color: #1456fd; font-weight: bold">제빙기 청소</span>, 왜 전문가가 필요할까요?
+          <span style="color: #1456fd; font-weight: bold;">제빙기 청소</span>, 왜 전문가가 필요할까요?
         </h1>
         <div id="main-introBing-txt-sub" class="main-h4">
           <p>
