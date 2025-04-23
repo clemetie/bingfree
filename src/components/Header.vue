@@ -207,7 +207,7 @@ header {
   }
   // 모달 창
   .mo-menu {
-    height: calc(var(--vh, 1vh) * 100); // ✅ 동적 높이 적용
+    height: calc(var(--vh, 1vh) * 100) !important; // ✅ 동적 높이 적용
     margin-top: 120px;
     width: 100%;
 
