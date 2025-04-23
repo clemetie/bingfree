@@ -373,6 +373,10 @@ section {
 
 @include mobile {
   /*브라우저 사이즈767px이하일때*/
+  .inner {
+    margin: auto !important;
+    max-width: 350px !important;
+  }
   .popup_wrap {
     .popup_top {
       max-width: 280px;

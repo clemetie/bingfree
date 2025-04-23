@@ -84,22 +84,22 @@ onBeforeUnmount(() => {
 <template>
   <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
   <div class="side">
-    <div>
-      <router-link
-        to="/reservation"
-        class="sideBtn reservBtn main-icon-drop"
-        :class="{ compact: currentSection !== 'visual' }">
-        <img src="/images/calendar_blue.png" alt="캘린더" />
-        <span class="text">예약하기</span>
-      </router-link>
-    </div>
-    <div class="sideBtn main-icon-drop" :class="{ compact: currentSection !== 'visual' }">
-      <img src="/images/chabot.png" alt="챗봇이미지" :class="{ compact: currentSection !== 'visual' }" />
-      <span class="text">챗봇&nbsp;&nbsp;</span>
-    </div>
+      <div>
+        <router-link
+          to="/reservation"
+          class="sideBtn reservBtn main-icon-drop compact"
+        >
+          <img src="/images/calendar_blue.png" alt="캘린더" />
+          <span class="text">예약하기</span>
+        </router-link>
+      </div>
+      <div class="sideBtn main-icon-drop compact">
+        <img src="/images/chabot.png" alt="챗봇이미지" />
+        <span class="text">챗봇&nbsp;&nbsp;</span>
+      </div>
 
-    <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
-  </div>
+      <div class="goTop main-icon-drop compact" @click="scrollToTop">↑</div>
+    </div>
   <div class="intro-wrap">
     <div class="intro-banner" style="margin-top: 80px">
       <img src="/public/introbing/introsub/introbanner/1.jpg" alt="banner-img" />
