@@ -68,8 +68,31 @@ const visibleReviews = computed(() => reviews.value.slice(0, visibleCount.value)
 const showMore = () => {
   visibleCount.value += 3;
 };
+
+// 오른쪽 사이드 고탑기능
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 </script>
 <template>
+  <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
+  <div class="side">
+    <div>
+      <router-link
+        to="/reservation"
+        class="sideBtn reservBtn main-icon-drop"
+        :class="{ compact: currentSection !== 'visual' }">
+        <img src="/images/calendar_blue.png" alt="캘린더" />
+        <span class="text">예약하기</span>
+      </router-link>
+    </div>
+    <div class="sideBtn main-icon-drop" :class="{ compact: currentSection !== 'visual' }">
+      <img src="/images/chabot.png" alt="챗봇이미지" :class="{ compact: currentSection !== 'visual' }" />
+      <span class="text">챗봇&nbsp;&nbsp;</span>
+    </div>
+
+    <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
+  </div>
   <!-- 고객리뷰 배너 -->
   <div class="banner_bg">
     <div class="banner_container inner">
@@ -112,28 +135,28 @@ const showMore = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor:pointer;">전체보기</span>
+        <span style="color: #616161; font-weight: 500; cursor: pointer">전체보기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="ceo" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor:pointer;">사장님후기</span>
+        <span style="color: #616161; font-weight: 500; cursor: pointer">사장님후기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="customer" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor:pointer;">고객님후기</span>
+        <span style="color: #616161; font-weight: 500; cursor: pointer">고객님후기</span>
       </label>
       <label class="radioset">
         <input class="radio_input" type="radio" value="blog" v-model="selectedTab" />
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor:pointer;">블로그후기</span>
+        <span style="color: #616161; font-weight: 500; cursor: pointer">블로그후기</span>
       </label>
     </div>
     <!-- 고객리뷰 콘텐츠 -->
