@@ -74,11 +74,10 @@ const showMore = () => {
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
-  console.log("✅ 현재 섹션:", currentSection.value);
 };
 </script>
 <template>
-  <!-- 오른쪽 사이드(예약, 챗봇 등) -->
+  <!-- 오른쪽 사이드 (예약, 챗봇 등) -->
   <div class="side">
     <div>
       <router-link
@@ -93,7 +92,6 @@ const scrollToTop = () => {
       <img src="/images/chabot.png" alt="챗봇이미지" />
       <span class="text">챗봇&nbsp;&nbsp;</span>
     </div>
-
     <div class="goTop main-icon-drop compact" @click="scrollToTop">↑</div>
   </div>
   <!-- 고객리뷰 배너 -->
@@ -186,9 +184,7 @@ const scrollToTop = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor: pointer"
-          >전체보기</span
-        >
+        <span style="color: #616161; font-weight: 500; cursor: pointer">전체보기</span>
       </label>
       <label class="radioset">
         <input
@@ -200,9 +196,7 @@ const scrollToTop = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor: pointer"
-          >사장님후기</span
-        >
+        <span style="color: #616161; font-weight: 500; cursor: pointer">사장님후기</span>
       </label>
       <label class="radioset">
         <input
@@ -214,9 +208,7 @@ const scrollToTop = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor: pointer"
-          >고객님후기</span
-        >
+        <span style="color: #616161; font-weight: 500; cursor: pointer">고객님후기</span>
       </label>
       <label class="radioset">
         <input
@@ -228,9 +220,7 @@ const scrollToTop = () => {
         <div class="radio_ui">
           <span class="custom_radio"></span>
         </div>
-        <span style="color: #616161; font-weight: 500; cursor: pointer"
-          >블로그후기</span
-        >
+        <span style="color: #616161; font-weight: 500; cursor: pointer">블로그후기</span>
       </label>
     </div>
     <!-- 고객리뷰 콘텐츠 -->
