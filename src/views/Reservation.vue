@@ -14,6 +14,7 @@ const showFAQ = ref(false);
 const normalizePhone = (phone) => phone.replace(/-/g, "").trim();
 const matchedReservation = ref(null);
 const imageUrl = ref(null);
+
 const reservationFormData = ref({
   name: "",
   phone: "",
@@ -376,26 +377,18 @@ const handleReSubmit = () => {
     <div>
       <router-link
         to="/reservation"
-        class="sideBtn reservBtn main-icon-drop"
-        :class="{ compact: currentSection !== 'visual' }"
+        class="sideBtn reservBtn main-icon-drop compact"
       >
         <img src="/images/calendar_blue.png" alt="캘린더" />
         <span class="text">예약하기</span>
       </router-link>
     </div>
-    <div
-      class="sideBtn main-icon-drop"
-      :class="{ compact: currentSection !== 'visual' }"
-    >
-      <img
-        src="/images/chabot.png"
-        alt="챗봇이미지"
-        :class="{ compact: currentSection !== 'visual' }"
-      />
+    <div class="sideBtn main-icon-drop compact">
+      <img src="/images/chabot.png" alt="챗봇이미지" />
       <span class="text">챗봇&nbsp;&nbsp;</span>
     </div>
 
-    <div class="goTop main-icon-drop" @click="scrollToTop">↑</div>
+    <div class="goTop main-icon-drop compact" @click="scrollToTop">↑</div>
   </div>
   <div class="reserv-wrap">
     <div class="reserv_top" style="margin-top: 80px">
@@ -405,14 +398,25 @@ const handleReSubmit = () => {
           src="/reservation/reservsub/reservation_banner.png"
           alt="예약하기배너"
         />
+        <img
+          class="bannercoupon"
+          src="/reservation/reservsub/banner_coupon.png"
+          alt="배너 쿠폰"
+        />
         <div class="reserv_txtbox">
           <p
-            class="bannerTitle main-h2"
+            class="main-h5"
+            style="letter-spacing: 3px; color: #1456fd; font-weight: 600"
+          >
+            빙프라임 구독요금제
+          </p>
+          <p
+            class="bannerTitle main-h1"
             style="font-weight: bold; line-height: 1.15"
           >
-            최대 <b style="color: #1456fd">20% 할인</b>은 기본!
+            최대 <b style="color: #1456fd">20% 할인</b>은 기본
             <br />
-            전용 할인 <b style="color: #1456fd">쿠폰</b>까지
+            전용 할인 <b style="color: #1456fd">쿠폰</b> 까지
           </p>
 
           <router-link to="/BingPrime">
@@ -431,7 +435,7 @@ const handleReSubmit = () => {
           >
             예약하기
           </li>
-          <p>|</p>
+          <li style="cursor: default; color: #9e9e9e; font-weight: bold">|</li>
           <li
             v-on:click="reservTab = 'reservConfirm'"
             :style="{
@@ -494,14 +498,14 @@ const handleReSubmit = () => {
                 placeholder="주소"
                 readonly
               />
-              
+
               <button
                 class="main-h6"
-                style="color: #757575"
+                style="color: #999"
                 type="button"
                 @click="openPostcode"
               >
-              | &nbsp&nbsp 검색하기
+                | &nbsp&nbsp 검색하기
               </button>
             </div>
             <input
@@ -522,7 +526,7 @@ const handleReSubmit = () => {
                 :key="card.id"
                 class="reserv_card"
               >
-                <p class="card_title main-h4">[{{ card.name }}]</p>
+                <p class="card_title main-h6">[{{ card.name }}]</p>
 
                 <div
                   class="card_inner"
@@ -530,7 +534,7 @@ const handleReSubmit = () => {
                   :key="optionIndex"
                 >
                   <div class="card_info">
-                    <p class="main-h6">
+                    <p style="font-size: 18px">
                       {{ option.label }}
                     </p>
                     <p style="font-size: 16px; color: #1456fd">
@@ -711,7 +715,7 @@ const handleReSubmit = () => {
                     class="service-option"
                   >
                     <input type="checkbox" v-model="service.selected" />
-                    <span class="main-h4"
+                    <span class="main-h6"
                       >{{ service.label }}
                       <p style="color: #1456fd">
                         +{{ service.price.toLocaleString() }}원
@@ -898,7 +902,11 @@ const handleReSubmit = () => {
             placeholder="연락처"
             required
           />
-          <button type="button" class="reservBtn" @click="showReservationInfo">
+          <button
+            type="button"
+            class="reservBtn main-h4"
+            @click="showReservationInfo"
+          >
             예약조회하기
           </button>
         </fieldset>
@@ -969,7 +977,7 @@ const handleReSubmit = () => {
           <button
             v-on:click="handleReSubmit"
             type="button"
-            class="retryreservationBtn"
+            class="main-h4 retryreservationBtn"
           >
             예약수정하기
           </button>
