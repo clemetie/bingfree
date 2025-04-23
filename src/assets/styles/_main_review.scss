@@ -478,4 +478,15 @@
       }
     }
   }
+  // 상세페이지
+  .banner_bg{
+  margin-top: 120px;
+  .banner_left{
+    position: absolute;
+    top: 0;
+  }
+  }
+  .review_txt_wrap .txt_box{
+    display: none;
+  }
 }
