@@ -103,7 +103,7 @@ const scrollToTop = () => {
           빙프리 리뷰 참여하고
         </p>
         <p style="font-size: 50px; font-weight: 700; line-height: 1.2">
-          최대 5천 포인트 받아가세요 !
+          최대 <b style="color: #1456fd;">5천 포인트</b> 받아가세요 !
         </p>
         <button>리뷰쓰기</button>
       </div>

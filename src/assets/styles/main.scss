@@ -133,6 +133,9 @@ a {
   bottom: 2%;
   right: 3%;
   z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   div {
     margin-bottom: 30px;
     img {
