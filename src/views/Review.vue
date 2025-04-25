@@ -317,7 +317,7 @@ const scrollToTop = () => {
       <div class="customer_review_wrap">
         <div class="customer_review_box">
           <img
-            src="/public/review/customer_review_01.png"
+            src="/review/customer_review_01.png"
             alt="고객리뷰 이미지1"
             style="display: block"
           />
