@@ -58,7 +58,7 @@
   .image-section img {
     height: 33vw;
     object-fit: cover;
-    background-color: pink;
+    // background-color: pink;
   }
   .swiper-button-prev,
   .swiper-button-next {
@@ -129,7 +129,7 @@
     color: #212121;
     // background-color: pink;
   }
- 
+
   #main-introBing-txt-sub {
     margin: 5%;
     font-family: "Pretendard";
@@ -337,7 +337,8 @@
     width: 1200px;
     height: 300px;
     // padding: 40px;
-    background: url("/public/introbing/introsub/introbingfree/6.png") no-repeat right center;
+    background: url("/public/introbing/introsub/introbingfree/6.png") no-repeat
+      right center;
     background-size: contain; /* or cover */
     background-color: white;
     display: flex;
