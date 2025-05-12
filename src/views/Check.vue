@@ -104,7 +104,7 @@ const ordinarys = ref([
   { title: "디럭스", subtitle: "", weight: "100~200kg", totalprice: "150,000" },
   { title: "프리미엄", subtitle: "", weight: "200kg 이상", totalprice: "170,000" },
   { title: "호시자키", subtitle: "호시자키", weight: "250kg 미만", totalprice: "170,000" },
-  { title: "호시자키", subtitle: "호시자키+", weight: "250kg 이상", totalprice: "210,000" },
+  { title: "호시자키+", subtitle: "호시자키+", weight: "250kg 이상", totalprice: "210,000" },
 ]);
 
 const selectTab = (tab) => {

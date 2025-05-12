@@ -62,6 +62,10 @@
     }
   }
   .icon_content {
+    display: flex; // 또는 block
+    opacity: 1;
+    transform: translateY(0); // 초기 위치
+    transition: none; // 애니메이션 없애고 싶다면
     span {
       width: 22% !important;
       &:first-child {
@@ -184,6 +188,11 @@
     }
   }
   .icon_content {
+    display: flex; // 또는 block
+    opacity: 1;
+    transform: translateY(0); // 초기 위치
+    transition: none; // 애니메이션 없애고 싶다면
+
     span {
       width: 13% !important;
       &:first-child {
@@ -298,6 +307,10 @@
     }
   }
   .icon_content {
+    display: flex; // 또는 block
+    opacity: 1;
+    transform: translateY(0); // 초기 위치
+    transition: none; // 애니메이션 없애고 싶다면
     span {
       width: 22% !important;
       &:first-child {
@@ -756,15 +769,16 @@
 }
 //카드 위 3d 아이콘
 .icon_content {
-  width: 100%;
+  width: 90%;
   position: absolute;
   top: 0; /* 원하는 위치로 조정 */
   left: 0; /* 필요한 경우 조정 */
-  width: 100%; /* receipt_section만큼 채우고 싶을 경우 */
-  z-index: 10; /* receipt_section보다 위로 올라가게 */
-  pointer-events: none; /* 클릭 방지 (선택 사항) */
-  opacity: 0; // 초기에 안 보이게
+
   transform: translateY(-50px); // 위에서 준비된 위치
+  display: flex; // 또는 block
+  opacity: 1;
+  transform: translateY(0); // 초기 위치
+  transition: none; // 애니메이션 없애고 싶다면
 
   &.show {
     animation: drop-down 0.8s ease forwards;
