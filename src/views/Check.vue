@@ -61,6 +61,8 @@ const descriptions = ref([
   },
 ]);
 
+// 요금제 섹션
+
 const tabs = ["스탠다드", "스탠다드+", "디럭스", "프리미엄", "호시자키", "호시자키+"];
 const selectedTab = ref("스탠다드");
 const showBenefits = ref(false);
@@ -236,7 +238,7 @@ onBeforeUnmount(() => {
         청소 요금 한눈에! 빙프리와 함께 바로 예약해보세요!
       </p>
       <div class="check-top2-bt">
-        <button class="check-top2-txt2">간편 예약 신청</button>
+        <router-link to="/Reservation" class="check-top2-txt2"> 간편 예약 신청 </router-link>
       </div>
     </div>
 
@@ -1118,7 +1120,7 @@ onBeforeUnmount(() => {
             }
             .card_in_times {
               flex: 0.5;
-              font-size: 10px;
+              font-size: 9px;
             }
             .card_in_price {
               flex: 1;

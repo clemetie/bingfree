@@ -275,11 +275,7 @@ const swiperBreakpoints = {
         <div class="slide">
           <div
             class="slide-img"
-            style="
-              background: url('/images/web_visual01.png') no-repeat;
-              background-size: cover;
-            "
-          ></div>
+            style="background: url('/images/web_visual01.png') no-repeat; background-size: cover"></div>
           <div class="txtbox inner">
             <p class="main-h4" style="color: #e9ff54">제빙기 케어</p>
             <p class="main-h1" style="color: #fff">
@@ -293,11 +289,7 @@ const swiperBreakpoints = {
         <div class="slide">
           <div
             class="slide-img"
-            style="
-              background: url('/images/web_visual02.png') no-repeat;
-              background-size: cover;
-            "
-          ></div>
+            style="background: url('/images/web_visual02.png') no-repeat; background-size: cover"></div>
           <div class="txtbox inner">
             <router-link to="/BingPrime" class="main-h4" style="color: #e9ff54"
               >빙프라임 가입하기 →</router-link
@@ -316,26 +308,15 @@ const swiperBreakpoints = {
         <div class="slide">
           <div
             class="slide-img"
-            style="
-              background: url('/images/web_visual03.png') no-repeat;
-              background-size: cover;
-            "
-          ></div>
+            style="background: url('/images/web_visual03.png') no-repeat; background-size: cover"></div>
           <div class="txtbox inner">
             <p class="main-h1">
               제빙기를 호텔처럼, <br />
               마음을 담아 관리해드립니다
             </p>
 
-            <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">
-              #빙프리 꿀팁 #보다 쉽게
-            </p>
-            <router-link
-              to="/BingPrime"
-              class="main-h2 app"
-              style="color: #1456fd"
-              >App 다운로드 →
-            </router-link>
+            <p class="main-h4" style="margin: 40px 0; color: #5c5c5c">#빙프리 꿀팁 #보다 쉽게</p>
+            <router-link to="/BingPrime" class="main-h2 app" style="color: #1456fd">App 다운로드 → </router-link>
           </div>
         </div>
       </SwiperSlide>
@@ -407,8 +388,7 @@ const swiperBreakpoints = {
     <div class="inner">
       <div class="main-introBing-txt">
         <h1 class="main-h1">
-          <span style="color: #1456fd; font-weight: bold">제빙기 청소</span>, 왜
-          전문가가 필요할까요?
+          <span style="color: #1456fd; font-weight: bold">제빙기 청소</span>, 왜 전문가가 필요할까요?
         </h1>
         <div id="main-introBing-txt-sub" class="main-h4">
           <p>
@@ -446,7 +426,7 @@ const swiperBreakpoints = {
         :navigation="true"
         :loop="true"
         :autoplay="{
-          delay: 3000,
+          delay: 2000,
         }"
         :modules="modules"
         class="mySwiper"
