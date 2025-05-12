@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed, nextTick, onBeforeUnmount } from "vue";
 import { onUnmounted } from "vue";
+import { useRouter } from "vue-router"; // ✅ 라우터 임포트 추가
 import Topbar from "@/components/Topbar.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -9,19 +10,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// 상단 탭
-// 현재 선택된 탭 상태를 저장
-const intropiceTab = ref("ordinary"); // 초기값은 'ordinary' (일반요금제)
+const router = useRouter(); // ✅ 라우터 인스턴스 초기화
 
-// 탭 선택 함수
+// 상단 탭
+const intropiceTab = ref("ordinary");
 function selectTopTab(tab) {
   intropiceTab.value = tab;
 }
+
 // 오른쪽 사이드 고탑기능
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
-// ㅅ와이퍼 버튼
+
+// 스와이퍼 버튼
 const currentSection = ref("visual");
 const descriptions = ref([
   {
@@ -58,12 +60,13 @@ const descriptions = ref([
     },
   },
 ]);
+
 // 요금제 섹션
 
 const tabs = ["스탠다드", "스탠다드+", "디럭스", "프리미엄", "호시자키", "호시자키+"];
 const selectedTab = ref("스탠다드");
 const showBenefits = ref(false);
-//TOP3 요금제 더미
+
 const pricePlans = {
   스탠다드: [
     { times: 6, pricePerUse: 89100, total: 534600 },
@@ -96,68 +99,31 @@ const pricePlans = {
     { times: 12, pricePerUse: 336000, total: 2016000 },
   ],
 };
-//일반 요금제 더미
+
 const ordinarys = ref([
-  // 스탠다드
-  {
-    title: "스탠다드",
-    subtitle: "스탠다드",
-    weight: "50kg 미만",
-    totalprice: "99,000",
-  },
-  {
-    title: "스탠다드",
-    subtitle: "스탠다드+",
-    weight: "50~100kg",
-    totalprice: "120,000",
-  },
-  // 디럭스
-  {
-    title: "디럭스",
-    subtitle: "",
-    weight: "100~200kg",
-    totalprice: "150,000",
-  },
-  // 프리미엄
-  {
-    title: "프리미엄",
-    subtitle: "",
-    weight: "200kg 이상",
-    totalprice: "170,000",
-  },
-  // 호시자키
-  {
-    title: "호시자키",
-    subtitle: "호시자키",
-    weight: "250kg 미만",
-    totalprice: "170,000",
-  },
-  {
-    title: "호시자키",
-    subtitle: "호시자키+",
-    weight: "250kg 이상",
-    totalprice: "210,000",
-  },
+  { title: "스탠다드", subtitle: "스탠다드", weight: "50kg 미만", totalprice: "99,000" },
+  { title: "스탠다드", subtitle: "스탠다드+", weight: "50~100kg", totalprice: "120,000" },
+  { title: "디럭스", subtitle: "", weight: "100~200kg", totalprice: "150,000" },
+  { title: "프리미엄", subtitle: "", weight: "200kg 이상", totalprice: "170,000" },
+  { title: "호시자키", subtitle: "호시자키", weight: "250kg 미만", totalprice: "170,000" },
+  { title: "호시자키", subtitle: "호시자키+", weight: "250kg 이상", totalprice: "210,000" },
 ]);
-//구독 요금제 탭
+
 const selectTab = (tab) => {
   selectedTab.value = tab;
-  showBenefits.value = false; // 탭 바꿀 때 혜택 UI 초기화
+  showBenefits.value = false;
 };
 
-// const toggleBenefits = () => {
-//   showBenefits.value = !showBenefits.value;
-// };
+const selectedPlan = ref(null);
 const toggleBenefits = (plan) => {
   selectedPlan.value = plan;
   showBenefits.value = true;
-  // 혜택하기 볼때 자연스럽게 스크롤 이동할수있게 해주는 script
   nextTick(() => {
     const benefitSection = document.querySelector(".plus_sale_list");
     benefitSection?.scrollIntoView({ behavior: "smooth" });
   });
 };
-//애니메이션
+
 const endValues = [6, 8, 12];
 const benefitEndValues = [10, 15, 20];
 const numberPairs = endValues.map((n, i) => [n, benefitEndValues[i]]);
@@ -167,25 +133,20 @@ const currentIndex = ref(0);
 const animate = ref(false);
 
 onMounted(() => {
-  currentIndex.value = 0; // ✅ 인덱스 초기화
-
+  currentIndex.value = 0;
   const interval = setInterval(() => {
     animate.value = false;
     setTimeout(() => {
       animate.value = true;
-    }, 50); // 애니메이션 리셋
-
+    }, 50);
     currentIndex.value++;
-
     if (currentIndex.value >= numberPairs.length) {
-      currentIndex.value = 0; // 마지막 인덱스 넘으면 처음부터 다시
+      currentIndex.value = 0;
     }
-  }, 3000); // 3초마다 전환
+  }, 3000);
 });
 
-//배너 반응형 이밍지 변경하기
 const imgSrc = ref("//check/check_banner_top.png");
-
 const updateImageSrc = () => {
   if (window.matchMedia("(min-width: 390px) and (max-width: 767px)").matches) {
     imgSrc.value = "/check/check_banner_mobile.png";
@@ -205,14 +166,10 @@ onUnmounted(() => {
   window.removeEventListener("resize", updateImageSrc);
 });
 
-// 회차 보기
-const selectedPlan = ref(null);
 const handleBottomButtonClick = () => {
   if (showBenefits.value) {
-    // 예약 페이지 이동
-    router.push("/reservation");
+    router.push("/reservation"); // ✅ 버튼 클릭 시 라우터 이동
   } else {
-    // 선택 요금제가 없다면 무시
     if (!selectedPlan.value) return;
     showBenefits.value = true;
     nextTick(() => {
@@ -222,14 +179,13 @@ const handleBottomButtonClick = () => {
   }
 };
 
-// 모바일 미디어쿼리 변경시 swiper 자동 재생
 const isAutoplayActive = ref(false);
+const swiperKey = ref(0);
 
 const checkMediaQuery = () => {
-  // 390px ~ 767px 구간에만 true
   const mq = window.matchMedia("(min-width: 390px) and (max-width: 767px)");
   isAutoplayActive.value = mq.matches;
-  swiperKey.value++; // Swiper 강제 리렌더링
+  swiperKey.value++;
 };
 
 onMounted(() => {
@@ -240,8 +196,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("resize", checkMediaQuery);
 });
-// 스와이퍼가 반응이 안돼서 강제 렌더링 해야함
-const swiperKey = ref(0);
 </script>
 <template>
   <div class="wrap">
@@ -331,11 +285,11 @@ const swiperKey = ref(0);
               </p>
               <div class="ordinary">
                 <p>
-                  <span><img src="/public/check/price_description_tag.png" alt="" /></span>
+                  <span><img src="/public/check/price_description_tag.png" alt="아이콘" /></span>
                   <span>추가금 없이, 청소 서비스가 모두 포함된 요금입니다.</span>
                 </p>
                 <p>
-                  <span><img src="/public/check/price_description_tag.png" alt="" /></span>
+                  <span><img src="/public/check/price_description_tag.png" alt="아이콘" /></span>
                   <span>요청 시 제빙기 관련 제품/서비스 추가 제공이 가능합니다.</span>
                 </p>
               </div>
@@ -458,7 +412,7 @@ const swiperKey = ref(0);
             <div class="description">
               <!-- 구독 횟수 -->
               <p>
-                <span><img src="/public/check/price_tag.png" alt="" /></span>
+                <span><img src="/public/check/price_tag.png" alt="태그아이콘" /></span>
                 <span>
                   <strong>{{ description.detail.times }}</strong
                   >&nbsp구독
@@ -466,12 +420,12 @@ const swiperKey = ref(0);
               </p>
               <!-- 서비스 내용 -->
               <p>
-                <span><img src="/public/check/price_description_tag.png" alt="" /></span
+                <span><img src="/public/check/price_description_tag.png" alt="price아이콘" /></span
                 ><span>무료진단 서비스 1회 , 자사몰 클리너 증정</span>
               </p>
               <!-- 맞춤 질문 -->
               <p>
-                <span><img src="/public/check/price_description_tag.png" alt="" /></span
+                <span><img src="/public/check/price_description_tag.png" alt="price아이콘" /></span
                 ><span>{{ description.detail.label }}</span>
               </p>
             </div>
@@ -650,11 +604,6 @@ const swiperKey = ref(0);
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- 계산하기배너 -->
-      <div class="calculation_banner">
-        <img src="" alt="" />
       </div>
     </div>
   </div>

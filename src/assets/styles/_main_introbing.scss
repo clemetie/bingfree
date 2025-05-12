@@ -25,7 +25,6 @@
 @media (min-width: 370px) and (max-width: 767px) {
   .inner {
     max-width: 350px;
-    // background-color: pink;
   }
   /*브라우저 사이즈 767px이하일때*/
   .introBing {
@@ -338,7 +337,8 @@
     width: 1200px;
     height: 300px;
     // padding: 40px;
-    background: url("/public/introbing/introsub/introbingfree/6.png") no-repeat right center;
+    background: url("/public/introbing/introsub/introbingfree/6.png") no-repeat
+      right center;
     background-size: contain; /* or cover */
     background-color: white;
     display: flex;
