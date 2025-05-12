@@ -923,19 +923,44 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.check-top2-bt button {
-  background-color: #e9ff54;
-  border-style: none;
-  width: 200px;
-  height: 65px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 24px;
-  font-family: "Pretendard", sans-serif;
-  color: #1456fd;
-  cursor: pointer;
-  transition: transform 0.2s ease-out, background-color 0.2s;
+// .check-top2-bt button {
+//   background-color: #e9ff54;
+//   border-style: none;
+//   width: 200px;
+//   height: 65px;
+//   border-radius: 14px;
+//   font-weight: 700;
+//   font-size: 24px;
+//   font-family: "Pretendard", sans-serif;
+//   color: #1456fd;
+//   cursor: pointer;
+//   transition: transform 0.2s ease-out, background-color 0.2s;
+// }
+.check-top2-bt {
+  .check-top2-txt2 {
+    display: inline-block;
+    width: 200px;
+    height: 65px;
+    line-height: 65px;
+    background-color: #e9ff54;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: "Pretendard", sans-serif;
+    color: #1456fd;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, background-color 0.2s;
+
+    &:hover {
+      transform: scale(1.02);
+      background-color: #d9f848;
+    }
+  }
 }
+
 // 탭
 
 .introbing_tab {
